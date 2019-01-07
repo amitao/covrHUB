@@ -13,7 +13,7 @@ import {
 // Component imports
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import AddProfile from '../Profile/AddProfile';
