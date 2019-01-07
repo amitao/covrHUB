@@ -38,6 +38,8 @@ const spacing = {
   margin: '0.5em 0',
 }
 
+
+
 class DisplayInsurance extends React.Component {
 
   componentDidMount() {

@@ -36,11 +36,9 @@ const style = {
 }
 
 
+// Dashboard will displays all user information and benefits
 
-// Dashboard
 class Dashboard extends React.Component {
-
-
 
   render() {
 
@@ -54,23 +52,23 @@ class Dashboard extends React.Component {
 
             <Grid item className={classes.itemGrid}>
               <Grid item className={classes.itemNestedFirst}>
-              <center>
-              <img src="images/profile-icon.svg" alt="profile" className="profile-icon"/>
-                <Link to="/view_profile" style={style}><p>Profile</p></Link>
+                <center>
+                  <img src="images/profile-icon.svg" alt="profile" className="profile-icon" />
+                  <Link to="/view_profile" style={style}><p>Profile</p></Link>
                 </center>
               </Grid>
 
               <Grid item className={classes.itemNestedMiddle}>
-              <center>
-                <img src="images/policy-icon.svg" alt="policy" className="policy-icon" />
-                <p style={style}> Add Policy</p>
+                <center>
+                  <img src="images/policy-icon.svg" alt="policy" className="policy-icon" />
+                  <p style={style}> Add Policy</p>
                 </center>
               </Grid>
 
               <Grid className={classes.itemNestedLast}>
                 <center>
-                 <img src="images/graph-icon.svg" alt="graph" className="graph-icon" />
-                 <p style={style1}> Money Spend</p>
+                  <img src="images/graph-icon.svg" alt="graph" className="graph-icon" />
+                  <p style={style1}> Money Spend</p>
                 </center>
               </Grid>
             </Grid>
@@ -83,7 +81,7 @@ class Dashboard extends React.Component {
             </Grid>
 
             <Grid item md className={classes.paper}>
-            <p>Grid Three</p>
+              <p>Grid Three</p>
             </Grid>
 
           </Grid>
