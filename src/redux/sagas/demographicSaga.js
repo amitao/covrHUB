@@ -18,7 +18,7 @@ import { call, put as dispatch, takeLatest } from 'redux-saga/effects';
 function* fetchDemo(action) {
   try {
     const response = yield axios.get(`/api/demographic/userDemographic?id=${action.payload}`);
-    yield dispatch({type: 'SET_DEMO', payload: response.data});
+    yield dispatch({type: 'SET_DEMOGRAPHIC', payload: response.data});
   } catch ( err) {
     console.log(`Error in fetching demographic ${err}`);
   };
