@@ -98,22 +98,23 @@ class LoginPage extends Component {
                     />
                   </div>
                   <div>
-                    <input
-                      className={classes.buttonStyle}
+                    <Button
+                      variant="outlined"
+                      color="primary"
                       type="submit"
                       name="submit"
                       value="Log In"
-                    />
+                      className={classes.button}
+                    > Log In</Button>
                   </div>
                 </form>
 
                 {/* end of form */}
 
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   color="primary"
                   type="button"
-                  className={classes.buttonStyle}
                   onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
                 >
                   Register

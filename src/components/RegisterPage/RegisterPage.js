@@ -64,7 +64,7 @@ class RegisterPage extends Component {
           {/* Form header "Register" */}
           <Card className={classes.cardHeader}>
             <div>
-              <h1>Register User</h1>
+              <h1>Sign Up</h1>
             </div>
           </Card>
 
@@ -73,15 +73,6 @@ class RegisterPage extends Component {
             <CardContent>
               <form onSubmit={this.registerUser} className={classes.form}>
                 <div>
-                  {/* <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label> */}
                   <TextField
                     placeholder="Username"
                     type="text"
@@ -92,15 +83,6 @@ class RegisterPage extends Component {
                   />
                 </div>
                 <div>
-                  {/* <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label> */}
                   <TextField
                     placeholder="Password"
                     type="password"
@@ -111,21 +93,22 @@ class RegisterPage extends Component {
                   />
                 </div>
                 <div>
-                  <input
-                    className={classes.buttonStyle}
+                  <Button
+                    className={classes.button}
+                    variant="outlined"
+                    color="primary"
                     type="submit"
                     name="submit"
                     value="Register"
-                  />
+                  > Register </Button>
                 </div>
               </form>
               {/* end of form */}
 
               <Button
                 variant="contained"
-                color="default"
+                color="primary"
                 type="button"
-                className={classes.buttonStyle}
                 onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
               >
                 Login
