@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // Components import
-import LogOutButton from '../LogOutButton/LogOutButton';
+// import LogOutButton from '../LogOutButton/LogOutButton';
 
 // Material UI imports
 import { withStyles } from '@material-ui/core';
@@ -32,7 +32,7 @@ const navRight = {
   right: "1.5em",
   bottom: "0",
   left: "auto",
-  // position: "fixed",
+  position: "fixed",
 }
 
 // let homeImg = <img src="images/home-icon.svg" className="home-img" alt="Home" />;
@@ -77,7 +77,7 @@ class Nav extends React.Component {
              <Avatar src="images/avatar1.svg" className={classes.avatar} />
             </IconButton> */}
               <MenuItem />
-              <LogOutButton/>
+              {/* <LogOutButton/> */}
             </>
           )}
         </div>
