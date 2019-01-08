@@ -6,11 +6,11 @@ import DisplayProfile from '../Profile/DisplayProfile';
 import DisplayInsurance from '../Insurance/DisplayInsurance';
 // import DisplayBenefits from '../Benefits/DisplayBenefits';
 
-
 // Material-UI
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 // Other Styles
 import styles from '../Assets/styles/stylesTwo';
@@ -37,7 +37,11 @@ const styleDash = {
     color: '#e1e3f7',
     backgroundColor: '#3f3fa5',
     borderRadius: "5px",
-  }
+  },
+  paper: {
+    padding: "1em",
+    backgroundColor: "#ffffff",
+  },
 }
 
 
@@ -83,14 +87,14 @@ class Dashboard extends React.Component {
             </Grid>
             {/* end of itemGrid div */}
 
-            <Grid item md className={classes.paper}>
-              <div>
+              <Grid item md className={classes.paper}>
+              <div style={styleDash.paper}>
                 <h3 style={styleDash.h3Style}>Policy Holder</h3>
                 <DisplayProfile />
-              </div>
-              
-              <DisplayInsurance />
+
+                <DisplayInsurance />
               {/* <DisplayBenefits /> */}
+              </div>
             </Grid>
 
             <Grid item md className={classes.paper}>

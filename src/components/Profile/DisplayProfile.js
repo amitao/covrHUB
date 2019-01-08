@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Paper from '@material-ui/core/Paper';
+
+import './Profile.css';
 
 
-
-const styling = {
-  padding: "1em",
-}
 
 
 class DisplayProfile extends React.Component {
@@ -18,18 +15,20 @@ class DisplayProfile extends React.Component {
   render() {
     return (
       <>
-        <Paper style={styling}>
           {this.props.reduxState.demographic.map((item) => {
             return (
-              <div key={item.id}>
-                Name: {item.first_name}
-                Last: {item.last_name}
-                Email: {item.email}
-                Address: {item.address}
+              <div key={item.id} className="box">
+                <div className="child-one">
+                  <p><strong>Name</strong>: {item.first_name}</p>
+                  <p><strong>Email</strong>: {item.email}</p>
+                </div>
+                <div className="child-two">
+                  <p><strong>Last</strong>: {item.last_name}</p>
+                  <p><strong>Address</strong>: {item.address}</p>
+                </div>
               </div>
             )
           })}
-        </Paper>
       </>
     )
   }
