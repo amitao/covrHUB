@@ -8,6 +8,12 @@ const stylesTwo = theme => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
+  paperView: {
+    width: 650,
+    padding: theme.spacing.unit,
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
   grid: {
     height: 500,
     marginTop: "1em",

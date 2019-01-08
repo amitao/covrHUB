@@ -1,8 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+// material UI styling
 import { withStyles, Grid, Paper, Button, TextField, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import PropTypes from 'prop-types';
+// component imports
 import ModalAvatar from '../Modal/ModalAvatar';
+// styles 
 import styles from '../Assets/styles/stylesTwo';
 
 const theme = createMuiTheme({
@@ -24,7 +28,7 @@ const theme = createMuiTheme({
 class AddProfile extends React.Component {
 
   state = {
-    fname:'',
+    fname: '',
     lname: '',
     address: '',
     email: ''
@@ -41,9 +45,9 @@ class AddProfile extends React.Component {
   handleClickSave = () => {
     console.log('save button has been clicked');
 
-    this.props.dispatch({type: 'ADD_DEMO', payload: this.state})
+    this.props.dispatch({ type: 'ADD_DEMO', payload: this.state })
     this.setState({
-      fname:'',
+      fname: '',
       lname: '',
       address: '',
       email: ''
@@ -58,111 +62,107 @@ class AddProfile extends React.Component {
     this.setState({
       ...this.state,
       [propertyName]: event.target.value
-    }) 
+    })
   }
 
 
+  render() {
 
+    const { classes } = this.props;
 
+    return (
+      <div className={classes.root}>
+        <Grid container spacing={24} className={classes.grid}
+          direction="row" justify="center">
 
-render () {
-
-  const { classes }= this.props;
-
-  return (
-    <div className={classes.root}>
-       <Grid container spacing={24} className={classes.grid}
-      direction="row" justify="center">
-
-       {/* Avatar column */}
-       <Grid item sm={3}>
-        <Paper className={classes.paper}>
-        <h2 className="profile-h2">Profile</h2>
-        <div className="avatar-block">
-          {/* avatar image goes here */}
-        </div>
-        <div>
-        <ModalAvatar/>
-        </div>
-        </Paper>
-        </Grid>
-        
-        {/* User Demographic Form */}
-        <Grid item sm={8}>
-        <Paper className={classes.paper}> 
-
-        <h2 className="profile-h2">User Profile</h2>
- 
-        <center><div className={classes.bgColor}></div></center>
-
-          <form>
-            <TextField 
-              type="text"
-              className={classes.textField}
-              label="Fist Name"
-              onChange={this.handleChange('fname')}
-              value={this.state.fname}
-              />
-            
-            <TextField 
-              type="text"
-              className={classes.textField}
-              label="Last Name"
-              onChange={this.handleChange('lname')}
-              value={this.state.lname}
-              />
-            
-            <TextField 
-              type="text"
-              className={classes.textField}
-              label="Address"
-              fullWidth
-              margin="normal"
-              onChange={this.handleChange('address')}
-              value={this.state.address}
-              />
-
-            <TextField 
-              type="text"
-              className={classes.textField}
-              label="Email"
-              onChange={this.handleChange('email')}
-              value={this.state.email}
-              />
-
-            {/* Buttons */}
-              <div>
-              <MuiThemeProvider theme={theme}>
-                <Button 
-                className={classes.nextBtn} 
-                variant="outlined" 
-                color="primary" 
-                onClick={this.handleClickBack}
-                >Back</Button>
-
-                <Button 
-                className={classes.nextBtn} 
-                variant="outlined" 
-                color="primary" 
-                onClick={this.handleClickSave}
-                >Save</Button>
-
-                <Button 
-                  variant="contained" 
-                  color="primary" 
-                  className={classes.nextBtn}
-                  onClick={this.handleClickNext}
-                  >Next</Button>
-                </MuiThemeProvider>
+          {/* Avatar column */}
+          <Grid item sm={3}>
+            <Paper className={classes.paper}>
+              <h2 className="profile-h2">Profile</h2>
+              <div className="avatar-block">
+                {/* avatar image goes here */}
               </div>
-          </form>
-        </Paper>
-      </Grid>
-      </Grid>
-    </div>
-  
-  )
-}
+              <div>
+                <ModalAvatar />
+              </div>
+            </Paper>
+          </Grid>
+
+          {/* User Demographic Form */}
+          <Grid item sm={8}>
+            <Paper className={classes.paper}>
+
+              <h2 className="profile-h2">User Profile</h2>
+
+              <center><div className={classes.bgColor}></div></center>
+
+              <form>
+                <TextField
+                  type="text"
+                  className={classes.textField}
+                  label="Fist Name"
+                  onChange={this.handleChange('fname')}
+                  value={this.state.fname}
+                />
+
+                <TextField
+                  type="text"
+                  className={classes.textField}
+                  label="Last Name"
+                  onChange={this.handleChange('lname')}
+                  value={this.state.lname}
+                />
+
+                <TextField
+                  type="text"
+                  className={classes.textField}
+                  label="Address"
+                  fullWidth
+                  margin="normal"
+                  onChange={this.handleChange('address')}
+                  value={this.state.address}
+                />
+
+                <TextField
+                  type="text"
+                  className={classes.textField}
+                  label="Email"
+                  onChange={this.handleChange('email')}
+                  value={this.state.email}
+                />
+
+                {/* Buttons */}
+                <div>
+                  <MuiThemeProvider theme={theme}>
+                    <Button
+                      className={classes.nextBtn}
+                      variant="outlined"
+                      color="primary"
+                      onClick={this.handleClickBack}
+                    >Back</Button>
+
+                    <Button
+                      className={classes.nextBtn}
+                      variant="outlined"
+                      color="primary"
+                      onClick={this.handleClickSave}
+                    >Save</Button>
+
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.nextBtn}
+                      onClick={this.handleClickNext}
+                    >Next</Button>
+                  </MuiThemeProvider>
+                </div>
+              </form>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+    )
+  }
 
 }
 

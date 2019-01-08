@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+// material UI styling
 import { withStyles, Grid, Paper, Button, TextField, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import styles from '../Assets/styles/stylesTwo';
