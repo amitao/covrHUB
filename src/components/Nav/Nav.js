@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // Components import
-import LogOutButton from '../LogOutButton/LogOutButton';
+// import LogOutButton from '../LogOutButton/LogOutButton';
 
 // Material UI imports
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
+// import Avatar from '@material-ui/core/Avatar';
+// import IconButton from '@material-ui/core/IconButton';
 
 // regular styling imports
 import './Nav.css';
 import stylesTwo from '../Assets/styles/stylesTwo';
-// import MenuItem from '../Menu/MenuProfile';
+import MenuItem from '../Menu/MenuProfile';
 
 
 const shadow = {
@@ -46,17 +46,15 @@ class Nav extends React.Component {
 
     return (
       <div className={classes.root}> 
-      {/* Brand Logo */}
       <AppBar position="static" color="inherit" style={shadow}>
         <Toolbar>
 
           <Link to="/home">
-        {/* <h2 className="nav-title">Prime Solo Project</h2> */}
           <img src="images/logo-cvr.svg" className="logo" alt="logo"/>
         </Link>
   
         {/* Nav Link to "HOME", "ABOUT" "LOGIN" */}
-        <div style={navRight}> {/* style={navRight} */}
+        <div style={navRight}> 
           <Link className="nav-link" to="/home">
           {/* Show this link if they are logged in or not,
           but call this link 'Home' if they are logged in,
@@ -72,15 +70,14 @@ class Nav extends React.Component {
           </Link>
           
           
-          {/* <MenuItem /> */}
-          
           {/* Show the link to the info page and the logout button if the user is logged in */}
           {this.props.user.id && (
             <>
-            <IconButton>
+            {/* <IconButton>
              <Avatar src="images/avatar1.svg" className={classes.avatar} />
-            </IconButton>
-              <LogOutButton/>
+            </IconButton> */}
+              <MenuItem />
+              {/* <LogOutButton/> */}
             </>
           )}
         </div>

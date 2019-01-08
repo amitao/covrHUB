@@ -1,0 +1,10 @@
+table {
+  width: 80%;
+  border-collapse: collapse;
+  font-family: 'Istok Web', sans-serif;
+}
+
+thead th {
+  background-color: #cafaef;
+  height: 40px;
+}
