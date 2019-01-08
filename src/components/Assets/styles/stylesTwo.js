@@ -9,7 +9,7 @@ const stylesTwo = theme => ({
     color: theme.palette.text.secondary,
   },
   paperView: {
-    width: 950,
+    width: 650,
     padding: theme.spacing.unit,
     textAlign: "center",
     color: theme.palette.text.secondary,
