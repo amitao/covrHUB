@@ -2,26 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // material UI styling
-import { withStyles, Grid, Paper, Button, TextField, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { withStyles, Grid, Paper, Button, TextField } from '@material-ui/core';
 import PropTypes from 'prop-types';
 // component imports
 import ModalAvatar from '../Modal/ModalAvatar';
 // styles 
 import styles from '../Assets/styles/stylesTwo';
+import './Profile.css';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: "#e1e3f7",
-      main: "#7060ed",
-      dark: "#7378a5",
-      contrastText: "#fff",
-    }
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
 
 
 
@@ -132,8 +120,7 @@ class AddProfile extends React.Component {
                 />
 
                 {/* Buttons */}
-                <div>
-                  <MuiThemeProvider theme={theme}>
+                <div className="btn-box">
                     <Button
                       className={classes.nextBtn}
                       variant="outlined"
@@ -153,8 +140,8 @@ class AddProfile extends React.Component {
                       color="primary"
                       className={classes.nextBtn}
                       onClick={this.handleClickNext}
-                    >Next</Button>
-                  </MuiThemeProvider>
+                    >Add Insurance</Button>
+                    
                 </div>
               </form>
             </Paper>

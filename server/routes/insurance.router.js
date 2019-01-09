@@ -20,9 +20,9 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 // });
 
 
-router.get('/userInsurance', rejectUnauthenticated, (req, res) => {
+router.get('/user_insurance', rejectUnauthenticated, (req, res) => {
   const queryString = `SELECT * FROM "insurance"
-                       JOIN "benefit" ON "insurance"."id" = "benefit"."insurance_id" WHERE "person_id" = $1;`;
+                       WHERE "person_id" = $1;`;
   pool.query(queryString, [req.query.id])
   .then( result => {
     res.send(result.rows);
@@ -53,6 +53,38 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   })
 })
 
+
+
+router.get('/benefits/user_benefit', rejectUnauthenticated, (req, res) => {
+  const queryString = `SELECT * FROM "benefit" WHERE "person_id" = $1;`;
+  pool.query(queryString, [req.query.id])
+  .then( result => {
+    res.send(result.rows);
+  })
+  .catch ( err => {
+    console.log(`Error in getting data from DB ${err}`);
+    res.sendStatus(500);
+  });
+});
+
+
+router.post('/benefits', rejectUnauthenticated, (req, res) => {
+  console.log(`in POST route to add post to db ${req.user}`);
+
+  const queryString =`INSERT INTO "benefit" ("deductible_in", "deductible_out", "coinsurance_in", 
+                      "coinsurance_out", "copay_in", "copay_special", "oop_in", "oop_out", "person_id")
+                      VALUES ($1,$2,$3,$4,$5,$6,$7,$8, $9)`;
+  const queryValues = [req.body.dedIn, req.body.dedOut, req.body.coinsuranceIn, req.body.coinsuranceOut, 
+                      req.body.copayPCP, req.body.copaySpecial, req.body.oopIn, req.body.oopOut, req.user.id];
+  pool.query(queryString, queryValues)
+  .then( () => {
+    res.sendStatus(201);
+  })
+  .catch( err =>{
+    console.log(`Error in posting insurance to DB ${err}`);
+    res.sendStatus(500);
+  })
+})
 
 
 module.exports = router;

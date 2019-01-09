@@ -53,6 +53,7 @@ class AddInsurance extends React.Component {
     })
   }
 
+  // when user click "Next" dispatch will send data to reducer
   handleClickNext = () => {
     this.props.history.push("/add_benefits");
   }
@@ -151,7 +152,7 @@ class AddInsurance extends React.Component {
                   className={classes.nextBtn}
                   variant="contained"
                   color="primary"
-                >Save</Button>
+                >Save</Button> 
 
                 <Button
                   onClick={this.handleClickNext}

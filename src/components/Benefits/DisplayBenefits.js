@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 class DisplayBenefits extends React.Component {
 
 
-  // componentDidMount() {
-  //   this.props.dispatch({type:'FETCH_BENEFIT'});
-  // }
+  componentDidMount() {
+    this.props.dispatch({type:'FETCH_BENEFIT', payload: this.props.reduxState.user.id});
+  }
 
 
   render () {
@@ -17,7 +17,7 @@ class DisplayBenefits extends React.Component {
         display benefit
         {this.props.reduxState.benefit.map( item => {
           return (
-            <p ket={item.id}>
+            <p key={item.id}>
             ${item.deductible_in}
             ${item.deductible_out}
             ${item.coinsurance_out}
@@ -26,7 +26,6 @@ class DisplayBenefits extends React.Component {
             ${item.copay_special}
             ${item.oop_in}
             ${item.oop_out}
-        
             </p>
           )
         })}
