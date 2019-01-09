@@ -32,7 +32,7 @@ function* postBenefit(action) {
   }
 }
 
-
+// GET request to render data in benefits
 function* fetchBenefit(action) {
   try {
     const response = yield axios.get(`/api/insurance/benefits/user_benefit?id=${action.payload}`);
