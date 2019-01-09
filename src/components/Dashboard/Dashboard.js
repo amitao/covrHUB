@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+
 // Components
 import DisplayProfile from '../Profile/DisplayProfile';
 import DisplayInsurance from '../Insurance/DisplayInsurance';
@@ -15,6 +16,7 @@ import Grid from '@material-ui/core/Grid';
 // Other Styles
 import styles from '../Assets/styles/stylesTwo';
 import './Dashboard.css';
+import DisplayPaidBenefits from '../Benefits/DisplayPaidBenefits';
 
 
 const styleDash = {
@@ -29,6 +31,12 @@ const styleDash = {
   style2: {
     fontSize: "1.5em",
     color: "#ffffff",
+    letterSpacing: "3px",
+    cursor: "pointer",
+  },
+  style3: {
+    fontSize: "1em",
+    color: "blue",
     letterSpacing: "3px",
     cursor: "pointer",
   },
@@ -60,6 +68,10 @@ class Dashboard extends React.Component {
     this.props.history.push("/add_insurance");
   }
 
+  handleClickPaid= () => {
+    this.props.history.push("/add_paid_benefits");
+  }
+
 
   render() {
 
@@ -67,7 +79,7 @@ class Dashboard extends React.Component {
 
     return (
         <div className={classes.root}>
-          <Grid container spacing={24} className={classes.grid2}>
+          <Grid container className={classes.grid2}>
             <Grid item className={classes.itemGrid}>
               <Grid item className={classes.itemNestedFirst}>
                 <center>
@@ -92,8 +104,7 @@ class Dashboard extends React.Component {
             </Grid>
             {/* end of itemGrid div */}
 
-              <Grid item md className={classes.paper}>
-              <div style={styleDash.paper}>
+              <Grid item md className={classes.paper} style={styleDash.paper}>
                 <h3 style={styleDash.h3Style}>Policy Holder</h3>
                 <DisplayProfile />
 
@@ -101,11 +112,15 @@ class Dashboard extends React.Component {
                 
                 <DisplayBenefits />
                 
-              </div>
             </Grid>
 
-            <Grid item md className={classes.paper}>
+            <Grid item md className={classes.paper} style={styleDash.paper}>
               <p>Grid Three</p>
+              <div className="box-benefit">
+                No paid benefits yet
+                <p onClick={this.handleClickPaid}style={styleDash.style3}>Add Paid Benefits</p>
+              </div>
+              <DisplayPaidBenefits />
             </Grid>
 
           </Grid>

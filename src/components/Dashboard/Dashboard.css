@@ -18,3 +18,9 @@
 .graph-icon {
   width: 30%;
 }
+
+.box-benefit {
+  background-color: azure;
+  border: 1px solid gray;
+  height: 200px;
+}

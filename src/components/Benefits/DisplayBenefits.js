@@ -20,9 +20,6 @@ const style = {
 
 
 
-
-
-
 class DisplayBenefits extends React.Component {
 
 
@@ -39,11 +36,14 @@ class DisplayBenefits extends React.Component {
         {this.props.reduxState.benefit.map( item => {
           return (
             <table key={item.id}>
+              <thead>
               <tr>
                 <th></th>
                 <th>In-Network</th>
                 <th>Out-Network</th>
               </tr>
+              </thead>
+              <tbody>
               <tr>
                 <td style={style.text}>Deductible:</td> 
                 <td> ${item.deductible_in}</td>
@@ -64,6 +64,7 @@ class DisplayBenefits extends React.Component {
                 <td>${item.oop_in}</td>
                 <td>${item.oop_out}</td>
               </tr>
+              </tbody>
             </table>
           )
         })}

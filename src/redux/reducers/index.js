@@ -5,6 +5,7 @@ import user from './userReducer';
 import insurance from './insuranceReducer';
 import demographic from './demographicReducer';
 import benefit from './benefitReducer';
+import benefitPaid from './benefitPaidReducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   insurance,
   demographic,
   benefit,
+  benefitPaid,
 });
 
 export default rootReducer;

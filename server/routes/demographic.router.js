@@ -21,8 +21,6 @@ router.get('/userDemographic', rejectUnauthenticated, (req, res) => {
 });
 
 
-
-
 // post data into the demographic table
 // addDemographics saga and reducer
 router.post('/', rejectUnauthenticated, (req, res) => {

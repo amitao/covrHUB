@@ -24,13 +24,13 @@ router.get('/user_insurance', rejectUnauthenticated, (req, res) => {
   const queryString = `SELECT * FROM "insurance"
                        WHERE "person_id" = $1;`;
   pool.query(queryString, [req.query.id])
-  .then( result => {
-    res.send(result.rows);
-  })
-  .catch ( err => {
-    console.log(`Error in getting data from DB ${err}`);
-    res.sendStatus(500);
-  });
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log(`Error in getting data from DB ${err}`);
+      res.sendStatus(500);
+    });
 });
 
 
@@ -39,18 +39,18 @@ router.get('/user_insurance', rejectUnauthenticated, (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log(`in POST route to add insurance to db ${req.user}`);
 
-  const queryString =` INSERT INTO "insurance" ("name", "address", "effective_date", "term_date",
+  const queryString = ` INSERT INTO "insurance" ("name", "address", "effective_date", "term_date",
                       "member_number", "group_number", "person_id")
                       VALUES ($1,$2,$3,$4,$5,$6,$7);`;
   const queryValues = [req.body.name, req.body.address, req.body.effective, req.body.term, req.body.memberId, req.body.group, req.user.id];
   pool.query(queryString, queryValues)
-  .then( () => {
-    res.sendStatus(201);
-  })
-  .catch( err =>{
-    console.log(`Error in posting insurance to DB ${err}`);
-    res.sendStatus(500);
-  })
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log(`Error in posting insurance to DB ${err}`);
+      res.sendStatus(500);
+    })
 })
 
 
@@ -58,33 +58,60 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 router.get('/benefits/user_benefit', rejectUnauthenticated, (req, res) => {
   const queryString = `SELECT * FROM "benefit" WHERE "person_id" = $1;`;
   pool.query(queryString, [req.query.id])
-  .then( result => {
-    res.send(result.rows);
-  })
-  .catch ( err => {
-    console.log(`Error in getting data from DB ${err}`);
-    res.sendStatus(500);
-  });
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log(`Error in getting data from DB ${err}`);
+      res.sendStatus(500);
+    });
 });
 
 
 router.post('/benefits', rejectUnauthenticated, (req, res) => {
   console.log(`in POST route to add post to db ${req.user}`);
 
-  const queryString =`INSERT INTO "benefit" ("deductible_in", "deductible_out", "coinsurance_in", 
+  const queryString = `INSERT INTO "benefit" ("deductible_in", "deductible_out", "coinsurance_in", 
                       "coinsurance_out", "copay_in", "copay_special", "oop_in", "oop_out", "person_id")
                       VALUES ($1,$2,$3,$4,$5,$6,$7,$8, $9) RETURNING "id"`;
-  const queryValues = [req.body.dedIn, req.body.dedOut, req.body.coinsuranceIn, req.body.coinsuranceOut, 
-                      req.body.copayPCP, req.body.copaySpecial, req.body.oopIn, req.body.oopOut, req.user.id];
+  const queryValues = [req.body.dedIn, req.body.dedOut, req.body.coinsuranceIn, req.body.coinsuranceOut,
+  req.body.copayPCP, req.body.copaySpecial, req.body.oopIn, req.body.oopOut, req.user.id];
   pool.query(queryString, queryValues)
-  .then( () => {
-    res.sendStatus(201);
-  })
-  .catch( err =>{
-    console.log(`Error in posting insurance to DB ${err}`);
-    res.sendStatus(500);
-  })
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log(`Error in posting insurance to DB ${err}`);
+      res.sendStatus(500);
+    })
 })
+
+router.post('/benefits/paid/', rejectUnauthenticated, (req, res) => {
+  const queryString = `INSERT INTO "benefitpaid" ("ded_in_paid", "ded_out_paid", "oop_in_paid", "oop_out_paid", "date", "benefit_id") 
+                        VALUES ($1,$2,$3,$4,$5, (SELECT "id" FROM "benefit" WHERE id="id"));`
+
+  const queryValues = [req.body.dedInPaid, req.body.dedOutPaid, req.body.oopInPaid, req.body.oopOutPaid, req.body.date];
+  pool.query(queryString, queryValues)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log(`Error in posting insurance to DB ${err}`);
+      res.sendStatus(500);
+    })
+})
+
+router.get('/benefits/paid/', rejectUnauthenticated, (req, res) => {
+  const queryString = `SELECT * FROM "benefitpaid";`;
+  pool.query(queryString)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log(`Error in getting data from DB ${err}`);
+      res.sendStatus(500);
+    });
+});
 
 
 module.exports = router;

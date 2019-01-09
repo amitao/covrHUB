@@ -19,8 +19,7 @@ const stylesTwo = theme => ({
     marginTop: "1em",
   },
   grid2: {
-    height: 700,
-    margin: "0 2em",
+    height: "auto",
   },
   itemGrid: {
     width: "250px",

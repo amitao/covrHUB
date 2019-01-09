@@ -49,7 +49,7 @@ class Nav extends React.Component {
       <AppBar position="static" color="inherit" style={shadow}>
         <Toolbar>
 
-          <Link to="/home">
+        <Link to="/home">
           <img src="images/logo-cvr.svg" className="logo" alt="logo"/>
         </Link>
   

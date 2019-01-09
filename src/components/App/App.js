@@ -21,7 +21,7 @@ import AddInsurance from '../Insurance/AddInsurance';
 import Dashboard from '../Dashboard/Dashboard';
 import AddBenefits from '../Benefits/AddBenefits';
 import ViewProfile from '../Profile/ViewProfile';
-import PaidBenefits from '../Benefits/FormPaidBenefits';
+import PaidBenefits from '../Benefits/PaidBenefits';
 
 // css style import
 import './App.css';
