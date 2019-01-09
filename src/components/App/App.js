@@ -21,6 +21,7 @@ import AddInsurance from '../Insurance/AddInsurance';
 import Dashboard from '../Dashboard/Dashboard';
 import AddBenefits from '../Benefits/AddBenefits';
 import ViewProfile from '../Profile/ViewProfile';
+import PaidBenefits from '../Benefits/FormPaidBenefits';
 
 // css style import
 import './App.css';
@@ -78,7 +79,8 @@ class App extends Component {
               <ProtectedRoute path='/dashboard' component={Dashboard} />
               {/* route to add benefits */}
               <ProtectedRoute path='/add_benefits' component={AddBenefits} />
-
+              <ProtectedRoute path='/add_paid_benefits' component={PaidBenefits} />
+              
 
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />

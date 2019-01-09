@@ -73,7 +73,7 @@ router.post('/benefits', rejectUnauthenticated, (req, res) => {
 
   const queryString =`INSERT INTO "benefit" ("deductible_in", "deductible_out", "coinsurance_in", 
                       "coinsurance_out", "copay_in", "copay_special", "oop_in", "oop_out", "person_id")
-                      VALUES ($1,$2,$3,$4,$5,$6,$7,$8, $9)`;
+                      VALUES ($1,$2,$3,$4,$5,$6,$7,$8, $9) RETURNING "id"`;
   const queryValues = [req.body.dedIn, req.body.dedOut, req.body.coinsuranceIn, req.body.coinsuranceOut, 
                       req.body.copayPCP, req.body.copaySpecial, req.body.oopIn, req.body.oopOut, req.user.id];
   pool.query(queryString, queryValues)

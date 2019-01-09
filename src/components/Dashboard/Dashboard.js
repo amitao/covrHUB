@@ -30,6 +30,7 @@ const styleDash = {
     fontSize: "1.5em",
     color: "#ffffff",
     letterSpacing: "3px",
+    cursor: "pointer",
   },
   h3Style: {
     padding: ".5em 0",
@@ -51,8 +52,12 @@ const styleDash = {
 class Dashboard extends React.Component {
 
   // routes to components
-  handleClick = () => {
+  handleClickProfile = () => {
     this.props.history.push("/view_profile");
+  }
+
+  handleClickInsurance = () => {
+    this.props.history.push("/add_insurance");
   }
 
 
@@ -67,14 +72,14 @@ class Dashboard extends React.Component {
               <Grid item className={classes.itemNestedFirst}>
                 <center>
                   <img src="images/profile-icon.svg" alt="profile" className="profile-icon" />
-                  <p onClick={this.handleClick} style={styleDash.style2}>Profile</p>
+                  <p onClick={this.handleClickProfile} style={styleDash.style2}>Profile</p>
                 </center>
               </Grid>
 
               <Grid item className={classes.itemNestedMiddle}>
                 <center>
                   <img src="images/policy-icon.svg" alt="policy" className="policy-icon" />
-                  <p style={styleDash.style2}> Add Policy</p>
+                  <p onClick={this.handleClickInsurance} style={styleDash.style2}> Add Policy</p>
                 </center>
               </Grid>
 
