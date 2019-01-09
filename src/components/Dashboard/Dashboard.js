@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 // Components
 import DisplayProfile from '../Profile/DisplayProfile';
 import DisplayInsurance from '../Insurance/DisplayInsurance';
-// import DisplayBenefits from '../Benefits/DisplayBenefits';
+import DisplayBenefits from '../Benefits/DisplayBenefits';
 
 // Material-UI
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 
 // Other Styles
 import styles from '../Assets/styles/stylesTwo';
@@ -93,7 +93,7 @@ class Dashboard extends React.Component {
                 <DisplayProfile />
 
                 <DisplayInsurance />
-              {/* <DisplayBenefits /> */}
+              <DisplayBenefits />
               </div>
             </Grid>
 
