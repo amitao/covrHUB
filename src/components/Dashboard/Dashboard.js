@@ -93,7 +93,9 @@ class Dashboard extends React.Component {
                 <DisplayProfile />
 
                 <DisplayInsurance />
-              <DisplayBenefits />
+                
+                <DisplayBenefits />
+                
               </div>
             </Grid>
 
