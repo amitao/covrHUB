@@ -38,7 +38,8 @@ class AddBenefits extends React.Component {
     copayPCP: '',
     copaySpecial: '',
     oopIn: '',
-    oopOut: ''
+    oopOut: '',
+    insuranceID: ''
   }
 
   // back button to add_insurance for user
@@ -59,7 +60,8 @@ class AddBenefits extends React.Component {
       copayPCP: '',
       copaySpecial: '',
       oopIn: '',
-      oopOut: ''
+      oopOut: '',
+      insurnaceID: this.props.
     })
   }
 
@@ -181,4 +183,12 @@ AddBenefits.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default connect()(withStyles(styles)(AddBenefits));
+
+const mapStateToProps = (reduxState) => {
+  return {
+    reduxState
+  }
+}
+
+
+export default connect(mapStateToProps)(withStyles(styles)(AddBenefits));

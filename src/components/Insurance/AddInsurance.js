@@ -49,7 +49,8 @@ class AddInsurance extends React.Component {
       effective: '',
       term: '',
       memberId: '',
-      group: ''
+      group: '',
+      personID: this.props.reduxState.user.id
     })
   }
 
@@ -175,4 +176,11 @@ AddInsurance.propTypes = {
 };
 
 
-export default connect()(withStyles(styles)(AddInsurance));
+const mapStateToProps = (reduxState) => {
+  return {
+    reduxState
+  }
+}
+
+
+export default connect(mapStateToProps)(withStyles(styles)(AddInsurance));

@@ -7,10 +7,9 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 // get data from the demographic table to render to DOM
 // demographic Saga and Reducer
 // WILL NEED TO JOIN INSURANCE TABLE TO DEMO
-
-router.get('/userDemographic', rejectUnauthenticated, (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   const queryString = `SELECT * FROM "demographic" WHERE "person_id" = $1;`;
-  pool.query(queryString, [req.query.id])
+  pool.query(queryString, [req.params.id])
   .then( result => {
     res.send(result.rows);
   })
@@ -19,6 +18,7 @@ router.get('/userDemographic', rejectUnauthenticated, (req, res) => {
     res.sendStatus(500);
   });
 });
+
 
 
 // post data into the demographic table

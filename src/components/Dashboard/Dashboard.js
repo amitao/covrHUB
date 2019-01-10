@@ -111,16 +111,14 @@ class Dashboard extends React.Component {
                 <DisplayInsurance />
                 
                 <DisplayBenefits />
-                
+      
             </Grid>
 
             <Grid item md className={classes.paper} style={styleDash.paper}>
-              <p>Grid Three</p>
               <div className="box-benefit">
-                No paid benefits yet
                 <p onClick={this.handleClickPaid}style={styleDash.style3}>Add Paid Benefits</p>
               </div>
-              <DisplayPaidBenefits />
+              {/* <DisplayPaidBenefits /> */}
             </Grid>
 
           </Grid>

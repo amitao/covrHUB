@@ -24,7 +24,7 @@ class DisplayBenefits extends React.Component {
 
 
   componentDidMount() {
-    this.props.dispatch({type:'FETCH_BENEFIT', payload: this.props.reduxState.user.id});
+    this.props.dispatch({type:'FETCH_BENEFIT'});
   }
 
 

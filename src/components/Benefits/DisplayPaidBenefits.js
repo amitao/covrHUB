@@ -33,7 +33,7 @@ class DisplayPaidBenefits extends React.Component {
     return (
       <div>
       <h3 style={style.h3Style}>Benefit Details</h3>
-        {this.props.reduxState.benefit.map( item => {
+        {this.props.reduxState.benefitPaid.map( item => {
           return (
             <div key={item.id}>
             {item.ded_in_paid}

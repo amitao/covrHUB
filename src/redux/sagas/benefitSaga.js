@@ -5,7 +5,7 @@ import { call, put as dispatch, takeLatest } from 'redux-saga/effects';
 // action Benefit
 function* postBenefit(action) {
   try{
-    yield call(axios.post, `/api/insurance/benefits`, action.payload);
+    yield call(axios.post, `/api/insurance/benefits`, action.payload.insurance_id);
     yield dispatch({type: 'FETCH_BENEFIT'});
   } catch (err) {
     console.log(`Error in posting to benefit ${err}`);
@@ -13,9 +13,10 @@ function* postBenefit(action) {
 }
 
 // GET request to render data in benefits
+// ser_benefit?id=
 function* fetchBenefit(action) {
   try {
-    const response = yield axios.get(`/api/insurance/benefits/user_benefit?id=${action.payload}`);
+    const response = yield axios.get(`/api/insurance/benefits/${action.payload.insurance_id}`);
     yield dispatch({type: 'SET_BENEFIT', payload: response.data});
   } catch (err) {
     console.log(`Error in fetching benefits ${err}`);
@@ -23,10 +24,10 @@ function* fetchBenefit(action) {
 }
 
 
-// GET PAID BENEFITS
-function* fetchPaidBenefit () {
+// ////////////// GET PAID BENEFITS  ////////////////////////
+function* fetchPaidBenefit (action) {
   try {
-    const response = yield axios.get(`/api/insurance/benefits/paid`);
+    const response = yield axios.get(`/api/insurance/benefits/paid/${action.payload}`);
     yield dispatch({type: 'SET_PAID_BENEFIT', payload: response.data});
   } catch (err) {
     console.log(`Error in fetching paid benefits ${err}`);

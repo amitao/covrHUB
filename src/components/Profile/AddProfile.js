@@ -31,14 +31,15 @@ class AddProfile extends React.Component {
 
   // send to saga via dispatch
   handleClickSave = () => {
-    console.log('save button has been clicked');
+    console.log('save button has been clicked:', this.props.reduxState.user.id);
 
     this.props.dispatch({ type: 'ADD_DEMO', payload: this.state })
     this.setState({
       fname: '',
       lname: '',
       address: '',
-      email: ''
+      email: '',
+      personID: this.props.reduxState.user.id
     })
   }
 
@@ -157,4 +158,11 @@ AddProfile.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default connect()(withStyles(styles)(AddProfile));
+
+const mapStateToProps = (reduxState) => {
+  return {
+    reduxState
+  }
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(AddProfile));

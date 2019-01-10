@@ -46,6 +46,8 @@ class DisplayInsurance extends React.Component {
     this.props.dispatch({type:'FETCH_INSURANCE', payload: this.props.reduxState.user.id});
   }
 
+  // payload: this.props.reduxState.user.id
+
   render () {
 
     return (

@@ -3,14 +3,16 @@ import { call, put as dispatch, takeLatest } from 'redux-saga/effects';
 
 // action function
 // GET insurance from specific user via ID
+
 function* fetchInsurance(action) {
   try {
-    const response = yield axios.get(`/api/insurance/user_insurance?id=${action.payload}`);
+    const response = yield axios.get(`/api/insurance/${action.payload}`);
     yield dispatch({type: 'SET_INSURANCE', payload: response.data});
   } catch (err) {
     console.log(`Error in fetching insurance ${err}`);
   };
 }
+
 
 // action Insurance
 function* postInsurance(action) {

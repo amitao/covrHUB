@@ -9,7 +9,8 @@ import './Profile.css';
 class DisplayProfile extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_DEMO', payload: this.props.reduxState.user.id })
+    this.props.dispatch({ type: 'FETCH_DEMO', payload: this.props.reduxState.user.id})
+    // payload: this.props.reduxState.user.id 
   }
 
   render() {
