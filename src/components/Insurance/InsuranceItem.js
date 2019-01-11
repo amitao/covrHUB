@@ -1,6 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import AddInsurance from './AddInsurance';
+import InsuranceForm from './InsuranceForm';
 
 class InsuranceItem extends React.Component {
 
@@ -12,7 +11,7 @@ class InsuranceItem extends React.Component {
     return (
       <div>
         {this.props.healthInsurance.name}
-          <AddInsurance insId={this.props.healthInsurance.id} />
+          <InsuranceForm insId={this.props.healthInsurance.id} />
           <Button size="small" color="secondary" onClick={this.handleClick}>Delete</Button>
       </div>
     )
