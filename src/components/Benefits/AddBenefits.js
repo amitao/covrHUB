@@ -26,8 +26,6 @@ const theme = createMuiTheme({
 });
 
 
-
-
 class AddBenefits extends React.Component {
 
   state = {
