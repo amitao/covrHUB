@@ -39,7 +39,7 @@ class AddBenefits extends React.Component {
     copaySpecial: '',
     oopIn: '',
     oopOut: '',
-    insuranceID: ''
+    insuranceID: this.props.reduxState.user.id
   }
 
   // back button to add_insurance for user
@@ -61,7 +61,7 @@ class AddBenefits extends React.Component {
       copaySpecial: '',
       oopIn: '',
       oopOut: '',
-      insurnaceID: this.props.
+      insurnaceID: this.props.reduxState.user.id
     })
   }
 

@@ -24,8 +24,9 @@ class DisplayPaidBenefits extends React.Component {
 
 
   componentDidMount() {
-    this.props.dispatch({type:'FETCH_PAID_BENEFIT'});
+    this.props.dispatch({type:'FETCH_PAID_BENEFIT', payload: this.props.reduxState.user.id});
   }
+
 
 
   render () {

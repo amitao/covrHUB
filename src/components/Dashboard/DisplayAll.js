@@ -1,6 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import './Benefits.css';
+import {connect} from 'react-redux';
+
+
 
 
 const style = {
@@ -18,24 +19,26 @@ const style = {
   },
 }
 
+class DisplayAll extends React.Component {
 
-
-class DisplayBenefits extends React.Component {
 
 
   componentDidMount() {
-    this.props.dispatch({type:'FETCH_BENEFIT', payload: this.props.reduxState.user.id});
+    this.props.dispatch({type:'FETCH_ALL_BENEFIT'});
   }
-
 
   render () {
 
-    return (
-      <div>
-      <h3 style={style.h3Style}>Benefit Summary</h3>
-        {this.props.reduxState.benefit.map( item => {
-          return (
-            <table key={item.id}>
+
+    let list = this.props.reduxState.allBenefit.map( item => {
+      return (
+        <div key={item.id}>
+            {item.ded_in_paid}
+            {item.ded_out_paid}
+            {item.oop_in_paid}
+            {item.oop_out_paid}
+            {item.date}
+            <table>
               <thead>
               <tr>
                 <th></th>
@@ -66,12 +69,18 @@ class DisplayBenefits extends React.Component {
               </tr>
               </tbody>
             </table>
-          )
-        })}
+        </div>
+      )
+    })
+    return (
+      <div>
+        DisplayAll
+        {list}
       </div>
     )
   }
 }
+
 
 const mapStateToProps = (reduxState) => {
   return {
@@ -79,5 +88,4 @@ const mapStateToProps = (reduxState) => {
   }
 }
 
-
-export default connect(mapStateToProps)(DisplayBenefits);
+export default connect(mapStateToProps)(DisplayAll);

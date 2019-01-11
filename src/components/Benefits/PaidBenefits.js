@@ -34,7 +34,8 @@ class PaidBenefits extends React.Component {
     dedOutPaid: '',
     oopInPaid:'',
     oopOutPaid: '',
-    date: ''
+    date: '',
+    personID: ''
   }
 
 
@@ -48,7 +49,7 @@ class PaidBenefits extends React.Component {
       oopInPaid:'',
       oopOutPaid: '',
       date: '',
-      benefitId: ''
+      personID: this.props.reduxState.user.id
     })
   }
 
@@ -141,11 +142,11 @@ PaidBenefits.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-// const mapStateToProps = (reduxState) => {
-//   return {
-//     reduxState
-//   }
-// }
+const mapStateToProps = (reduxState) => {
+  return {
+    reduxState
+  }
+}
 
 
-export default connect()(withStyles(styles)(PaidBenefits));
+export default connect(mapStateToProps)(withStyles(styles)(PaidBenefits));

@@ -17,6 +17,7 @@ import Grid from '@material-ui/core/Grid';
 import styles from '../Assets/styles/stylesTwo';
 import './Dashboard.css';
 import DisplayPaidBenefits from '../Benefits/DisplayPaidBenefits';
+import DisplayAll from './DisplayAll';
 
 
 const styleDash = {
@@ -118,7 +119,8 @@ class Dashboard extends React.Component {
               <div className="box-benefit">
                 <p onClick={this.handleClickPaid}style={styleDash.style3}>Add Paid Benefits</p>
               </div>
-              {/* <DisplayPaidBenefits /> */}
+              <DisplayPaidBenefits />
+              {/* <DisplayAll /> */}
             </Grid>
 
           </Grid>

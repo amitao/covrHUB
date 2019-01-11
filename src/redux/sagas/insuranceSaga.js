@@ -24,10 +24,20 @@ function* postInsurance(action) {
   }
 }
 
+function* deleteInsurance(action) {
+  try {
+    yield call(axios.delete, `api/insurance/${action.payload}`);
+    yield dispatch({type: 'FETCH_INSURANCE'});
+  } catch (err) {
+    console.log(`error in delete`);
+  }
+}
+
 // watcher functions
 function* insWatcherSaga() {
   yield takeLatest('FETCH_INSURANCE', fetchInsurance);
   yield takeLatest('ADD_INSURANCE', postInsurance);
+  yield takeLatest('DELETE_INS', deleteInsurance);
 }
 
 export default insWatcherSaga;
