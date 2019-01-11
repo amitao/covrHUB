@@ -19,7 +19,8 @@ class AddProfile extends React.Component {
     fname: '',
     lname: '',
     address: '',
-    email: ''
+    email: '',
+    personID: ''
   }
 
 
@@ -159,10 +160,10 @@ AddProfile.propTypes = {
 };
 
 
-const mapStateToProps = (reduxState) => {
-  return {
+const mapStateToProps = (reduxState) =>{
+  return (
     reduxState
-  }
+  )
 }
 
 export default connect(mapStateToProps)(withStyles(styles)(AddProfile));

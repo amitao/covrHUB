@@ -5,6 +5,8 @@
   "proxy": "http://localhost:5000",
   "dependencies": {
     "@material-ui/core": "^3.8.1",
+    "@nivo/core": "^0.52.0",
+    "@nivo/pie": "^0.52.0",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",

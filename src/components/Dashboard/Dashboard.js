@@ -17,7 +17,9 @@ import Grid from '@material-ui/core/Grid';
 import styles from '../Assets/styles/stylesTwo';
 import './Dashboard.css';
 import DisplayPaidBenefits from '../Benefits/DisplayPaidBenefits';
-import DisplayAll from './DisplayAll';
+import Chart from '../Benefits/Chart';
+// import DisplayAll from './DisplayAll';
+
 
 
 const styleDash = {
@@ -117,8 +119,10 @@ class Dashboard extends React.Component {
 
             <Grid item md className={classes.paper} style={styleDash.paper}>
               <div className="box-benefit">
-                <p onClick={this.handleClickPaid}style={styleDash.style3}>Add Paid Benefits</p>
+              <h3 style={styleDash.h3Style}>Deductible</h3>
+                <Chart /> 
               </div>
+              <p onClick={this.handleClickPaid}style={styleDash.style3}>Add Paid Benefits</p>
               <DisplayPaidBenefits />
               {/* <DisplayAll /> */}
             </Grid>

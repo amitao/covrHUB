@@ -30,7 +30,8 @@ class AddInsurance extends React.Component {
     effective: '',
     term: '',
     memberId: '',
-    group: ''
+    group: '',
+    personID: ''
   }
 
   // back button to add_profile for user

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './Benefits.css';
+import moment from 'moment';
 
 
 const style = {
@@ -41,7 +42,7 @@ class DisplayPaidBenefits extends React.Component {
             {item.ded_out_paid}
             {item.oop_in_paid}
             {item.oop_out_paid}
-            {item.date}
+            {moment(item.date).format('l')}
             </div>
           )
         })}

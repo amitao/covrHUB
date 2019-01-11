@@ -35,7 +35,7 @@ class DisplayBenefits extends React.Component {
       <h3 style={style.h3Style}>Benefit Summary</h3>
         {this.props.reduxState.benefit.map( item => {
           return (
-            <table key={item.id}>
+            <table key={item.id} value={item.id}>
               <thead>
               <tr>
                 <th></th>

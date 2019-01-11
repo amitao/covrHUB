@@ -39,7 +39,8 @@ class AddBenefits extends React.Component {
     copaySpecial: '',
     oopIn: '',
     oopOut: '',
-    insuranceID: this.props.reduxState.user.id
+    insuranceID: '',
+    personID: ''
   }
 
   // back button to add_insurance for user
@@ -61,7 +62,8 @@ class AddBenefits extends React.Component {
       copaySpecial: '',
       oopIn: '',
       oopOut: '',
-      insurnaceID: this.props.reduxState.user.id
+      insuranceID: '',
+      personID: this.props.reduxState.user.id
     })
   }
 
@@ -88,7 +90,7 @@ class AddBenefits extends React.Component {
             <Paper className={classes.paper}>
               <h2>Benefits</h2>
               <center><div className={classes.bgColor}></div></center>
-            <form>
+            <form onSubmit={this.handleClickSave}>
             <TextField 
               type="number"
               className={classes.textField}
@@ -145,6 +147,7 @@ class AddBenefits extends React.Component {
               onChange={this.handleChange('oopOut')}
               value={this.state.oopOut}
             />
+           
             </form>
 
               {/* BUTTONS */}
@@ -155,13 +158,13 @@ class AddBenefits extends React.Component {
                 variant="outlined"
                 color="primary"
                 >Back</Button>
-
-              <Button 
+ 
+               <Button 
                 onClick={this.handleClickSave}
                 className={classes.nextBtn}
                 variant="contained"
                 color="primary"
-                >Save</Button>
+                >Save</Button> 
 
                 <Button 
                 onClick={this.handleClickDashboard}

@@ -24,7 +24,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 
-
+/// GET after post route to add new benefits
 router.get('/add/:id', rejectUnauthenticated, (req, res) => {
   console.log(req.params.id);
 
@@ -44,11 +44,12 @@ router.post('/add', rejectUnauthenticated, (req, res) => {
   console.log(`in POST route to add post to db ${req.user}`);
 
   const queryString = `INSERT INTO "benefit" ("deductible_in", "deductible_out", "coinsurance_in", 
-                      "coinsurance_out", "copay_in", "copay_special", "oop_in", "oop_out", "person_id")
-                      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING "id";`;
+                      "coinsurance_out", "copay_in", "copay_special", "oop_in", "oop_out", "person_id", "insurance_id")
+                      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);`;
 
   const queryValues = [req.body.dedIn, req.body.dedOut, req.body.coinsuranceIn, req.body.coinsuranceOut,
-  req.body.copayPCP, req.body.copaySpecial, req.body.oopIn, req.body.oopOut, req.user.id];
+  req.body.copayPCP, req.body.copaySpecial, req.body.oopIn, req.body.oopOut, req.user.id, insurance_id];
+
   pool.query(queryString, queryValues)
     .then(() => {
       res.sendStatus(201);
