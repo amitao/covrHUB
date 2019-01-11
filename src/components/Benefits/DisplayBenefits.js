@@ -33,9 +33,9 @@ class DisplayBenefits extends React.Component {
     return (
       <div>
       <h3 style={style.h3Style}>Benefit Summary</h3>
-        {this.props.reduxState.benefit.map( item => {
+        {this.props.reduxState.benefit.map( benefit => {
           return (
-            <table key={item.id} value={item.id}>
+            <table key={benefit.id}>
               <thead>
               <tr>
                 <th></th>
@@ -46,23 +46,23 @@ class DisplayBenefits extends React.Component {
               <tbody>
               <tr>
                 <td style={style.text}>Deductible:</td> 
-                <td> ${item.deductible_in}</td>
-                <td> ${item.deductible_out}</td>
+                <td> ${benefit.deductible_in}</td>
+                <td> ${benefit.deductible_out}</td>
               </tr>
               <tr>
                 <td style={style.text}>Co-insurance:</td>
-                <td>${item.coinsurance_in}</td>
-                <td>${item.coinsurance_out}</td>
+                <td>${benefit.coinsurance_in}</td>
+                <td>${benefit.coinsurance_out}</td>
               </tr>
               <tr>
                 <td style={style.text}>Co-pay:</td>
-                <td>${item.copay_in}</td>
-                <td>${item.copay_special}</td>
+                <td>${benefit.copay_in}</td>
+                <td>${benefit.copay_special}</td>
               </tr>
               <tr>
                 <td style={style.text}>Out-of-pocket:</td>
-                <td>${item.oop_in}</td>
-                <td>${item.oop_out}</td>
+                <td>${benefit.oop_in}</td>
+                <td>${benefit.oop_out}</td>
               </tr>
               </tbody>
             </table>

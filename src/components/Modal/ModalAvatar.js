@@ -57,7 +57,8 @@ const getModal = () => {
 class ModalAvatar extends React.Component {
   state ={
     open: false,
-    image: ''
+    image: '',
+    personID: ''
   }
   
   // opens modal
@@ -75,14 +76,20 @@ class ModalAvatar extends React.Component {
     });
   };
 
+  handleChange = (event) => {
+    this.setState({
+        [event.target.name]: event.target.value,
+    });
+}
   // click to save to DB
-  // handleClick = () => {
-  //   console.log('save image button has been clicked');
-  //   this.props.dispatch({type: 'ADD_IMAGE', payload: this.state})
-  //   this.setState({
-  //     image:''
-  //   })
-  // }
+  handleClick = () => {
+    console.log('save image button has been clicked');
+    this.props.dispatch({type: 'ADD_IMAGE', payload: this.state})
+    this.setState({
+      image:'',
+      personID: ''
+    })
+  }
   
   render () {
 
@@ -103,17 +110,25 @@ class ModalAvatar extends React.Component {
         <div style={getModal()} className={classes.paper}>
         <center>
         <h2 className="avatar-h2">Please select an avatar</h2>
-        <img src="images/avatar1.svg" 
-              className="avatar one" 
-              alt="avatar" />
 
-        <img src="images/avatar2.svg" 
-             className="avatar two" 
-             alt="avatar" />
+          <img src="images/avatar1.svg" 
+                className="avatar one" 
+                alt="avatar" 
+                value={this.state.image}
+                handleChange={this.handleChange}/>
 
-        <img src="images/avatar3.svg" 
-             className="avatar three" 
-             alt="avatar" />
+          <img src="images/avatar2.svg" 
+              className="avatar two" 
+              alt="avatar" 
+              value={this.state.image}
+              handleChange={this.handleChange}/>
+
+          <img src="images/avatar3.svg" 
+              className="avatar three" 
+              alt="avatar" 
+              value={this.state.image}
+              handleChange={this.handleChange}/>
+       
         </center>
        <div>
          <center>
@@ -133,4 +148,8 @@ ModalAvatar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default connect()(withStyles(styles)(ModalAvatar));
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(ModalAvatar));

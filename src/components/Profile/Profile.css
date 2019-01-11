@@ -5,6 +5,15 @@
   border: 1px solid gray;
   background-color: #ffffff;
 }
+/* 
+.avatar-block {
+  width: 100%;
+  border: #c0c4ea solid 2px;
+  border-radius: 50%;
+  margin-left: 15%;
+  margin-top: 5%;
+} */
+
 
 .box {
   display: grid;

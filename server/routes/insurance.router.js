@@ -8,7 +8,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 // demographic Saga and Reducer
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const queryString = `SELECT * FROM "insurance" WHERE "person_id" = $1;`;
-  pool.query(queryString, [req.params.id])
+  pool.query(queryString, [req.user.id])
     .then(result => {
       res.send(result.rows);
     })
@@ -25,7 +25,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
   const queryString = ` INSERT INTO "insurance" ("name", "address", "effective_date", "term_date",
                       "member_number", "group_number", "person_id")
-                      VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING "id";`;
+                      VALUES ($1,$2,$3,$4,$5,$6,$7);`;
   const queryValues = [req.body.name, req.body.address, req.body.effective, req.body.term, req.body.memberId, req.body.group, req.user.id];
   pool.query(queryString, queryValues)
     .then(() => {

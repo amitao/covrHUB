@@ -30,7 +30,7 @@ const styles = theme => ({
     backgroundColor: "#e1e3f7",
     // backgroundColor:  
     // "linear-gradient(to bottom right, #c0c4ea, #b0f7e6)",
-    color: "#ffffff",
+    color: "#7378a5",
     boxShadow: "-1px 3px 10px 0px rgba(156,158,179,0.58)",
   },
   form: {

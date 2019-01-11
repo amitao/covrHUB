@@ -9,7 +9,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 // WILL NEED TO JOIN INSURANCE TABLE TO DEMO
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const queryString = `SELECT * FROM "demographic" WHERE "person_id" = $1;`;
-  pool.query(queryString, [req.params.id])
+  pool.query(queryString, [req.user.id])
   .then( result => {
     res.send(result.rows);
   })

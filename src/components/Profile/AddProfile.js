@@ -32,7 +32,6 @@ class AddProfile extends React.Component {
 
   // send to saga via dispatch
   handleClickSave = () => {
-    console.log('save button has been clicked:', this.props.reduxState.user.id);
 
     this.props.dispatch({ type: 'ADD_DEMO', payload: this.state })
     this.setState({
@@ -60,6 +59,7 @@ class AddProfile extends React.Component {
 
     const { classes } = this.props;
 
+
     return (
       <div className={classes.root}>
         <Grid container spacing={24} className={classes.grid}
@@ -69,9 +69,11 @@ class AddProfile extends React.Component {
           <Grid item sm={3}>
             <Paper className={classes.paper}>
               <h2 className="profile-h2">Profile</h2>
-              <div className="avatar-block">
+              <center>
+              <Grid item sm={12} alignItems="center" className="avatar-block">
                 {/* avatar image goes here */}
-              </div>
+              </Grid>
+              </center>
               <div>
                 <ModalAvatar />
               </div>
@@ -152,7 +154,6 @@ class AddProfile extends React.Component {
       </div>
     )
   }
-
 }
 
 AddProfile.propTypes = {

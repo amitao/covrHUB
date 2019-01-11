@@ -1,11 +1,11 @@
 .avatar-block {
-  display: block;
+  /* display: grid; */
   width: 200px;
   height: 200px;
   border: #c0c4ea solid 2px;
   border-radius: 50%;
-  margin-left: 15%;
-  margin-top: 5%;
+  /* margin-left: 15%;
+  margin-top: 5%; */
 }
 
 .profile-icon {

@@ -62,7 +62,7 @@ class AddBenefits extends React.Component {
       copaySpecial: '',
       oopIn: '',
       oopOut: '',
-      insuranceID: '',
+      insuranceID: this.props.reduxState.insurance.id,
       personID: this.props.reduxState.user.id
     })
   }
@@ -83,6 +83,20 @@ class AddBenefits extends React.Component {
 
     const { classes } = this.props;
 
+    let list;
+    if (this.props.reduxState.insurance === '') {
+        list = '';
+    } else if( this.props.reduxState.insurance){
+
+      list = this.props.reduxState.insurance.map( insurance => {
+        return (
+          <div key={insurance.id} value={insurance.id}>
+            {insurance.name}
+          </div>
+        )
+      })
+    }
+
     return (
       <div className={classes.root}>
         <Grid container spacing={24} className={classes.grid} direction="row" justify="center">
@@ -90,7 +104,8 @@ class AddBenefits extends React.Component {
             <Paper className={classes.paper}>
               <h2>Benefits</h2>
               <center><div className={classes.bgColor}></div></center>
-            <form onSubmit={this.handleClickSave}>
+            <form>
+              {list}
             <TextField 
               type="number"
               className={classes.textField}

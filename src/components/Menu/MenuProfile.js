@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 // Material UI styling
 import {withStyles} from '@material-ui/core';
@@ -23,6 +24,7 @@ class MenuProfile extends React.Component {
 
 state = {
   open: false,
+  image: ''
 };
 
 handleMenu = () => {
@@ -58,6 +60,8 @@ handleClick = () => {
        aria-haspopup="true"
        onClick={this.handleMenu}>
       <Avatar src="images/avatar1.svg" className={classes.avatar}/>
+      {/* src="images/avatar1.svg" */}
+      {/* src={this.props.user.image} */}
     </IconButton>
 
     <Popper
@@ -95,4 +99,11 @@ handleClick = () => {
 MenuProfile.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(withRouter(MenuProfile));
+
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+
+export default connect(mapStateToProps)(withStyles(styles)(withRouter(MenuProfile)));

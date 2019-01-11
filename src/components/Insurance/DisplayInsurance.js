@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
 
+
 const styling = {
   padding: "1em",
+  marginBottom: "1em",
 }
 
 const h3Style = {
@@ -43,47 +45,45 @@ const spacing = {
 
 class DisplayInsurance extends React.Component {
 
+
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_INSURANCE', payload: this.props.reduxState.user.id });
   }
 
-  handleDelete= (item) => {
-    console.log(item.person_id);
-    this.props.dispatch({type: 'DELETE_INS', payload: item.id})
-  }
+  // handleDelete= (id) => {
+  //   this.props.dispatch({type: 'DELETE_INS', payload: id})
+  // }
 
   render() {
 
     return (
       <div>
         <h3 style={h3Style}>Health Insurance</h3>
-        <Paper style={styling}>
 
-          {this.props.reduxState.insurance.map(item => {
+          {this.props.reduxState.insurance.map(insurance => {
             return (
-              <div key={item.id}>
+              <Paper key={insurance.id} style={styling}>
 
-                <div style={nameStyle}>{item.name}</div>
+                <div style={nameStyle}>{insurance.name}</div>
 
                 <div style={divStyle}>
-                  <span style={spanStyle}>ID#: {item.member_number}</span>
-                  GRP#: {item.group_number}
+                  <span style={spanStyle}>ID#: {insurance.member_number}</span>
+                  GRP#: {insurance.group_number}
                 </div>
 
                 <div style={spacing}>
-                  <span>Effective: {moment(item.effective_date).format('l')}</span>
-                  Term: {moment(item.term_date).format('l')}
+                  <span>Effective: {moment(insurance.effective_date).format('l')}</span>
+                  Term: {moment(insurance.term_date).format('l')}
                 </div>
 
                 <div style={spacing}>
-                  Address: {item.address}
+                  Address: {insurance.address}
                 </div>
-                <button onClick={()=> this.handleDelete(item)}>delete</button>
-              </div>
+                {/* <button onClick={()=> this.handleDelete(insurance.id)}>delete</button> */}
+                </Paper>
             )
           })}
 
-        </Paper>
       </div>
     )
   }

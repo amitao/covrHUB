@@ -8,14 +8,40 @@ import styles from '../Assets/styles/stylesTwo';
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import DisplayProfile from './DisplayProfile';
+import Radio from '@material-ui/core/Radio';
 import './Profile.css';
-
 
 
 class ViewProfile extends React.Component {
 
+  // constructor (props, context) {
+  //   super(props, context);
+  //   this.state = {
+  //       isEditing: false,
+  //       profile: {
+  //         name: this.props.reduxState.demographic.first_name,
+  //         lastName: this.props.reduxState.demographic.last_name,
+  //         email: this.props.reduxState.demographic.email,
+  //         address: this.props.reduxState.demographic.address,
+  //         personID: this.props.reduxState.user.id
+  //       },
+  //   };
+
+  //   this.toggleEdit = this.toggleEdit.bind(this);
+  // }
+
+  // toggleEdit() {
+  //   this.setState({isEditing: !this.state.isEditing})
+  // }
 
   render () {
+
+    // if (this.state.isEditing) {
+    //   return(
+    //     <DisplayProfile profile={this.state.profile} />
+    //   )
+    // }
+
     const { classes }= this.props;
 
     return (
@@ -31,20 +57,26 @@ class ViewProfile extends React.Component {
           </div>
          
           <div className="view-child-two">
-            user profile
-            <DisplayProfile />
+            <h2>Profile</h2>
+              <DisplayProfile />
           </div>
           
           <div className="view-child-three">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-            culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+    
+            <h2>Insurance</h2>
+            {this.props.reduxState.insurance.map( item => {
+              return (
+                <div key={item.id}>
+                  Name: {item.name}
+                </div>
+              )
+            })}
+
+            <Button
+              variant="contained"
+              color="primary">
+              Delete</Button>
+          
           </div>
             
           </div>
@@ -61,4 +93,10 @@ ViewProfile.propTypes = {
 };
 
 
-export default connect()(withStyles(styles)(ViewProfile));
+const mapStateToProps = (reduxState) => {
+  return {
+    reduxState
+  }
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(ViewProfile));

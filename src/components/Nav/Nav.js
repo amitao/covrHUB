@@ -51,6 +51,7 @@ class Nav extends React.Component {
 
         <Link to="/home">
           <img src="images/logo-cvr.svg" className="logo" alt="logo"/>
+          
         </Link>
   
         {/* Nav Link to "HOME", "ABOUT" "LOGIN" */}
