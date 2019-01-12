@@ -4,26 +4,6 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
-
-/////////////////////// GET Benefit //////////////////////////////////
-// router.get('/:id', rejectUnauthenticated, (req, res) => {
-//   console.log(req.params.id);
-
-
-//   const queryString = `SELECT * FROM "benefit" 
-//   JOIN "benefitpaid" ON "benefit"."id" = "benefitpaid"."benefit_id"
-//   WHERE "benefit"."id"= $1;`;
-//   pool.query(queryString, [req.params.id])
-//     .then(result => {
-//       res.send(result.rows);
-//     })
-//     .catch(err => {
-//       console.log(`Error in getting data from DB ${err}`);
-//       res.sendStatus(500);
-//     });
-// });
-
-
 /// GET after post route to add new benefits
 router.get('/add/:id', rejectUnauthenticated, (req, res) => {
   console.log(req.params.id);
