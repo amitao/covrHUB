@@ -4,7 +4,8 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import demographicSaga from './demographicSaga';
 import insuranceSaga from './insuranceSaga';
-import benefitSaga from './benefitSaga';
+import policySaga from './policySaga';
+
 
 
 // rootSaga is the primary saga.
@@ -21,6 +22,6 @@ export default function* rootSaga() {
     userSaga(),
     demographicSaga(),
     insuranceSaga(),
-    benefitSaga()
+    policySaga(),
   ]);
 }

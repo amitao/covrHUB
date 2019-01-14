@@ -1,10 +1,11 @@
-const benefitPaid = (state=[], action) => {
+const benefit = (state=[], action) => {
   switch (action.type){
     case 'SET_PAID_BENEFIT':
       return action.payload;
     default:
       return state;
   }
-}
+};
 
-export default benefitPaid;
+
+export default benefit;

@@ -27,6 +27,8 @@ state = {
   image: ''
 };
 
+
+
 handleMenu = () => {
   this.setState(state=>({open: !state.open}));
 };
@@ -44,7 +46,6 @@ handleClick = () => {
 }
 
 
-
  render () {
 
   const {classes}= this.props;
@@ -60,8 +61,9 @@ handleClick = () => {
        aria-haspopup="true"
        onClick={this.handleMenu}>
       <Avatar src="images/avatar1.svg" className={classes.avatar}/>
+
       {/* src="images/avatar1.svg" */}
-      {/* src={this.props.user.image} */}
+      {/* <img src={this.props.image} /> */}
     </IconButton>
 
     <Popper

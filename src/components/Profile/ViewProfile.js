@@ -7,9 +7,26 @@ import Button from '@material-ui/core/Button';
 import styles from '../Assets/styles/stylesTwo';
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import DisplayProfile from './DisplayProfile';
-import Radio from '@material-ui/core/Radio';
 import './Profile.css';
+import Profile from './Profile';
+import Delete from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import Swal from 'sweetalert2';
+
+
+
+const style = {
+  circleItem: {
+    borderRadius: "65px",
+    margin: "2em",
+  },
+  spaceTop: {
+    marginTop: "1em",
+  },
+}
+
+
 
 
 class ViewProfile extends React.Component {
@@ -34,52 +51,100 @@ class ViewProfile extends React.Component {
   //   this.setState({isEditing: !this.state.isEditing})
   // }
 
-  render () {
 
-    // if (this.state.isEditing) {
-    //   return(
-    //     <DisplayProfile profile={this.state.profile} />
-    //   )
-    // }
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_POLICY' });
+    this.props.dispatch({ type: 'FETCH_IMAGE' });
+  }
 
-    const { classes }= this.props;
+  handleEdit = () => {
+    
+  }
+
+
+
+
+  handleDelete = (id) => {
+    console.log(`Delete has been clicked = ${id}`);
+
+    Swal.fire({
+      title: 'Are you sure?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, please delete it!',
+      cancelButtonText: 'No, cancel'
+    }).then((result) => {
+      if (result.value) {
+        this.props.dispatch({ type: 'DELETE_POLICY', payload: id });
+        Swal.fire(
+          'Delete successfully!',
+          'Your policy has been deleted.'
+        )
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Delete cancelled'
+        )
+      }
+    })
+  }
+
+
+  render() {
+
+    const { classes } = this.props;
+    // const { image_url } = this.props.image;
 
     return (
       <div className={classes.root}>
         <Grid container spacing={24} className={classes.grid} justify="center" direction="row">
-        <Paper className={classes.paperView}>
-         <div className="view-box">
-          <div className="view-child-one">
-            <img src="images/avatar1.svg" alt="me" className="ava" />
-            <Button
-              variant="contained"
-              color="primary">Edit Profile</Button>
-          </div>
-         
-          <div className="view-child-two">
-            <h2>Profile</h2>
-              <DisplayProfile />
-          </div>
-          
-          <div className="view-child-three">
-    
-            <h2>Insurance</h2>
-            {this.props.reduxState.insurance.map( item => {
-              return (
-                <div key={item.id}>
-                  Name: {item.name}
-                </div>
-              )
-            })}
+          <Paper className={classes.paperView}>
+            <div className="view-box" >
+              <div className="view-child-one">
+                <img src="images/avatar1.svg" alt="me" className="ava" />
+                {/* <img src={image_url} alt="me" className="ava" /> */}
+                <center style={style.spaceTop}>
+                  <Profile />
+                </center>
+              </div>
 
-            <Button
-              variant="contained"
-              color="primary">
-              Delete</Button>
-          
-          </div>
-            
-          </div>
+              <div className="view-child-two">
+                <center><p className="insurance">Health Insurance Policy</p></center>
+                {/* <center><div className="blank-div"></div></center> */}
+                {this.props.policy.map(item => {
+                  return (
+                    <div key={item.id}>
+                      <span className="item-span">{item.name}</span>
+                      <span className="item-span">ID#:{item.member_number}</span>
+                      <span className="item-span">GRP#:{item.group_number}</span>
+                      <span className="item-span">{item.cob_type}</span>
+                      <Tooltip title="Delete">
+                        <IconButton aria-label="Delete" color="primary" onClick={() => this.handleDelete(item.id)}>
+                          <Delete />
+                        </IconButton>
+                      </Tooltip>
+                    </div>
+                  )
+                })}
+
+              </div>
+
+              <div className="view-child-three">
+                <center><div className="blank-div"></div></center>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  style={style.circleItem}
+                  onClick={this.handleEdit}
+                >
+                  Edit Profile</Button>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  style={style.circleItem}
+                >
+                  Edit Policy</Button>
+              </div>
+            </div>
           </Paper>
         </Grid>
       </div>
@@ -93,10 +158,18 @@ ViewProfile.propTypes = {
 };
 
 
-const mapStateToProps = (reduxState) => {
-  return {
-    reduxState
-  }
-}
+// const mapStateToProps = (reduxState) => {
+//   return {
+//     reduxState
+//   }
+// }
+
+const mapStateToProps = state => ({
+  user: state.user,
+  image: state.image,
+  policy: state.policy
+});
+
+
 
 export default connect(mapStateToProps)(withStyles(styles)(ViewProfile));

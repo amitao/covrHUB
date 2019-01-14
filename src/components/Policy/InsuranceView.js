@@ -26,10 +26,6 @@ const divStyle = {
   margin: "0.5em 0",
 }
 
-const spanStyle = {
-  paddingRight: "1em",
-}
-
 const nameStyle = {
   textTransform: "uppercase",
   letterSpacing: "2px",
@@ -43,11 +39,11 @@ const spacing = {
 
 
 
-class DisplayInsurance extends React.Component {
+class InsuranceView extends React.Component {
 
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_INSURANCE', payload: this.props.reduxState.user.id });
+    this.props.dispatch({ type: 'FETCH_POLICY' });
   }
 
   // handleDelete= (id) => {
@@ -60,24 +56,28 @@ class DisplayInsurance extends React.Component {
       <div>
         <h3 style={h3Style}>Health Insurance</h3>
 
-          {this.props.reduxState.insurance.map(insurance => {
+          {this.props.policy.map( (item, i) => {
             return (
-              <Paper key={insurance.id} style={styling}>
+              <Paper key={i} style={styling}>
 
-                <div style={nameStyle}>{insurance.name}</div>
+                <div style={nameStyle}>{item.name}<span className="item-span-3">{item.cob_type}</span></div>
 
                 <div style={divStyle}>
-                  <span style={spanStyle}>ID#: {insurance.member_number}</span>
-                  GRP#: {insurance.group_number}
+                  <span className="item-span-2">ID#: {item.member_number}</span>
+                  GRP#: {item.group_number}
                 </div>
 
                 <div style={spacing}>
-                  <span>Effective: {moment(insurance.effective_date).format('l')}</span>
-                  Term: {moment(insurance.term_date).format('l')}
+                  <span className="item-span-2">Effective: {moment(item.effective_date).format('l')}</span>
+                  Term: {moment(item.term_date).format('l')}
                 </div>
 
                 <div style={spacing}>
-                  Address: {insurance.address}
+                  Address: {item.claims_address}
+                </div>
+                <div style={spacing}>
+                  Policy Holder: {item.policy_holder}
+                  Phone: {item.member_service_phone}
                 </div>
                 {/* <button onClick={()=> this.handleDelete(insurance.id)}>delete</button> */}
                 </Paper>
@@ -89,11 +89,9 @@ class DisplayInsurance extends React.Component {
   }
 }
 
-const mapStateToProps = (reduxState) => {
-  return {
-    reduxState
-  }
-}
+const mapStateToProps = state => ({
+  policy: state.policy,
+})
 
 
-export default connect(mapStateToProps)(DisplayInsurance);
+export default connect(mapStateToProps)(InsuranceView);

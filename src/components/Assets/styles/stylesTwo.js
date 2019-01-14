@@ -1,4 +1,3 @@
-
 const stylesTwo = theme => ({
   root: {
     flexGrow: 1,
@@ -9,13 +8,13 @@ const stylesTwo = theme => ({
     color: theme.palette.text.secondary,
   },
   paperView: {
-    width: 650,
+    width: 550,
     padding: theme.spacing.unit,
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
   grid: {
-    height: 500,
+    height: "auto",
     marginTop: "1em",
   },
   grid2: {

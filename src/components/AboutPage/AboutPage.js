@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 
 
 // This is one of our simplest components
@@ -79,11 +81,15 @@ class AboutPage extends React.Component {
         <p>Text: {this.state.text}</p>
         {this.renderInputField()}
         {this.renderButton()}
+        {this.props.user.id}
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  user: state.user,
+});
 
 
-export default AboutPage;
+export default connect(mapStateToProps)(AboutPage);

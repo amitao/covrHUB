@@ -12,8 +12,8 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const demographicRouter = require('./routes/demographic.router');
 const insuranceRouter = require('./routes/insurance.router');
-const benefitRouter = require('./routes/benefits.router');
-
+const policyRouter = require('./routes/policy.router');
+const singlePolicyRouter = require('./routes/singlePolicy.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -30,8 +30,8 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/demographic', demographicRouter);
 app.use('/api/insurance', insuranceRouter);
-app.use('/api/benefits', benefitRouter);
-
+app.use('/api/policy', policyRouter);
+app.use('/api/single', singlePolicyRouter);
 
 // Serve static files
 app.use(express.static('build'));

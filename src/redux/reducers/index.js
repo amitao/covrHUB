@@ -4,9 +4,10 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 import insurance from './insuranceReducer';
 import demographic from './demographicReducer';
-import benefit from './benefitReducer';
-import benefitPaid from './benefitPaidReducer';
-import benefitAll from './benefitAllReducer';
+import policy from './policyReducer';
+import benefit from './benefitPaidReducer';
+import singlePolicy from './singlePolicyReducer';
+import image from './imageReducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -21,9 +22,10 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   insurance,
   demographic,
+  policy,
   benefit,
-  benefitPaid,
-  benefitAll
+  singlePolicy,
+  image,
 });
 
 export default rootReducer;

@@ -1,12 +1,12 @@
-const benefit = (state=[], action) => {
+const image = (state=[], action) => {
   switch (action.type){
-    case 'SET_BENEFIT':
+    case 'SET_IMAGE':
       return action.payload;
     default:
       return state;
+
   }
 };
 
 
-
-export default benefit;
+export default image;

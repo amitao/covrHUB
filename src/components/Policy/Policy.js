@@ -1,9 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-
-
-
+// import PolicyItem from './PolicyItem';
 const style = {
   h3Style: {
     marginTop: "1em",
@@ -19,29 +17,23 @@ const style = {
   },
 }
 
-class DisplayAll extends React.Component {
 
-
+class Policy extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch({type:'FETCH_ALL_BENEFIT'});
+    this.props.dispatch({type: 'FETCH_POLICY'})
   }
 
-  render () {
-
-
-    let list = this.props.reduxState.allBenefit.map( item => {
-      return (
-        <div key={item.id}>
-            {item.ded_in_paid}
-            {item.ded_out_paid}
-            {item.oop_in_paid}
-            {item.oop_out_paid}
-            {item.date}
-            <table>
+  render() {
+    return (
+      <div>
+        <h3 style={style.h3Style}>Policy Summary</h3>
+        {this.props.policy.map( (item, i) => {
+          return (
+            <table key={i}>
               <thead>
               <tr>
-                <th></th>
+                <th>{item.name}</th>
                 <th>In-Network</th>
                 <th>Out-Network</th>
               </tr>
@@ -64,28 +56,23 @@ class DisplayAll extends React.Component {
               </tr>
               <tr>
                 <td style={style.text}>Out-of-pocket:</td>
-                <td>${item.oop_in}</td>
-                <td>${item.oop_out}</td>
+                <td>${item.out_of_pocket_in}</td>
+                <td>${item.out_of_pocket_out}</td>
               </tr>
               </tbody>
             </table>
-        </div>
-      )
-    })
-    return (
-      <div>
-        DisplayAll
-        {list}
+          ) 
+        })}
       </div>
     )
   }
 }
 
 
-const mapStateToProps = (reduxState) => {
-  return {
-    reduxState
-  }
-}
+const mapStateToProps = state => ({
+  user: state.user,
+  policy: state.policy,
+})
 
-export default connect(mapStateToProps)(DisplayAll);
+
+export default connect(mapStateToProps)(Policy);

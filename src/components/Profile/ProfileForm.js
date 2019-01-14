@@ -9,6 +9,7 @@ import ModalAvatar from '../Modal/ModalAvatar';
 // styles 
 import styles from '../Assets/styles/stylesTwo';
 import './Profile.css';
+import Swal from 'sweetalert2';
 
 
 
@@ -18,9 +19,14 @@ class AddProfile extends React.Component {
   state = {
     fname: '',
     lname: '',
+    birthday: '',
     address: '',
     email: '',
-    personID: ''
+    personID: '',
+  }
+
+  componentDidMount() {
+    this.props.dispatch( { type: 'FETCH_IMAGE'} );
   }
 
 
@@ -32,19 +38,21 @@ class AddProfile extends React.Component {
 
   // send to saga via dispatch
   handleClickSave = () => {
-
     this.props.dispatch({ type: 'ADD_DEMO', payload: this.state })
     this.setState({
       fname: '',
       lname: '',
+      birthday: '',
       address: '',
       email: '',
-      personID: this.props.reduxState.user.id
+      personID: this.props.user.id
     })
+
+    Swal.fire('Profile saved!');
   }
 
   handleClickNext = () => {
-    this.props.history.push("/add_insurance");
+    this.props.history.push("/add_policy");
   }
 
   handleChange = (propertyName) => (event) => {
@@ -70,8 +78,8 @@ class AddProfile extends React.Component {
             <Paper className={classes.paper}>
               <h2 className="profile-h2">Profile</h2>
               <center>
-              <Grid item sm={12} alignItems="center" className="avatar-block">
-                {/* avatar image goes here */}
+              <Grid item sm={12} className="avatar-block">
+                <img src={this.props.image.image_url}/>
               </Grid>
               </center>
               <div>
@@ -103,6 +111,13 @@ class AddProfile extends React.Component {
                   label="Last Name"
                   onChange={this.handleChange('lname')}
                   value={this.state.lname}
+                />
+
+                <TextField
+                  type="date"
+                  className={classes.textField}
+                  onChange={this.handleChange('birthday')}
+                  value={this.state.birthday}
                 />
 
                 <TextField
@@ -161,10 +176,16 @@ AddProfile.propTypes = {
 };
 
 
-const mapStateToProps = (reduxState) =>{
-  return (
-    reduxState
-  )
-}
+// const mapStateToProps = (reduxState) =>{
+//   return (
+//     reduxState
+//   )
+// }
+
+const mapStateToProps = state => ({
+  user: state.user,
+  image: state.image,
+});
+
 
 export default connect(mapStateToProps)(withStyles(styles)(AddProfile));

@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox'
 import './ModalAvatar.css';
 
 const styles = theme => ({
@@ -58,7 +63,7 @@ class ModalAvatar extends React.Component {
   state ={
     open: false,
     image: '',
-    personID: ''
+    person_id: this.props.user.id
   }
   
   // opens modal
@@ -82,12 +87,14 @@ class ModalAvatar extends React.Component {
     });
 }
   // click to save to DB
-  handleClick = () => {
+  handleClick = (event) => {
+    event.preventDefault();
+
     console.log('save image button has been clicked');
-    this.props.dispatch({type: 'ADD_IMAGE', payload: this.state})
+    this.props.dispatch({type: 'ADD_IMAGE', payload: this.state});
     this.setState({
-      image:'',
-      personID: ''
+      image: '',
+      person_id: this.props.user.id
     })
   }
   
@@ -111,29 +118,49 @@ class ModalAvatar extends React.Component {
         <center>
         <h2 className="avatar-h2">Please select an avatar</h2>
 
+        <FormGroup>
+          <img src="images/avatar3.svg" className="avatar three" />
+        <FormControlLabel
+          label="avatar3"
+          value={this.state.image}
+          onChange={this.handleChange}
+          name="image"
+          control={
+            
+            <Checkbox
+              icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+              checkedIcon={<CheckBoxIcon fontSize="small" />}
+              value="images/avatar3.svg"
+            />
+          }
+        />
+        </FormGroup>
+        
+        {/* <div onClick={this.handleClick}>
           <img src="images/avatar1.svg" 
                 className="avatar one" 
                 alt="avatar" 
                 value={this.state.image}
-                handleChange={this.handleChange}/>
-
+                onChange={this.handleChange}/>
+          </div>
           <img src="images/avatar2.svg" 
               className="avatar two" 
               alt="avatar" 
               value={this.state.image}
-              handleChange={this.handleChange}/>
-
+              onChange={this.handleChange}/>
+         
+         <div onClick={this.handleClick}>
           <img src="images/avatar3.svg" 
               className="avatar three" 
               alt="avatar" 
               value={this.state.image}
-              handleChange={this.handleChange}/>
-       
+              onChange={this.handleChange}/>
+        </div> */}
         </center>
        <div>
          <center>
          <Button variant="contained" color="primary" className={classes.exit} onClick={this.handleClose}>Exit</Button>
-          <Button variant="contained" color="primary" className={classes.save}>Save</Button>
+          <Button variant="contained" color="primary" className={classes.save} onClick={this.handleClick}>Save</Button>
           </center>
         </div>
         </div>

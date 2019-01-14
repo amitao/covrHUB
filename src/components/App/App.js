@@ -16,12 +16,13 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import AddProfile from '../Profile/AddProfile';
-import AddInsurance from '../Insurance/AddInsurance';
-import Dashboard from '../Dashboard/Dashboard';
-import AddBenefits from '../Benefits/AddBenefits';
+import ProfileForm from '../Profile/ProfileForm';
 import ViewProfile from '../Profile/ViewProfile';
-import PaidBenefits from '../Benefits/PaidBenefits';
+import Dashboard from '../Dashboard/Dashboard';
+import PolicyForm from '../Policy/PolicyForm';
+import BenefitPaidForm from '../Policy/BenefitPaidForm';
+import EditProfile from '../Profile/EditProfile';
+
 
 // css style import
 import './App.css';
@@ -58,28 +59,18 @@ class App extends Component {
                 path="/home"
                 component={UserPage}
               />
-              {/* This works the same as the other protected route, except that if the user is logged in,
-            they will see the info page instead. */}
-              {/* <ProtectedRoute
-              exact
-              path="/info"
-              component={InfoPage}
-            /> */}
-
+  
 
               {/* profile page for user to view */}
               {/* My webpage Routes */}
               {/* route to add user profile */}
-              <ProtectedRoute path='/add_profile' component={AddProfile} />
+              <ProtectedRoute path='/add_profile' component={ProfileForm} />
               {/* route to view user profile */}
               <ProtectedRoute path='/view_profile' component={ViewProfile} />
-              {/* add insurance */}
-              <ProtectedRoute path='/add_insurance' component={AddInsurance} />
-              {/* Dashboard view of user demographic and benefits */}
+              <ProtectedRoute path='/add_policy' component={PolicyForm} />
+              <ProtectedRoute path='/add_paid_benefit' component={BenefitPaidForm} />
+              <ProtectedRoute path='/edit_profile' component={EditProfile} />
               <ProtectedRoute path='/dashboard' component={Dashboard} />
-              {/* route to add benefits */}
-              <ProtectedRoute path='/add_benefits' component={AddBenefits} />
-              <ProtectedRoute path='/add_paid_benefits' component={PaidBenefits} />
               
 
               {/* If none of the other routes matched, we will show a 404. */}

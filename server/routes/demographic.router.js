@@ -26,9 +26,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('in POST route to add demo:', req.user);
 
-  const queryString = `INSERT INTO "demographic" ("first_name", "last_name", "email", "address", "person_id")
-                        VALUES ($1, $2, $3, $4, $5);`;
-  const queryValues = [req.body.fname, req.body.lname, req.body.email, req.body.address, req.user.id];
+  const queryString = `INSERT INTO "demographic" ("first_name", last_name", "birthday", "email", "address", "person_id")
+                        VALUES ($1, $2, $3, $4, $5, $6);`;
+  const queryValues = [req.body.fname, req.body.lname, req.body.birthday, req.body.email, req.body.address, req.user.id];
   pool.query(queryString, queryValues)
   .then( () => {
     res.sendStatus(201);
@@ -38,6 +38,39 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     res.sendStatus(500);
   });
 });
+
+////////////////// IMAGE ///////////////////////
+router.get('/image/:id', rejectUnauthenticated, (req, res) => {
+  const queryString = `SELECT * FROM "image" WHERE "person_id" = $1;`;
+  pool.query(queryString, [req.user.id])
+  .then( result => {
+    res.send(result.rows);
+  })
+  .catch ( err => {
+    console.log(`Error in getting image from DB ${err}`);
+    res.sendStatus(500);
+  });
+});
+
+
+// post data into the demographic table
+// addDemographics saga and reducer
+router.post('/image', rejectUnauthenticated, (req, res) => {
+  console.log('in POST route to add image:', req.user);
+
+  const queryString = `INSERT INTO "image" ("image_url", "person_id")
+                        VALUES ($1, $2);`;
+  const queryValues = [req.body.image, req.user.id];
+  pool.query(queryString, queryValues)
+  .then( () => {
+    res.sendStatus(201);
+  })
+  .catch( err => {
+    console.log(`Error posting image to DB ${err}`);
+    res.sendStatus(500);
+  });
+});
+
 
 
 module.exports = router;

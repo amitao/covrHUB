@@ -3,22 +3,20 @@ import { connect } from 'react-redux';
 
 
 // Components
-import DisplayProfile from '../Profile/DisplayProfile';
-import DisplayInsurance from '../Insurance/DisplayInsurance';
-import DisplayBenefits from '../Benefits/DisplayBenefits';
-
+// import Profile from '../Profile/Profile';
+import Policy from '../Policy/Policy';
 // Material-UI
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-// import Paper from '@material-ui/core/Paper';
+
 
 // Other Styles
 import styles from '../Assets/styles/stylesTwo';
 import './Dashboard.css';
-import DisplayPaidBenefits from '../Benefits/DisplayPaidBenefits';
-import Chart from '../Benefits/Chart';
-// import DisplayAll from './DisplayAll';
+import BenefitPaid from '../Policy/BenefitPaid';
+import InsuranceView from '../Policy/InsuranceView';
+
 
 
 
@@ -67,14 +65,13 @@ class Dashboard extends React.Component {
     this.props.history.push("/view_profile");
   }
 
-  handleClickInsurance = () => {
-    this.props.history.push("/add_insurance");
+  handleClickAddPolicy = () => {
+    this.props.history.push("/add_policy");
   }
 
-  handleClickPaid= () => {
-    this.props.history.push("/add_paid_benefits");
+  handleClickAddBenefit = () => {
+    this.props.history.push("/add_paid_benefit");
   }
-
 
   render() {
 
@@ -94,7 +91,7 @@ class Dashboard extends React.Component {
               <Grid item className={classes.itemNestedMiddle}>
                 <center>
                   <img src="images/policy-icon.svg" alt="policy" className="policy-icon" />
-                  <p onClick={this.handleClickInsurance} style={styleDash.style2}> Add Policy</p>
+                  <p onClick={this.handleClickAddPolicy} style={styleDash.style2}> Add Policy</p>
                 </center>
               </Grid>
 
@@ -109,22 +106,19 @@ class Dashboard extends React.Component {
 
               <Grid item md className={classes.paper} style={styleDash.paper}>
                 <h3 style={styleDash.h3Style}>Policy Holder</h3>
-                <DisplayProfile />
+                {/* <Profile /> */}
 
-                <DisplayInsurance />
-                
-                <DisplayBenefits />
-      
+                <InsuranceView />
+                <Policy /> 
             </Grid>
 
             <Grid item md className={classes.paper} style={styleDash.paper}>
               <div className="box-benefit">
               <h3 style={styleDash.h3Style}>Deductible</h3>
-                <Chart /> 
+               {/* chart */}
               </div>
-              <p onClick={this.handleClickPaid}style={styleDash.style3}>Add Paid Benefits</p>
-              <DisplayPaidBenefits />
-              {/* <DisplayAll /> */}
+              <p onClick={this.handleClickAddBenefit} style={styleDash.style3}>Add Paid Benefits</p>
+               <BenefitPaid />
             </Grid>
 
           </Grid>
@@ -137,6 +131,7 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
 
 
 // this allows us to use <App /> in index.js   
