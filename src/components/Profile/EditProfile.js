@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider, createMuiTheme, TextField, Grid } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import { TextField, Grid, Paper } from '@material-ui/core';
+
 
 
 const styles = theme => ({
@@ -44,9 +44,9 @@ const theme = createMuiTheme({
 });
 
 
-const circleItem ={
-    borderRadius: "65px",
-    margin: "2em",
+const circleItem = {
+  borderRadius: "65px",
+  margin: "2em",
 }
 
 const getModal = () => {
@@ -63,18 +63,13 @@ const getModal = () => {
 class EditProfile extends React.Component {
   state = {
     open: false,
+    demoId: this.props.demo.id,
     fname: this.props.demo.first_name,
     lname: this.props.demo.last_name,
     birthday: this.props.demo.birthday,
     address: this.props.demo.address,
-    email: this.props.demo.email,
-    personID: this.props.reduxState.user.id
+    email: this.props.demo.email
   }
-
-
-  // componentDidMount() {
-  //   this.props.dispatch({ type: 'FETCH_DEMOGRAPHIC' });
-  // }
 
 
   // opens modal
@@ -97,20 +92,25 @@ class EditProfile extends React.Component {
       [propertyName]: event.target.value
     })
   }
+
+
+
   // click to save to DB
   handleClick = (event) => {
     event.preventDefault();
-
     console.log('save image button has been clicked');
-    // this.props.dispatch({type: 'UPDATE_PROFILE', payload: this.state});
-    // this.setState({
-    // fname: '',
-    // lname: '',
-    // birthday: '',
-    // address: '',
-    // email: '',
-    // personID: this.props.user.id
-    // })
+
+    console.log(this.state)
+    
+    this.props.dispatch({ type: 'UPDATE_DEMO', payload: this.state });
+    this.setState({
+      demoId: this.props.demo.id,
+      fname: '',
+      lname: '',
+      birthday: '',
+      address: '',
+      email: ''
+    })
   }
 
   render() {
@@ -128,28 +128,29 @@ class EditProfile extends React.Component {
             onClick={this.handleOpen}
           >Edit Profile</Button>
 
-          <Button
+          {/* <Button
             variant="outlined"
             color="primary"
             style={circleItem}
+            onClick={this.handleEditPolicy}
           >
-            Edit Policy</Button>
+            Edit Policy</Button> */}
         </MuiThemeProvider>
 
         <Modal open={this.state.open}>
-          <div style={getModal()} className={classes.paper}>
+          <div style={getModal()}className={classes.paper}>
             <div className={classes.root}>
               <Grid container spacing={24} className={classes.grid}
                 direction="row" justify="center">
 
                 {/* User Demographic Form */}
-                <Grid item sm={8}>
+                <Grid item sm={10}> 
 
                   <h2 className="profile-h2">User Profile</h2>
 
                   <center><div className={classes.bgColor}></div></center>
 
-                  <form>
+                  <form >
                     <TextField
                       type="text"
                       className={classes.textField}

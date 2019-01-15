@@ -72,7 +72,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
                     "out_of_pocket_out",
                     "person_id",
                     "insurance_id")
-                    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17);`;
+                    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17) RETURNING "id";`;
 
   let queryValues = [ req.body.policyHolder,
                       req.body.employment,
@@ -93,6 +93,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
                       req.body.insurance_id];
   pool.query(queryString, queryValues)
     .then(() => {
+      res.send(id)
       res.sendStatus(201);
     })
     .catch(err => {
@@ -101,28 +102,68 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 })
 
-
-
 // UPDATE policy table with insurance Id 
-router.put('/:policyId', rejectUnauthenticated, (req, res) => {
-  let insId = req.body.insuranceId;
-  let policyId = req.params.policyId;
+// router.put('/:policyId', rejectUnauthenticated, (req, res) => {
+//   let insId = req.body.insuranceId;
+//   let policyId = req.params.policyId;
 
-  console.log(`in SERVER - insurance ID is: ${req.body.insuranceId}`)
-  console.log(`in SERVER - policy ID is: ${req.params.policyId}`);
+//   console.log(`in SERVER - insurance ID is: ${req.body.insuranceId}`)
+//   console.log(`in SERVER - policy ID is: ${req.params.policyId}`);
 
-  let queryString = `UPDATE "policy" SET "insurance_id" = $1
-                     WHERE "id" = $2;`;
-  pool.query(queryString, [insId, policyId])
-    .then(result => {
-      res.sendStatus(201);
-    }).catch(err => {
-      console.log('error updating favorite:', err);
-      res.sendStatus(200);
-    })
-});
+//   let queryString = `UPDATE "policy" SET "insurance_id" = $1
+//                      WHERE "id" = $2;`;
+//   pool.query(queryString, [insId, policyId])
+//     .then(result => {
+//       res.sendStatus(201);
+//     }).catch(err => {
+//       console.log('error updating favorite:', err);
+//       res.sendStatus(200);
+//     })
+// });
 
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  console.log(`in PUT route: ${req.params.id}`);
+  const data= req.body;
+  const queryString = `UPDATE "policy" SET                     
+                      "member_number"=$1,
+                      "group_number"=$2,
+                      "cob_type"=$3,
+                      "effective_date"=$4, 
+                      "term_date"=$5,
+                      "deductible_in"=$6,
+                      "deductible_out"=$7,
+                      "copay_in"=$8, 
+                      "copay_special"=$9,
+                      "coinsurance_in"=$10, 
+                      "coinsurance_out"=$11,
+                      "out_of_pocket_in"=$12,
+                      "out_of_pocket_out"=$13
+                      WHERE "id"=$14;`;
 
+  const queryValues = [req.body.memberNumber,
+                        req.body.groupNumber,
+                        req.body.cobType,
+                        req.body.effectiveDate,
+                        req.body.termDate,
+                        req.body.dedIn,
+                        req.body.dedOut,
+                        req.body.copayIn,
+                        req.body.copaySpecial,
+                        req.body.coInsuranceIn,
+                        req.body.coInsuranceOut,
+                        req.body.oopIn,
+                        req.body.oopOut,
+                        req.params.id]
+
+  pool.query(queryString, queryValues)
+      .then ( () => {
+        res.sendStatus(200)
+      })
+      .catch ( err => {
+        console.log(`Error updating profile`);
+        res.sendStatus(500)
+      })
+})
 
 // delete a policy
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
@@ -138,20 +179,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 
-
-// GET paid benefits
-// router.get('/benefitPaid/:id', (req, res) => {
-//   const queryString = `SELECT * FROM "benefitpaid" WHERE "person_id" = $1;`;
-//   pool.query(queryString, [req.user.id])
-//     .then(result => {
-//       res.send(result.rows);
-//     })
-//     .catch(err => {
-//       console.log(`Error in getting data from DB ${err}`);
-//       res.sendStatus(500);
-//     });
-// })
-
+//////////////////////////////////////////////////////////////////
 
 //POST benefit paid
 router.post('/benefitPaid', (req, res) => {

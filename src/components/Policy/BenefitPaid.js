@@ -22,7 +22,8 @@ class BenefitPaid extends React.Component {
   }
 
   render() {
-    
+
+      let datas = [];
       
       let list =this.props.reduxState.policy.map( (benefit, i) => {
 

@@ -27,7 +27,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('in POST route to add demo:', req.user);
 
   const queryString = `INSERT INTO "demographic" ("first_name", "last_name", "birthday", "email", "address", "person_id")
-                        VALUES ($1, $2, $3, $4, $5, $6);`;
+                        VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id";`;
   const queryValues = [req.body.fname, req.body.lname, req.body.birthday, req.body.email, req.body.address, req.user.id];
   pool.query(queryString, queryValues)
   .then( () => {
@@ -41,10 +41,20 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('in PUT route');
-
-  const queryString = `UPDATE "demographic" SET "person_id"=$1;`;
-  pool.query(queryString)
+  console.log(`in PUT route: ${req.user.id}`);
+  const data= req.body;
+  const queryString = `UPDATE "demographic" SET "first_name"=$1, 
+                        "last_name"=$2, "birthday"=$3, "address"=$4,
+                        "email"=$5 WHERE "id"=$6;`;
+  const queryValues = [data.fname, data.lname, data.birthday, data.address, data.email, req.params.id]
+  pool.query(queryString, queryValues)
+      .then ( () => {
+        res.sendStatus(200)
+      })
+      .catch ( err => {
+        console.log(`Error updating profile`);
+        res.sendStatus(500)
+      })
 })
 
 
@@ -70,7 +80,7 @@ router.post('/image', rejectUnauthenticated, (req, res) => {
   console.log('in POST route to add image:', req.user);
 
   const queryString = `INSERT INTO "image" ("image_url", "person_id")
-                        VALUES ($1, $2);`;
+                        VALUES ($1, $2) RETURNING "id";`;
   const queryValues = [req.body.image, req.user.id];
   pool.query(queryString, queryValues)
   .then( () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 
 import styles from '../Assets/styles/stylesTwo';
 import { withStyles } from '@material-ui/core';
@@ -14,7 +14,7 @@ import Delete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2';
-// import EditProfile from './EditProfile';
+import Edit from '../Policy/Edit';
 // import ImageView from '../Image/ImageView';
 
 const style = {
@@ -28,11 +28,6 @@ class ViewProfile extends React.Component {
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_POLICY' });
-  }
-
-  handleEdit = () => {
-    console.log('back button has been clicked');
-    this.props.history.push("/edit_profile");
   }
 
 
@@ -110,6 +105,7 @@ class ViewProfile extends React.Component {
                   Edit Profile</Button> */}
                 
                 <Profile />
+                <Edit />
                 {/* <Button
                   variant="outlined"
                   color="primary"

@@ -8,9 +8,7 @@ import EditProfile from './EditProfile';
 
 
 class Profile extends React.Component {
-  state = {
-    policyValues: ''
-  }
+
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_DEMO', payload: this.props.reduxState.user.id})
@@ -22,7 +20,7 @@ class Profile extends React.Component {
           {this.props.reduxState.demographic.map((demo) => {
             return (
             
-              <EditProfile key={demo.id} demo={demo}/>
+              <EditProfile key={demo.id} values={demo.id}demo={demo}/>
             )
           })}
       </div>

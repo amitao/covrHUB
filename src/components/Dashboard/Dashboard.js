@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 
 // Components
-import Profile from '../Profile/Profile';
+// import Profile from '../Profile/Profile';
 import ProfileItem from '../Profile/ProfileItem';
 import Policy from '../Policy/Policy';
 // Material-UI

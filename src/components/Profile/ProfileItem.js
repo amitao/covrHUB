@@ -5,21 +5,23 @@ import moment from 'moment';
 class ProfileItem extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_DEMO', payload: this.props.reduxState.user.id})
+    this.props.dispatch({ type: 'FETCH_DEMO', payload: this.props.reduxState.user.id })
   }
 
 
   render() {
-
     return (
-      <div>
-        {this.props.reduxState.demographic.map( demo => {
-          return ( 
+      <>
+        {this.props.reduxState.demographic.map(demo => {
+          return (
             <div key={demo.id}>
-              {demo.first_name}
-              {demo.last_name}
-              {demo.address}
-              {demo.email}
+              <p className="text-styles"><span className="item-span">{demo.first_name}</span>{demo.last_name}</p>
+              <div className="blank-div"></div>
+              <p className="p-one"><span className="p-three">{demo.email}</span><span className="p-two">{moment(demo.birthday).format('l')}</span></p>
+              <div className="blank-div"></div>
+              <p className="p-one">
+                {demo.address}
+              </p>
             </div>
           )
         })}
@@ -30,9 +32,10 @@ class ProfileItem extends React.Component {
         <div className="blank-div"></div>
         <p className="p-one">
           {this.props.demo.address}
+          {moment(demo.birthday).format('l')}
         </p> */}
 
-      </div>
+      </>
     )
   }
 }

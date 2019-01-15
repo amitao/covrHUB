@@ -46,10 +46,6 @@ class InsuranceView extends React.Component {
     this.props.dispatch({ type: 'FETCH_POLICY' });
   }
 
-  // handleDelete= (id) => {
-  //   this.props.dispatch({type: 'DELETE_INS', payload: id})
-  // }
-
   render() {
 
     return (

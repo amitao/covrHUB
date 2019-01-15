@@ -25,16 +25,12 @@ class AddProfile extends React.Component {
     personID: ''
   }
 
-  // componentDidMount() {
-  //   this.props.dispatch( { type: 'FETCH_IMAGE'} );
-  // }
-
-
   // route back to userPage
   handleClickBack = () => {
     console.log('back button has been clicked');
     this.props.history.push("/home");
   }
+
 
   // send to saga via dispatch
   handleClickSave = () => {

@@ -58,14 +58,25 @@ function* deletePolicy(action) {
   }
 }
 
+function* updatePolicy(action){
+  try{
+    console.log('payload in PUT policy saga:', action.payload.policyId);
+    
+    yield axios.put(`/api/policy/${action.payload.policyId}`, action.payload);
+    yield dispatch({ type: 'FETCH_POLICY'});
 
+  } catch (err) {
+    console.log(`Error in updating policy in saga ${err}`);
+  }
+}
 
 function* policyWatcherSaga() {
   yield takeLatest('FETCH_POLICY', fetchPolicy);
   yield takeLatest('ADD_POLICY', postPolicy);
   yield takeLatest('ADD_PAID_BENEFIT', postPaidBenefit);
   yield takeLatest('FETCH_SINGLE_POLICY', fetchSinglePolicy);
-  yield takeLatest('DELETE_POLICY', deletePolicy)
+  yield takeLatest('DELETE_POLICY', deletePolicy);
+  yield takeLatest('UPDATE_POLICY', updatePolicy);
 }
 
 
