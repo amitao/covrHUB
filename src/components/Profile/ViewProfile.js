@@ -9,21 +9,16 @@ import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import './Profile.css';
 import Profile from './Profile';
+import ProfileItem from './ProfileItem';
 import Delete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2';
-
-
+// import EditProfile from './EditProfile';
+// import ImageView from '../Image/ImageView';
 
 const style = {
-  circleItem: {
-    borderRadius: "65px",
-    margin: "2em",
-  },
-  spaceTop: {
-    marginTop: "1em",
-  },
+  marginTop: "1em",
 }
 
 
@@ -31,37 +26,14 @@ const style = {
 
 class ViewProfile extends React.Component {
 
-  // constructor (props, context) {
-  //   super(props, context);
-  //   this.state = {
-  //       isEditing: false,
-  //       profile: {
-  //         name: this.props.reduxState.demographic.first_name,
-  //         lastName: this.props.reduxState.demographic.last_name,
-  //         email: this.props.reduxState.demographic.email,
-  //         address: this.props.reduxState.demographic.address,
-  //         personID: this.props.reduxState.user.id
-  //       },
-  //   };
-
-  //   this.toggleEdit = this.toggleEdit.bind(this);
-  // }
-
-  // toggleEdit() {
-  //   this.setState({isEditing: !this.state.isEditing})
-  // }
-
-
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_POLICY' });
-    this.props.dispatch({ type: 'FETCH_IMAGE' });
   }
 
   handleEdit = () => {
-    
+    console.log('back button has been clicked');
+    this.props.history.push("/edit_profile");
   }
-
-
 
 
   handleDelete = (id) => {
@@ -92,8 +64,8 @@ class ViewProfile extends React.Component {
   render() {
 
     const { classes } = this.props;
-    // const { image_url } = this.props.image;
 
+ 
     return (
       <div className={classes.root}>
         <Grid container spacing={24} className={classes.grid} justify="center" direction="row">
@@ -101,9 +73,10 @@ class ViewProfile extends React.Component {
             <div className="view-box" >
               <div className="view-child-one">
                 <img src="images/avatar1.svg" alt="me" className="ava" />
-                {/* <img src={image_url} alt="me" className="ava" /> */}
-                <center style={style.spaceTop}>
-                  <Profile />
+               {/* <ImageView /> */}
+                <center style={style}>
+                  {/* <Profile /> */}
+                  <ProfileItem />
                 </center>
               </div>
 
@@ -116,7 +89,6 @@ class ViewProfile extends React.Component {
                       <span className="item-span">{item.name}</span>
                       <span className="item-span">ID#:{item.member_number}</span>
                       <span className="item-span">GRP#:{item.group_number}</span>
-                      <span className="item-span">{item.cob_type}</span>
                       <Tooltip title="Delete">
                         <IconButton aria-label="Delete" color="primary" onClick={() => this.handleDelete(item.id)}>
                           <Delete />
@@ -129,20 +101,21 @@ class ViewProfile extends React.Component {
               </div>
 
               <div className="view-child-three">
-                <center><div className="blank-div"></div></center>
-                <Button
+                {/* <Button
                   variant="outlined"
                   color="primary"
                   style={style.circleItem}
                   onClick={this.handleEdit}
                 >
-                  Edit Profile</Button>
-                <Button
+                  Edit Profile</Button> */}
+                
+                <Profile />
+                {/* <Button
                   variant="outlined"
                   color="primary"
                   style={style.circleItem}
                 >
-                  Edit Policy</Button>
+                  Edit Policy</Button> */}
               </div>
             </div>
           </Paper>
@@ -158,15 +131,8 @@ ViewProfile.propTypes = {
 };
 
 
-// const mapStateToProps = (reduxState) => {
-//   return {
-//     reduxState
-//   }
-// }
-
 const mapStateToProps = state => ({
   user: state.user,
-  image: state.image,
   policy: state.policy
 });
 

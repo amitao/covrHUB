@@ -39,6 +39,7 @@ class LoginPage extends Component {
     }
   } // end login
 
+
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       [propertyName]: event.target.value,

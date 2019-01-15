@@ -62,7 +62,7 @@ const getModal = () => {
 class ModalAvatar extends React.Component {
   state ={
     open: false,
-    image: '',
+    imageUrl: '',
     person_id: this.props.user.id
   }
   
@@ -93,7 +93,7 @@ class ModalAvatar extends React.Component {
     console.log('save image button has been clicked');
     this.props.dispatch({type: 'ADD_IMAGE', payload: this.state});
     this.setState({
-      image: '',
+      imageUrl: '',
       person_id: this.props.user.id
     })
   }
@@ -119,12 +119,12 @@ class ModalAvatar extends React.Component {
         <h2 className="avatar-h2">Please select an avatar</h2>
 
         <FormGroup>
-          <img src="images/avatar3.svg" className="avatar three" />
+          <img src="images/avatar3.svg" className="avatar three" alt="cute"/>
         <FormControlLabel
           label="avatar3"
-          value={this.state.image}
+          value={this.state.imageUrl}
           onChange={this.handleChange}
-          name="image"
+          name="imageUrl"
           control={
             
             <Checkbox

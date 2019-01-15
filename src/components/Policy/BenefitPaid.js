@@ -13,20 +13,24 @@ class BenefitPaid extends React.Component {
   }
 
   state ={
-    ded_in: '',
-    ded_out: '',
-    oop_in: '',
-    oop_out: '',
+    person: {
+      ded_in: '',
+      ded_out: '',
+      oop_in: '',
+      oop_out: '',
+    },
   }
 
   render() {
+    
+      
+      let list =this.props.reduxState.policy.map( (benefit, i) => {
 
-    return (
-      <div>
-        
-        {this.props.reduxState.policy.map( (benefit, i) => {
+        if(benefit[0] === null){
+          return(<div>null</div>) 
+        } else {
           return (
-            <div key={i}>
+           <div key={i}>
               <p>Policy: {benefit.name}</p>
               <p>Member ID#:{benefit.member_number}</p>
               <p>Total: ${benefit.deductible_in}, Amount paid: ${benefit.ded_in_paid}, 
@@ -35,9 +39,14 @@ class BenefitPaid extends React.Component {
               ${benefit.oop_in_paid}
               ${benefit.oop_out_paid}
               Last paid date:{(moment(benefit.date).format('l'))}
-            </div>
+            </div>           
           )
-        })} 
+        }
+    })
+
+    return (
+      <div>
+        {list}
       </div>
     )
   }

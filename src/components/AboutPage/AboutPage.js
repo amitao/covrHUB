@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-
-
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -79,9 +77,6 @@ class AboutPage extends React.Component {
     return (
       <div>
         <p>Text: {this.state.text}</p>
-        {this.renderInputField()}
-        {this.renderButton()}
-        {this.props.user.id}
       </div>
     );
   }

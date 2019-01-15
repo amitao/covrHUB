@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 
 // Components
-// import Profile from '../Profile/Profile';
+import Profile from '../Profile/Profile';
+import ProfileItem from '../Profile/ProfileItem';
 import Policy from '../Policy/Policy';
 // Material-UI
 import { withStyles } from '@material-ui/core';
@@ -78,51 +79,51 @@ class Dashboard extends React.Component {
     const { classes } = this.props;
 
     return (
-        <div className={classes.root}>
-          <Grid container className={classes.grid2}>
-            <Grid item className={classes.itemGrid}>
-              <Grid item className={classes.itemNestedFirst}>
-                <center>
-                  <img src="images/profile-icon.svg" alt="profile" className="profile-icon" />
-                  <p onClick={this.handleClickProfile} style={styleDash.style2}>Profile</p>
-                </center>
-              </Grid>
-
-              <Grid item className={classes.itemNestedMiddle}>
-                <center>
-                  <img src="images/policy-icon.svg" alt="policy" className="policy-icon" />
-                  <p onClick={this.handleClickAddPolicy} style={styleDash.style2}> Add Policy</p>
-                </center>
-              </Grid>
-
-              <Grid className={classes.itemNestedLast}>
-                <center>
-                  <img src="images/graph-icon.svg" alt="graph" className="graph-icon" />
-                  <p style={styleDash.style1}> Money Spend</p>
-                </center>
-              </Grid>
-            </Grid>
-            {/* end of itemGrid div */}
-
-              <Grid item md className={classes.paper} style={styleDash.paper}>
-                <h3 style={styleDash.h3Style}>Policy Holder</h3>
-                {/* <Profile /> */}
-
-                <InsuranceView />
-                <Policy /> 
+      <div className={classes.root}>
+        <Grid container className={classes.grid2}>
+          <Grid item className={classes.itemGrid}>
+            <Grid item className={classes.itemNestedFirst}>
+              <center>
+                <img src="images/profile-icon.svg" alt="profile" className="profile-icon" />
+                <p onClick={this.handleClickProfile} style={styleDash.style2}>Profile</p>
+              </center>
             </Grid>
 
-            <Grid item md className={classes.paper} style={styleDash.paper}>
-              <div className="box-benefit">
-              <h3 style={styleDash.h3Style}>Deductible</h3>
-               {/* chart */}
-              </div>
-              <p onClick={this.handleClickAddBenefit} style={styleDash.style3}>Add Paid Benefits</p>
-               <BenefitPaid />
+            <Grid item className={classes.itemNestedMiddle}>
+              <center>
+                <img src="images/policy-icon.svg" alt="policy" className="policy-icon" />
+                <p onClick={this.handleClickAddPolicy} style={styleDash.style2}> Add Policy</p>
+              </center>
             </Grid>
 
+            <Grid className={classes.itemNestedLast}>
+              <center>
+                <img src="images/graph-icon.svg" alt="graph" className="graph-icon" />
+                <p style={styleDash.style1}> Money Spend</p>
+              </center>
+            </Grid>
           </Grid>
-        </div>
+          {/* end of itemGrid div */}
+
+          <Grid item md className={classes.paper} style={styleDash.paper}>
+            <h3 style={styleDash.h3Style}>Policy Holder</h3>
+            {/* <Profile /> */}
+            <ProfileItem />
+            <InsuranceView />
+            <Policy />
+          </Grid>
+
+          <Grid item md className={classes.paper} style={styleDash.paper}>
+            <div className="box-benefit">
+              <h3 style={styleDash.h3Style}>Deductible</h3>
+              {/* chart */}
+            </div>
+            <p onClick={this.handleClickAddBenefit} style={styleDash.style3}>Add Paid Benefits</p>
+            <BenefitPaid />
+          </Grid>
+
+        </Grid>
+      </div>
     )
   }
 }
@@ -131,7 +132,6 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
 
 
 // this allows us to use <App /> in index.js   

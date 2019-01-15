@@ -20,6 +20,7 @@ class RegisterPage extends Component {
     password: '',
   };
 
+
   registerUser = (event) => {
     event.preventDefault();
 

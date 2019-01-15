@@ -22,12 +22,12 @@ class AddProfile extends React.Component {
     birthday: '',
     address: '',
     email: '',
-    personID: '',
+    personID: ''
   }
 
-  componentDidMount() {
-    this.props.dispatch( { type: 'FETCH_IMAGE'} );
-  }
+  // componentDidMount() {
+  //   this.props.dispatch( { type: 'FETCH_IMAGE'} );
+  // }
 
 
   // route back to userPage
@@ -79,7 +79,7 @@ class AddProfile extends React.Component {
               <h2 className="profile-h2">Profile</h2>
               <center>
               <Grid item sm={12} className="avatar-block">
-                <img src={this.props.image.image_url}/>
+                {/* <img src={} alt="you"/> */}
               </Grid>
               </center>
               <div>
@@ -184,7 +184,6 @@ AddProfile.propTypes = {
 
 const mapStateToProps = state => ({
   user: state.user,
-  image: state.image,
 });
 
 

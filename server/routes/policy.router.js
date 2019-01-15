@@ -55,7 +55,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   console.log(`send date to POST in policy table - ${req.body}`);
 
   let queryString = `INSERT INTO "policy" (
-                    "policyHolder"                      
+                    "policy_holder",                      
                     "employment",
                     "member_number",
                     "group_number",
@@ -72,9 +72,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
                     "out_of_pocket_out",
                     "person_id",
                     "insurance_id")
-                    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17) RETURNING "id";`;
+                    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17);`;
 
-  let queryValues = [ req.body.policy_holder,
+  let queryValues = [ req.body.policyHolder,
                       req.body.employment,
                       req.body.memberNumber,
                       req.body.groupNumber,
@@ -111,9 +111,9 @@ router.put('/:policyId', rejectUnauthenticated, (req, res) => {
   console.log(`in SERVER - insurance ID is: ${req.body.insuranceId}`)
   console.log(`in SERVER - policy ID is: ${req.params.policyId}`);
 
-  let sqlText = `UPDATE "policy" SET "insurance_id" = $1
-                WHERE "id" = $2;`;
-  pool.query(sqlText, [insId, policyId])
+  let queryString = `UPDATE "policy" SET "insurance_id" = $1
+                     WHERE "id" = $2;`;
+  pool.query(queryString, [insId, policyId])
     .then(result => {
       res.sendStatus(201);
     }).catch(err => {

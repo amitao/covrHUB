@@ -41,7 +41,7 @@ class PolicyForm extends React.Component {
   }
 
   state = {
-    policyHolder: '',
+    policyHolder: 'Self',
     employment: '',
     memberNumber: '',
     groupNumber: '',
@@ -81,7 +81,7 @@ class PolicyForm extends React.Component {
     event.preventDefault();
     this.props.dispatch({ type: 'ADD_POLICY', payload: this.state });
     this.setState({
-      policyHolder: '',
+      policyHolder: 'Self',
       employment: '',
       memberNumber: '',
       groupNumber: '',
@@ -140,7 +140,6 @@ class PolicyForm extends React.Component {
                 <TextField
                   type="text"
                   className={classes.textField}
-                  defaultValue="Self"
                   label="Policy Holder"
                   value={this.state.policyHolder}
                   onChange={this.handleChange('policyHolder')}

@@ -76,10 +76,9 @@ class InsuranceView extends React.Component {
                   Address: {item.claims_address}
                 </div>
                 <div style={spacing}>
-                  Policy Holder: {item.policy_holder}
+                  Subcriber: {item.policy_holder}
                   Phone: {item.member_service_phone}
                 </div>
-                {/* <button onClick={()=> this.handleDelete(insurance.id)}>delete</button> */}
                 </Paper>
             )
           })}

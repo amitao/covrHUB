@@ -7,7 +7,7 @@ import demographic from './demographicReducer';
 import policy from './policyReducer';
 import benefit from './benefitPaidReducer';
 import singlePolicy from './singlePolicyReducer';
-import image from './imageReducer';
+import imageAvatar from './imageReducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
   policy,
   benefit,
   singlePolicy,
-  image,
+  imageAvatar,
 });
 
 export default rootReducer;
