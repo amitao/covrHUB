@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles, MuiThemeProvider, createMuiTheme, TextField, Grid } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import moment from 'moment';
 
 
 
@@ -66,7 +67,7 @@ class EditProfile extends React.Component {
     demoId: this.props.demo.id,
     fname: this.props.demo.first_name,
     lname: this.props.demo.last_name,
-    birthday: this.props.demo.birthday,
+    birthday: moment(this.props.demo.birthday).format('l'),
     address: this.props.demo.address,
     email: this.props.demo.email
   }
@@ -127,14 +128,6 @@ class EditProfile extends React.Component {
             color="primary"
             onClick={this.handleOpen}
           >Edit Profile</Button>
-
-          {/* <Button
-            variant="outlined"
-            color="primary"
-            style={circleItem}
-            onClick={this.handleEditPolicy}
-          >
-            Edit Policy</Button> */}
         </MuiThemeProvider>
 
         <Modal open={this.state.open}>
@@ -168,7 +161,7 @@ class EditProfile extends React.Component {
                     />
 
                     <TextField
-                      type="date"
+                      type="text"
                       className={classes.textField}
                       onChange={this.handleChange('birthday')}
                       value={this.state.birthday}

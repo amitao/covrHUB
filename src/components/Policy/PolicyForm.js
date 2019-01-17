@@ -282,18 +282,11 @@ class PolicyForm extends React.Component {
 
               <MuiThemeProvider theme={theme}>
                 <Button
-                  onClick={this.handleClickBack}
-                  className={classes.nextBtn}
-                  variant="outlined"
-                  color="primary"
-                >Back</Button>
-
-                <Button
                   onClick={this.handleSubmit}
                   className={classes.nextBtn}
                   variant="contained"
                   color="primary">
-                  ADD
+                  Save
               </Button>
 
                 <Button
@@ -316,11 +309,6 @@ PolicyForm.propTypes = {
 };
 
 
-// const mapStateToProps = (reduxState) => {
-//   return {
-//     reduxState
-//   }
-// }
 const mapStateToProps = state => ({
   user: state.user,
   insurance: state.insurance,

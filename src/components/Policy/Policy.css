@@ -1,3 +1,6 @@
+
+
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -9,7 +12,7 @@ tbody tr:nth-child(odd) {
   background-color: #E4E4F8;
 }
 table tr th{
-  padding-bottom: 0.5em;
+  padding: 0.5em;
 }
 
 tr td {
@@ -27,4 +30,33 @@ tr td {
 
 .item-span-3 {
   float: right;
+}
+
+.benefit-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid gray;
+  padding: 1em;
+}
+
+.span-color {
+  color: blue;
+}
+
+
+
+.p-styling {
+  float: right;
+}
+
+.color-tr-header {
+  background-color: #c0c4ea;
+}
+
+.col-color {
+  background-color: #F7F7FA;
+}
+
+.fa-briefcase-medical {
+  color: #89a3e5;
 }

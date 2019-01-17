@@ -14,28 +14,31 @@ import Delete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2';
-import Edit from '../Policy/Edit';
-// import ImageView from '../Image/ImageView';
+import EditPolicy from '../Policy/EditPolicy';
+import ImageView from '../Image/ImageView';
 
 const style = {
-  marginTop: "1em",
+  marTop: {
+    marginTop: "1em",
+  },
+  styleColor: {
+    color: "#fc83a1"
+  }
 }
-
-
 
 
 class ViewProfile extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_POLICY' });
+    this.props.dispatch({ type: 'FETCH_POLICY', payload: this.props.policy.id})
   }
-
 
   handleDelete = (id) => {
     console.log(`Delete has been clicked = ${id}`);
 
     Swal.fire({
       title: 'Are you sure?',
+      text: ' Benefits and payments made will be deleted as well.',
       type: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, please delete it!',
@@ -56,19 +59,35 @@ class ViewProfile extends React.Component {
   }
 
 
+  handleOpen = () => {
+    this.setState({
+      open: true
+    });
+  };
+
+   // exit out of the modal
+   handleClose = () => {
+    this.setState({
+      open: false
+    });
+  };
+
+
+
+
   render() {
 
     const { classes } = this.props;
 
- 
+
     return (
       <div className={classes.root}>
         <Grid container spacing={24} className={classes.grid} justify="center" direction="row">
           <Paper className={classes.paperView}>
             <div className="view-box" >
               <div className="view-child-one">
-                <img src="images/avatar1.svg" alt="me" className="ava" />
-               {/* <ImageView /> */}
+                {/* <img src="images/avatar1.svg" alt="me" className="ava" /> */}
+                <ImageView />
                 <center style={style}>
                   {/* <Profile /> */}
                   <ProfileItem />
@@ -86,32 +105,21 @@ class ViewProfile extends React.Component {
                       <span className="item-span">GRP#:{item.group_number}</span>
                       <Tooltip title="Delete">
                         <IconButton aria-label="Delete" color="primary" onClick={() => this.handleDelete(item.id)}>
-                          <Delete />
+                          <Delete 
+                           style={style.styleColor}/>
                         </IconButton>
                       </Tooltip>
+                      <EditPolicy handleOpen={this.handleOpen} handleClose={this.handleClose} item={item}/>
                     </div>
                   )
                 })}
 
+
+
               </div>
 
               <div className="view-child-three">
-                {/* <Button
-                  variant="outlined"
-                  color="primary"
-                  style={style.circleItem}
-                  onClick={this.handleEdit}
-                >
-                  Edit Profile</Button> */}
-                
                 <Profile />
-                <Edit />
-                {/* <Button
-                  variant="outlined"
-                  color="primary"
-                  style={style.circleItem}
-                >
-                  Edit Policy</Button> */}
               </div>
             </div>
           </Paper>

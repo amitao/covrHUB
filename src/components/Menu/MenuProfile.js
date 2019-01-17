@@ -27,6 +27,10 @@ state = {
   image: ''
 };
 
+componentDidMount() {
+  this.props.dispatch({ type: 'FETCH_IMAGE', payload: this.props.reduxState.imageAvatar.id})
+}
+
 
 
 handleMenu = () => {
@@ -53,18 +57,32 @@ handleClick = () => {
 
   return (
     <>
-    <IconButton
+    {this.props.reduxState.imageAvatar.map( item => {
+      return (
+        <IconButton
+        key={item.id}
+        buttonRef={node => {
+          this.anchorEl = node;
+        }}
+         aria-owns={open ? 'menu-appbar': undefined}
+         aria-haspopup="true"
+         onClick={this.handleMenu}>
+        <Avatar src={item.image_url} className={classes.avatar}/>
+      </IconButton>
+
+      )
+
+    })}
+    {/* <IconButton
       buttonRef={node => {
         this.anchorEl = node;
       }}
        aria-owns={open ? 'menu-appbar': undefined}
        aria-haspopup="true"
        onClick={this.handleMenu}>
-      <Avatar src="images/avatar1.svg" className={classes.avatar}/>
-
-      {/* src="images/avatar1.svg" */}
-      {/* <img src={this.props.image} /> */}
-    </IconButton>
+   
+      <Avatar src={this.props.imageFile.image_url} className={classes.avatar}/>
+    </IconButton> */}
 
     <Popper
       anchorEl={this.anchorEl}
@@ -103,9 +121,14 @@ MenuProfile.propTypes = {
 };
 
 
-const mapStateToProps = state => ({
-  user: state.user,
-});
+// const mapStateToProps = state => ({
+//   user: state.user,
+//   imageFile: state.imageAvatar
+// });
 
-
+const mapStateToProps =  reduxState => {
+  return {
+    reduxState
+  }
+}
 export default connect(mapStateToProps)(withStyles(styles)(withRouter(MenuProfile)));

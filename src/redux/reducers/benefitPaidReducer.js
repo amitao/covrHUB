@@ -1,3 +1,4 @@
+
 const benefit = (state=[], action) => {
   switch (action.type){
     case 'SET_PAID_BENEFIT':

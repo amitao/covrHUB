@@ -194,7 +194,7 @@ router.post('/benefitPaid', (req, res) => {
                       "date", 
                       "person_id", 
                       "policy_id") 
-                      VALUES ($1,$2,$3,$4,$5,$6,$7);`
+                      VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING "id";`
 
   const queryValues = [req.body.dedInPaid, 
                       req.body.dedOutPaid, 

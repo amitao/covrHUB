@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider, createMuiTheme, TextField, Grid } from '@material-ui/core';
+import { withStyles, TextField, Tooltip, IconButton } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 
 const styles = theme => ({
@@ -29,26 +30,10 @@ const styles = theme => ({
 });
 
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: "#e1e3f7",
-      main: "#7060ed",
-      dark: "#7378a5",
-      contrastText: "#fff",
-    }
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
-
-
-const circleItem = {
-  borderRadius: "65px",
-  margin: "2em",
+const cursorStyle = {
+  cursor: "pointer",
+  color: "#89a3e5",
 }
-
 
 const getModal = () => {
   const top = 10;
@@ -68,8 +53,8 @@ class EditPolicy extends React.Component {
     policyId: this.props.item.id,
     memberNumber: this.props.item.member_number,
     groupNumber: this.props.item.group_number,
-    effectiveDate: this.props.item.effective_date,
-    termDate: this.props.item.term_date,
+    effectiveDate: moment(this.props.item.effective_date).format('l'),
+    termDate: moment(this.props.item.term_date).format('l'),
     cobType: this.props.item.cob_type,
     dedIn: this.props.item.deductible_in,
     dedOut: this.props.item.deductible_out,
@@ -88,7 +73,7 @@ class EditPolicy extends React.Component {
     });
   };
 
-  // exit out of the modal
+  // // exit out of the modal
   handleClose = () => {
     this.setState({
       open: false
@@ -132,25 +117,26 @@ class EditPolicy extends React.Component {
 
     const { classes } = this.props;
     return (
-      <div>
-        <Button
-          variant="outlined"
-          color="primary"
-          style={circleItem}
-          onClick={this.handleOpen}
-        >
-          Edit Policy</Button>
+      <>
 
+        <Tooltip title="Edit">
+          <IconButton>
+            <i className="fas fa-edit"
+              label="Edit"
+              style={cursorStyle}
+              onClick={this.handleOpen}></i>
+          </IconButton>
+        </Tooltip>
 
         <Modal open={this.state.open} >
           <div style={getModal()} className={classes.paper}>
-            <h2 className="profile-h2">EDit Policy</h2>
+            <h2 className="profile-h2">Edit Policy</h2>
 
             <center><div className={classes.bgColor}></div></center>
 
             <form >
               <TextField
-
+                label="Health Insurance"
                 placeholder={this.props.item.name}
               />
               <TextField
@@ -188,14 +174,14 @@ class EditPolicy extends React.Component {
 
 
               <TextField
-                type="date"
+                type="text"
                 className={classes.textField}
                 onChange={this.handleChange('effectiveDate')}
                 value={this.state.effectiveDate}
               />
 
               <TextField
-                type="date"
+                type="text"
                 className={classes.textField}
                 onChange={this.handleChange('termDate')}
                 value={this.state.termDate}
@@ -271,7 +257,7 @@ class EditPolicy extends React.Component {
 
 
         </Modal>
-      </div>
+      </>
 
     )
   }

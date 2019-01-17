@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
-import moment from 'moment';
+import moment from 'moment'; 
+import Icon from '@material-ui/core/Icon';
 
 
 const styling = {
@@ -28,16 +29,15 @@ const divStyle = {
 
 const nameStyle = {
   textTransform: "uppercase",
+  color: "#243372",
   letterSpacing: "2px",
   margin: "0.5em 0",
-  textAlign: "left",
+  textAlign: "left"
 }
 
 const spacing = {
   margin: '0.5em 0',
 }
-
-
 
 class InsuranceView extends React.Component {
 
@@ -56,7 +56,8 @@ class InsuranceView extends React.Component {
             return (
               <Paper key={i} style={styling}>
 
-                <div style={nameStyle}>{item.name}<span className="item-span-3">{item.cob_type}</span></div>
+                <div style={nameStyle}>
+                <Icon><i class="fas fa-briefcase-medical" ></i></Icon> {item.name}<span className="item-span-3">{item.cob_type}</span></div>
 
                 <div style={divStyle}>
                   <span className="item-span-2">ID#: {item.member_number}</span>

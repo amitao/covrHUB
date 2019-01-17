@@ -11,7 +11,7 @@ class Profile extends React.Component {
 
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_DEMO', payload: this.props.reduxState.user.id})
+    this.props.dispatch({ type: 'FETCH_DEMO', payload: this.props.reduxState.demographic.id})
   }
   
   render() {
@@ -19,7 +19,6 @@ class Profile extends React.Component {
       <div>
           {this.props.reduxState.demographic.map((demo) => {
             return (
-            
               <EditProfile key={demo.id} values={demo.id}demo={demo}/>
             )
           })}

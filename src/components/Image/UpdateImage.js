@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider, createMuiTheme, Grid } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -104,7 +104,7 @@ class ModalAvatar extends React.Component {
     event.preventDefault();
 
     console.log('save image button has been clicked');
-    this.props.dispatch({ type: 'ADD_IMAGE', payload: this.state });
+    this.props.dispatch({ type: 'UPDATE_IMAGE', payload: this.state });
     this.setState({
       imageUrl: '',
       person_id: this.props.user.id

@@ -21,6 +21,7 @@ class RegisterPage extends Component {
   };
 
 
+
   registerUser = (event) => {
     event.preventDefault();
 
@@ -133,6 +134,7 @@ RegisterPage.propTypes = {
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
+  user: state.user
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(RegisterPage));

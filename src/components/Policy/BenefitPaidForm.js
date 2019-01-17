@@ -73,7 +73,7 @@ class BenefitPaidForm extends React.Component {
       person_id: this.props.reduxState.user.id,
       policy_id: ''
     })
-    Swal.fire('Policy saved!');
+    Swal.fire('Payment saved!');
   }
 
 

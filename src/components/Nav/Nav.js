@@ -61,7 +61,7 @@ class Nav extends React.Component {
           but call this link 'Home' if they are logged in,
           and call this link 'Login / Register' if they are not */}
           {/* {props.user.id ? 'Home' : 'Login / Register'} */}
-            {this.props.user.id ? 'Home' : 'Login / Register'}
+            {this.props.user.id ? <i className="fas fa-home"> Home</i> : 'Login / Register'}
           </Link>
   
         {/* Always show this link since the about page is not protected */}

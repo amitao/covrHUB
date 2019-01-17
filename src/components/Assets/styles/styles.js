@@ -13,7 +13,7 @@ const styles = theme => ({
   },
   cardSize: {
     width: 350,
-    height: 400,
+    height: 500,
     borderRadius: "10px",
     padding: "0 1em",
   },
@@ -34,7 +34,7 @@ const styles = theme => ({
     boxShadow: "-1px 3px 10px 0px rgba(156,158,179,0.58)",
   },
   form: {
-    paddingTop: "5em",
+    paddingTop: "7em",
     display: "flex",
     flexWrap: "wrap",
   },

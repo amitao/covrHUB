@@ -72,6 +72,7 @@ const stylesTwo = theme => ({
     // margin: 5,
     width: 50,
     height: 50,
+    border: "1px solid #c0c4ea",
   }
 })
 
