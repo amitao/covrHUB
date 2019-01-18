@@ -121,8 +121,7 @@ class ViewProfile extends React.Component {
               </div>
 
               <div className="view-child-three">
-                <Profile />
-                 <UpdateImage />
+                  <Profile /> <UpdateImage />
               </div>
             </div>
           </Paper>

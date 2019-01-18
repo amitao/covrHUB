@@ -17,7 +17,7 @@ import styles from '../Assets/styles/stylesTwo';
 import './Dashboard.css';
 import BenefitPaid from '../Policy/BenefitPaid';
 import InsuranceView from '../Policy/InsuranceView';
-
+// import EditBenefits from '../Policy/EditBenefits';
 
 
 

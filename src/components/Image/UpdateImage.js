@@ -60,6 +60,11 @@ const theme = createMuiTheme({
   },
 });
 
+const circleItem = {
+  borderRadius: "65px",
+  margin: "2em",
+}
+
 
 const getModal = () => {
   const top = 10;
@@ -122,13 +127,12 @@ class UpdateImage extends React.Component {
         <MuiThemeProvider theme={theme}>
           <Button
             className={classes.button}
+            style={circleItem}
             variant="outlined"
             color="primary"
             onClick={this.handleOpen}
           >Update Avatar</Button>
         </MuiThemeProvider>
-
-
 
 
         <Modal open={this.state.open}>
