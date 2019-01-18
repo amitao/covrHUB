@@ -1,0 +1,15 @@
+.avatar {
+  width: 110px;
+}
+.avatar-h2{
+  color: #7378a5;
+}
+.one, .two, .three {
+  border: 2px solid #c0c4ea;
+  border-radius: 5px;
+  padding: 1.5em 1.5em 0 1.5em;
+}
+
+.one, .two, .three {
+  margin-left: 1em;
+}

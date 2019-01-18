@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -9,7 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox'
-import './ModalAvatar.css';
+import './Image.css';
 
 const styles = theme => ({
   paper: {
@@ -72,17 +72,18 @@ const getModal = () => {
   };
 }
 
-class ModalAvatar extends React.Component {
+class UpdateImage extends React.Component {
   state = {
     open: false,
     imageUrl: '',
-    person_id: this.props.user.id
+    personId: this.props.user.id
   }
+
+
 
   // opens modal
   handleOpen = () => {
     this.setState({
-      ...this.state,
       open: true
     });
   };
@@ -103,11 +104,11 @@ class ModalAvatar extends React.Component {
   handleClick = (event) => {
     event.preventDefault();
 
-    console.log('save image button has been clicked');
+    console.log('update image button has been clicked');
     this.props.dispatch({ type: 'UPDATE_IMAGE', payload: this.state });
     this.setState({
       imageUrl: '',
-      person_id: this.props.user.id
+      personId: this.props.user.id
     })
   }
 
@@ -117,14 +118,18 @@ class ModalAvatar extends React.Component {
 
     return (
       <div>
+
         <MuiThemeProvider theme={theme}>
           <Button
             className={classes.button}
             variant="outlined"
             color="primary"
             onClick={this.handleOpen}
-          >Add Avatar</Button>
+          >Update Avatar</Button>
         </MuiThemeProvider>
+
+
+
 
         <Modal open={this.state.open}>
           <div style={getModal()} className={classes.paper}>
@@ -147,38 +152,38 @@ class ModalAvatar extends React.Component {
                       />
                     } />
                 </div>
-                
+
                 <div className={classes.boxTwo}>
-                <img src="images/avatar1.svg" className="avatar one" alt="avatar1" />
-                <FormControlLabel
-                  label="avatar1"
-                  value={this.state.imageUrl}
-                  onChange={this.handleChange}
-                  name="imageUrl"
-                  control={
-                    <Checkbox
-                      icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-                      checkedIcon={<CheckBoxIcon fontSize="small" />}
-                      value="images/avatar1.svg"
-                    />
-                  } />
+                  <img src="images/avatar1.svg" className="avatar one" alt="avatar1" />
+                  <FormControlLabel
+                    label="avatar1"
+                    value={this.state.imageUrl}
+                    onChange={this.handleChange}
+                    name="imageUrl"
+                    control={
+                      <Checkbox
+                        icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                        checkedIcon={<CheckBoxIcon fontSize="small" />}
+                        value="images/avatar1.svg"
+                      />
+                    } />
                 </div>
 
-                  <div className={classes.boxThree}>
+                <div className={classes.boxThree}>
                   <img src="images/avatar2.svg" className="avatar two" alt="avatar2" />
-                <FormControlLabel
-                  label="avatar2"
-                  value={this.state.imageUrl}
-                  onChange={this.handleChange}
-                  name="imageUrl"
-                  control={
-                    <Checkbox
-                      icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-                      checkedIcon={<CheckBoxIcon fontSize="small" />}
-                      value="images/avatar2.svg"
-                    />
-                  } />
-                  </div>
+                  <FormControlLabel
+                    label="avatar2"
+                    value={this.state.imageUrl}
+                    onChange={this.handleChange}
+                    name="imageUrl"
+                    control={
+                      <Checkbox
+                        icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                        checkedIcon={<CheckBoxIcon fontSize="small" />}
+                        value="images/avatar2.svg"
+                      />
+                    } />
+                </div>
 
               </FormGroup>
             </center>
@@ -196,12 +201,13 @@ class ModalAvatar extends React.Component {
   }
 }
 
-ModalAvatar.propTypes = {
+UpdateImage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   user: state.user,
+  avatar: state.imageAvatar
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(ModalAvatar));
+export default connect(mapStateToProps)(withStyles(styles)(UpdateImage));

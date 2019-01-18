@@ -57,7 +57,7 @@ class InsuranceView extends React.Component {
               <Paper key={i} style={styling}>
 
                 <div style={nameStyle}>
-                <Icon><i class="fas fa-briefcase-medical" ></i></Icon> {item.name}<span className="item-span-3">{item.cob_type}</span></div>
+                <Icon><i className="fas fa-briefcase-medical" ></i></Icon> {item.name}<span className="item-span-3">{item.cob_type}</span></div>
 
                 <div style={divStyle}>
                   <span className="item-span-2">ID#: {item.member_number}</span>

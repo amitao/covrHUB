@@ -16,6 +16,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2';
 import EditPolicy from '../Policy/EditPolicy';
 import ImageView from '../Image/ImageView';
+ import UpdateImage from '../Image/UpdateImage';
 
 const style = {
   marTop: {
@@ -87,6 +88,7 @@ class ViewProfile extends React.Component {
             <div className="view-box" >
               <div className="view-child-one">
                 {/* <img src="images/avatar1.svg" alt="me" className="ava" /> */}
+                {/* <UpdateImage /> */}
                 <ImageView />
                 <center style={style}>
                   {/* <Profile /> */}
@@ -120,6 +122,7 @@ class ViewProfile extends React.Component {
 
               <div className="view-child-three">
                 <Profile />
+                 <UpdateImage />
               </div>
             </div>
           </Paper>

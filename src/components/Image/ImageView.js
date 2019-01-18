@@ -14,7 +14,7 @@ const style={
 class ImageView extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_IMAGE', payload: this.props.avatar.id})
+    this.props.dispatch({ type: 'FETCH_IMAGE', payload: this.props.user.id})
   }
 
   render() {

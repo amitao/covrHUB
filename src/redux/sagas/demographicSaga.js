@@ -44,8 +44,6 @@ function* updateDemo(action){
 
 
 
-
-
 //////////////// IMAGE /////////////////
 function* fetchImage(action) {
   try {
@@ -71,6 +69,18 @@ function* postImage(action){
 }
 
 
+function* updateImage(action) {
+  try{
+  console.log('payload in PUT image saga:', action.payload.person_Id);
+  
+  yield axios.put(`/api/demographic/image/${action.payload.personId}`, action.payload);
+  yield dispatch({ type: 'FETCH_IMAGE'});
+
+} catch (err) {
+  console.log(`Error in updating demo in saga ${err}`);
+}
+}
+
 
 // watcher function
 function* demoWatcherSaga() {
@@ -79,6 +89,7 @@ function* demoWatcherSaga() {
   yield takeLatest('FETCH_IMAGE', fetchImage);
   yield takeLatest('ADD_IMAGE', postImage);
   yield takeLatest('UPDATE_DEMO', updateDemo);
+  yield takeLatest('UPDATE_IMAGE', updateImage);
 }
 
 export default demoWatcherSaga;

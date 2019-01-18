@@ -92,6 +92,19 @@ router.post('/image', rejectUnauthenticated, (req, res) => {
   });
 });
 
-
+router.put('/image/:id', rejectUnauthenticated, (req, res) => {
+  console.log(`in PUT Image route: ${req.user.id}`);
+  
+  const queryString = `UPDATE "image" SET "image_url"=$1 WHERE "person_id"=$2;`;
+  const queryValues = [req.body.imageUrl, req.user.id]
+  pool.query(queryString, queryValues)
+      .then ( () => {
+        res.sendStatus(200)
+      })
+      .catch ( err => {
+        console.log(`Error updating profile`);
+        res.sendStatus(500)
+      })
+})
 
 module.exports = router;
