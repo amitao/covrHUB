@@ -1,123 +1,180 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withStyles, Grid, Paper, MuiThemeProvider, createMuiTheme, TextField } from '@material-ui/core';
+import styles from '../Assets/styles/stylesTwo';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Icon from '@material-ui/core/Icon';
+import Button from '@material-ui/core/Button';
+import Swal from 'sweetalert2';
+import moment from 'moment';
 
 
 
-const styles = theme => ({
-  root: {
-    width: "70%"
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#e1e3f7",
+      main: "#7060ed",
+      dark: "#7378a5",
+      contrastText: "#fff",
+    }
   },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    padding: "2em 0",
-    // flexBasis: '50.33%',
-    flexBasis: "10.33%",
-    flexShrink: 0,
-    paddingTop: "1em",
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-    padding: "2em 0",
+  typography: {
+    useNextVariants: true,
   },
 });
 
-const style = {
-  color: "#0ae3ad"
-}
+// const styleGrid = {
+//   gridTemplateColumns: "auto auto auto",
+//   margin: "0.5em",
+
+// }
+
 
 
 class EditBenefits extends React.Component {
 
-
   state = {
-    expanded: null,
-  };
+  
+    benefitPaidId: this.props.item.id,
+    dedInPaid: this.props.item.ded_in_paid,
+    dedOutPaid: this.props.item.ded_out_paid,
+    oopInPaid: this.props.item.oop_in_paid,
+    oopOutPaid: this.props.item.oop_out_paid,
+    date: moment(this.props.item.date).format('l'),
+    policy_id: this.props.item.policy_id
+  }
 
-  handleChange = panel => (event, expanded) => {
+
+  handleChange = (propertyName) => (event) => {
     this.setState({
-      expanded: expanded ? panel : false,
-    });
-  };
+      ...this.state,
+      [propertyName]: event.target.value
+    })
+  }
+
+  handleClickDashboard = () => {
+    console.log('hello!, dashboard');
+    this.props.history.push("/dashboard");
+  }
+
+  handleSubmit = event => {
+    console.log('input sibmitted to UPDATE PAID BENEFIT table DB');
+
+    event.preventDefault();
+    this.props.dispatch({ type: 'UPDATE_PAID_BENEFIT', payload: this.state });
+    this.setState({
+      benefitPaidId: this.props.item.id,
+      dedInPaid: '',
+      dedOutPaid: '',
+      oopInPaid: '',
+      oopOutPaid: '',
+      date: '',
+      policy_id: this.props.item.policy_id
+    })
+    Swal.fire('Payment saved!');
+  }
+
 
 
   render() {
 
     const { classes } = this.props;
-    const { expanded } = this.state;
+
 
     return (
-      <div className={classes.root}>
-      <h3>Benefits Paid</h3>
-        <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}><Icon><i className="fas fa-dollar-sign" style={style}></i></Icon></Typography>
-            <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>
-              Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-              maximus est, id dignissim quam.
-            </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel expanded={expanded === 'panel2'} onChange={this.handleChange('panel2')}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Users</Typography>
-            <Typography className={classes.secondaryHeading}>
-              You are currently not an owner
-            </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>
-              Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar
-              diam eros in elit. Pellentesque convallis laoreet laoreet.
-            </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel expanded={expanded === 'panel3'} onChange={this.handleChange('panel3')}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Advanced settings</Typography>
-            <Typography className={classes.secondaryHeading}>
-              Filtering has been entirely disabled for whole web server
-            </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>
-              Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas
-              eros, vitae egestas augue. Duis vel est augue.
-            </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel expanded={expanded === 'panel4'} onChange={this.handleChange('panel4')}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Personal data</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>
-              Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas
-              eros, vitae egestas augue. Duis vel est augue.
-            </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      </div>
-    )
-  }
 
-}
+      <div>
+
+            <Grid container spacing={24} className={classes.grid} direction="row" justify="center">
+              <Grid item sm={8}>
+                <Paper className={classes.paper}>
+                  <h2>Add Paid Benefits</h2>
+                  <center><div className={classes.bgColor}></div></center>
+
+                  <form>
 
 
+                    <TextField
+                      type="number"
+                      className={classes.textField}
+                      value={this.state.policy_id}
+                    />
+
+                    <TextField
+                      type="number"
+                      className={classes.textField}
+                      label="Deductible in-network"
+                      value={this.state.dedInPaid}
+                      onChange={this.handleChange('dedInPaid')}
+                    />
+
+                    <TextField
+                      type="number"
+                      className={classes.textField}
+                      label="Deductible out-of-network"
+                      value={this.state.dedOutPaid}
+                      onChange={this.handleChange('dedOutPaid')}
+                    />
+
+                    <TextField
+                      type="number"
+                      className={classes.textField}
+                      label="Out-of-pocket in-network"
+                      value={this.state.oopInPaid}
+                      onChange={this.handleChange('oopInPaid')}
+                    />
+
+                    <TextField
+                      type="number"
+                      className={classes.textField}
+                      label="Out-of-pocket out-of-network"
+                      value={this.state.oopOutPaid}
+                      onChange={this.handleChange('oopOutPaid')}
+                    />
+
+                    <TextField
+                      type="text"
+                      className={classes.textField}
+                      value={this.state.date}
+                      onChange={this.handleChange('date')}
+                    />
+                    {/* Button */}
+                    <MuiThemeProvider theme={theme}>
+                      <Button
+                        onClick={this.handleSubmit}
+                        variant="contained"
+                        color="primary">Save</Button>
+
+                      <Button
+                        onClick={this.handleClickDashboard}
+                        className={classes.nextBtn}
+                        variant="contained"
+                        color="primary"
+                      >Dashboard</Button>
+
+                    </MuiThemeProvider>
+                  </form> {/* End of Form */}
+                </Paper>
+              </Grid >
+            </Grid >
+            </div>
+          
+          )
+        }
+      }
+      
+      
+      
 EditBenefits.propTypes = {
   classes: PropTypes.object.isRequired,
-};
-
-
-
-export default  withStyles(styles)(EditBenefits);
+  };
+        
+        
+        
+const mapStateToProps = (reduxState) => {
+  return {
+            reduxState
+          }
+          }
+          
+export default connect(mapStateToProps)(withStyles(styles)(EditBenefits));

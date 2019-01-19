@@ -11,7 +11,7 @@ const styles = theme => ({
   paper: {
     position: "absolute",
     width: theme.spacing.unit * 80,
-    height: 360,
+    height: 470,
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing.unit * 4,
     borderRadius: "5px",
@@ -29,7 +29,11 @@ const styles = theme => ({
   },
 });
 
+const styleGrid={
+  gridTemplateColumns: "auto auto auto",
+  margin: "0.5em",
 
+}
 const cursorStyle = {
   cursor: "pointer",
   color: "#89a3e5",
@@ -129,27 +133,27 @@ class EditPolicy extends React.Component {
         </Tooltip>
 
         <Modal open={this.state.open} >
-          <div style={getModal()} className={classes.paper}>
-            <h2 className="profile-h2">Edit Policy</h2>
-
-            <center><div className={classes.bgColor}></div></center>
-
+          <div style={getModal()} className={classes.paper} >
+          
+          <center>
+          <h2 className="profile-h2">Edit Policy</h2>
             <form >
               <TextField
-                label="Health Insurance"
+              style={styleGrid}
                 placeholder={this.props.item.name}
               />
               <TextField
-
+               style={styleGrid}
                 placeholder={this.props.item.employment}
               />
               <TextField
-
+                style={styleGrid}
                 placeholder={this.props.item.policy_holder}
               />
 
               <TextField
                 type="text"
+                style={styleGrid}
                 className={classes.textField}
                 label="memberNumber"
                 onChange={this.handleChange('memberNumber')}
@@ -158,6 +162,7 @@ class EditPolicy extends React.Component {
 
               <TextField
                 type="text"
+                style={styleGrid}
                 className={classes.textField}
                 label="groupNumber"
                 onChange={this.handleChange('groupNumber')}
@@ -166,6 +171,7 @@ class EditPolicy extends React.Component {
 
               <TextField
                 type="text"
+                style={styleGrid}
                 className={classes.textField}
                 label="COB type"
                 onChange={this.handleChange('cobType')}
@@ -175,6 +181,8 @@ class EditPolicy extends React.Component {
 
               <TextField
                 type="text"
+                style={styleGrid}
+                label="Effective Date"
                 className={classes.textField}
                 onChange={this.handleChange('effectiveDate')}
                 value={this.state.effectiveDate}
@@ -182,6 +190,8 @@ class EditPolicy extends React.Component {
 
               <TextField
                 type="text"
+                style={styleGrid}
+                label="Term Date"
                 className={classes.textField}
                 onChange={this.handleChange('termDate')}
                 value={this.state.termDate}
@@ -189,6 +199,7 @@ class EditPolicy extends React.Component {
 
               <TextField
                 type="text"
+                style={styleGrid}
                 className={classes.textField}
                 label="DedIn"
                 onChange={this.handleChange('dedIn')}
@@ -196,6 +207,7 @@ class EditPolicy extends React.Component {
               />
               <TextField
                 type="text"
+                style={styleGrid}
                 className={classes.textField}
                 label="DedOut"
                 onChange={this.handleChange('dedOut')}
@@ -203,6 +215,7 @@ class EditPolicy extends React.Component {
               />
               <TextField
                 type="number"
+                style={styleGrid}
                 label="Co-Pay In-network"
                 className={classes.textField}
                 value={this.state.copayIn}
@@ -211,6 +224,7 @@ class EditPolicy extends React.Component {
 
               <TextField
                 type="number"
+                style={styleGrid}
                 label="Co-Pay Special"
                 className={classes.textField}
                 value={this.state.copaySpecial}
@@ -218,6 +232,7 @@ class EditPolicy extends React.Component {
               />
               <TextField
                 type="number"
+                style={styleGrid}
                 label="Co-insurance In-network"
                 className={classes.textField}
                 value={this.state.coInsuranceIn}
@@ -226,6 +241,7 @@ class EditPolicy extends React.Component {
 
               <TextField
                 type="number"
+                style={styleGrid}
                 label="Co-insurance Out-network"
                 className={classes.textField}
                 value={this.state.coInsuranceOut}
@@ -234,6 +250,7 @@ class EditPolicy extends React.Component {
 
               <TextField
                 type="number"
+                style={styleGrid}
                 label="Out of pocket In-network"
                 className={classes.textField}
                 value={this.state.oopIn}
@@ -242,14 +259,13 @@ class EditPolicy extends React.Component {
 
               <TextField
                 type="number"
+                style={styleGrid}
                 label="Out-of-pocket Out-of-network"
                 className={classes.textField}
                 value={this.state.oopOut}
                 onChange={this.handleChange('oopOut')}
               />
             </form>
-
-            <center>
               <Button variant="contained" color="primary" className={classes.exit} onClick={this.handleClose}>Exit</Button>
               <Button variant="contained" color="primary" className={classes.save} onClick={this.handleClick}>Save</Button>
             </center>

@@ -72,7 +72,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
                     "out_of_pocket_out",
                     "person_id",
                     "insurance_id")
-                    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17) RETURNING "id";`;
+                    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17);`;
 
   let queryValues = [ req.body.policyHolder,
                       req.body.employment,
@@ -93,7 +93,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
                       req.body.insurance_id];
   pool.query(queryString, queryValues)
     .then(() => {
-      res.send(id)
       res.sendStatus(201);
     })
     .catch(err => {
@@ -123,7 +122,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log(`in PUT route: ${req.params.id}`);
-  const data= req.body;
+ 
   const queryString = `UPDATE "policy" SET                     
                       "member_number"=$1,
                       "group_number"=$2,
@@ -215,7 +214,50 @@ router.post('/benefitPaid', (req, res) => {
 
 })
 
+router.get('/benefitPaid/:id', rejectUnauthenticated, (req, res) => {
 
+  const queryString = `SELECT * FROM "benefitpaid" WHERE "person_id"=$1;`;
+  
+  pool.query(queryString, [req.user.id])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log(`Error in getting benefitpaid data from DB ${err}`);
+      res.sendStatus(500);
+    });
+});
+
+
+router.put('/benefitPaid/:id', rejectUnauthenticated, (req, res) => {
+  console.log(`in PUT paid benefit route: ${req.params.id}`);
+
+  const queryString = `UPDATE "benefitpaid" SET                     
+                      "ded_in_paid"=$1,
+                      "ded_out_paid"=$2,
+                      "oop_in_paid"=$3,
+                      "oop_out_paid"=$4, 
+                      "date"=$5,
+                      "policy_id"=$6
+                      WHERE "id"=$7;`;
+
+  const queryValues = [req.body.dedInPaid,
+                        req.body.dedOutPaid,
+                        req.body.oopInPaid,
+                        req.body.oopOutPaid,
+                        req.body.date,
+                        req.body.policy_id,
+                        req.params.id]
+
+  pool.query(queryString, queryValues)
+      .then ( () => {
+        res.sendStatus(200)
+      })
+      .catch ( err => {
+        console.log(`Error updating profile`);
+        res.sendStatus(500)
+      })
+})
 
 
 

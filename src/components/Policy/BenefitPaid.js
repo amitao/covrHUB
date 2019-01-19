@@ -7,7 +7,7 @@ import BenefitPaidItem from './BenefitPaidItem';
 class BenefitPaid extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_POLICY', payload: this.props.reduxState.policy.id });
+    this.props.dispatch({ type: 'FETCH_POLICY', payload: this.props.reduxState.user.id });
   }
 
 

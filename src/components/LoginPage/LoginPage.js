@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import './Login.css';
 
 // Material-UI Styles
-import { withStyles, Tooltip } from '@material-ui/core';
+import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
-
-// import IconButton from '@material-ui/core/IconButton';
 
 // Regular style file
 import styles from '../Assets/styles/styles';
@@ -20,7 +18,7 @@ import styles from '../Assets/styles/styles';
 const loginStyles = {
   btn: {
     width: "285px",
-    borderRadius: "50px",
+   borderRadius: "50px",
     marginTop: "1em",
   },
   iconColor: {
@@ -96,17 +94,17 @@ class LoginPage extends Component {
               </h2>
             )}
 
-            {/* Form header "Login" */}
-            {/* <Card className={classes.cardHeader}>
+            {/* Form header "Login"  */}
+            <Card className={classes.cardHeader}>
               <div>
                 <h1>Login</h1>
               </div>
-            </Card> */}
+            </Card>
 
 
             {/* beginning of form */}
             <Card className={classes.cardSize}>
-            <img src="images/logo-cvr.svg" alt="logo" style={loginStyles.logoImage} />
+            {/* <img src="images/logo-cvr.svg" alt="logo" style={loginStyles.logoImage} /> */}
               <CardContent>
 
                 <form onSubmit={this.login} className={classes.form}>
@@ -131,14 +129,14 @@ class LoginPage extends Component {
                   </div>
                   <center style={loginStyles.space}>
                     <Button
-                      variant="contained"
+                      variant="outlined"
                       color="primary"
                       type="submit"
                       name="submit"
                       value="Log In"
                       style={loginStyles.btn}
                       className={classes.button}
-                    > Log In</Button>
+                    > Sign In</Button>
                   </center>
                 </form>
                 

@@ -33,6 +33,10 @@ const theme = createMuiTheme({
   },
 });
 
+const stylesBox={
+  gridTemplateColumn: "auto auto auto",
+}
+
 
 class PolicyForm extends React.Component {
 
@@ -77,6 +81,7 @@ class PolicyForm extends React.Component {
 
   handleSubmit = event => {
     console.log('input sibmitted to policy table DB');
+
     event.preventDefault();
     this.props.dispatch({ type: 'ADD_POLICY', payload: this.state });
     this.setState({
@@ -119,7 +124,7 @@ class PolicyForm extends React.Component {
                   <h2>Policy</h2>
                   <center><div className={classes.bgColor}></div></center>
 
-                  <FormControl >
+                  <FormControl>
                     Please select an insurance:
                   <Select
                       value={this.state.insurance_id}
@@ -312,7 +317,7 @@ PolicyForm.propTypes = {
 const mapStateToProps = state => ({
   user: state.user,
   insurance: state.insurance,
-  policy: state.insurance
+  policy: state.policy
 });
 
 

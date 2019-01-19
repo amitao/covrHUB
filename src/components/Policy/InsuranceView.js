@@ -43,7 +43,7 @@ class InsuranceView extends React.Component {
 
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_POLICY' });
+    this.props.dispatch({ type: 'FETCH_POLICY', payload: this.props.user.id });
   }
 
   render() {
@@ -70,7 +70,7 @@ class InsuranceView extends React.Component {
                 </div>
 
                 <div style={spacing}>
-                  Address: {item.claims_address}
+                  {item.claims_address}
                 </div>
                 <div style={spacing}>
                   Subcriber: {item.policy_holder}
@@ -87,6 +87,7 @@ class InsuranceView extends React.Component {
 
 const mapStateToProps = state => ({
   policy: state.policy,
+  user: state.user
 })
 
 

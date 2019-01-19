@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 
 // Components
-// import Profile from '../Profile/Profile';
-import ProfileItem from '../Profile/ProfileItem';
 import Policy from '../Policy/Policy';
 // Material-UI
 import { withStyles } from '@material-ui/core';
@@ -17,8 +15,17 @@ import styles from '../Assets/styles/stylesTwo';
 import './Dashboard.css';
 import BenefitPaid from '../Policy/BenefitPaid';
 import InsuranceView from '../Policy/InsuranceView';
-// import EditBenefits from '../Policy/EditBenefits';
+import Button from '@material-ui/core/Button';
+import moment from 'moment';
+import BenefitProps from '../Policy/BenefitsProps';
 
+
+const btn = {
+
+  width: "150px",
+  borderRadius: "50px",
+  marginTop: "1em",
+}
 
 
 const styleDash = {
@@ -74,6 +81,15 @@ class Dashboard extends React.Component {
     this.props.history.push("/add_paid_benefit");
   }
 
+  handleClickUpdateBenefits = () => {
+    this.props.history.push("/update_paid_benefit");
+  }
+
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_DEMO', payload: this.props.reduxState.demographic.id })
+  }
+
+
   render() {
 
     const { classes } = this.props;
@@ -107,8 +123,18 @@ class Dashboard extends React.Component {
 
           <Grid item md className={classes.paper} style={styleDash.paper}>
             <h3 style={styleDash.h3Style}>Policy Holder</h3>
-            {/* <Profile /> */}
-            <ProfileItem />
+           
+            {this.props.reduxState.demographic.map(demo => {
+              return (
+                <div key={demo.id}>
+                <h3>{demo.first_name} {demo.last_name}</h3>
+                <p>Birthday: {moment(demo.birthday).format('l')}</p>
+                <p>{demo.address}</p>
+                <p>{demo.email}</p>
+                </div>
+              )
+            })}
+            
             <InsuranceView />
             <Policy />
           </Grid>
@@ -116,12 +142,22 @@ class Dashboard extends React.Component {
           <Grid item md className={classes.paper} style={styleDash.paper}>
             <div className="box-benefit">
               <h3 style={styleDash.h3Style}>Benefit Amount</h3>
-              <p onClick={this.handleClickAddBenefit} style={styleDash.style3}>Add Paid Benefits</p>
-            <BenefitPaid />
+              {/* <Button
+                variant="outlined"
+                color="primary"
+                style={btn}
+                onClick={this.handleClickUpdateBenefits} >Update payment</Button> */}
+                {/* <BenefitProps /> */}
+              <Button
+                variant="outlined"
+                color="primary"
+                style={btn}
+                onClick={this.handleClickAddBenefit} >Add payment</Button>
+             
+              <BenefitPaid />
             </div>
-            
-          </Grid>
 
+          </Grid>
         </Grid>
       </div>
     )
@@ -134,5 +170,11 @@ Dashboard.propTypes = {
 };
 
 
+const mapStateToProps = (reduxState) => {
+  return {
+    reduxState
+}
+}
+
 // this allows us to use <App /> in index.js   
-export default connect()(withStyles(styles)(Dashboard));
+export default connect(mapStateToProps)(withStyles(styles)(Dashboard));

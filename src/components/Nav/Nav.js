@@ -28,11 +28,11 @@ const shadow = {
 
 const navRight = {
   margin: "0",
-  top: "2em",
+  top: "0.5em",
   right: "1.5em",
   bottom: "0",
   left: "auto",
-  position: "fixed",
+  position: "absolute",
 }
 
 // let homeImg = <img src="images/home-icon.svg" className="home-img" alt="Home" />;
@@ -61,7 +61,7 @@ class Nav extends React.Component {
           but call this link 'Home' if they are logged in,
           and call this link 'Login / Register' if they are not */}
           {/* {props.user.id ? 'Home' : 'Login / Register'} */}
-            {this.props.user.id ? <i className="fas fa-home"> Home</i> : 'Login / Register'}
+            {this.props.user.id ? 'Home' : 'Login / Register'}
           </Link>
   
         {/* Always show this link since the about page is not protected */}
