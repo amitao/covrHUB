@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
-import moment from 'moment'; 
+import moment from 'moment';
 import Icon from '@material-ui/core/Icon';
 
 
 const styling = {
+  display: "flex",
+  flexFlow: "row wrap",
   padding: "1em",
   marginBottom: "1em",
+  border: "2px solid red",
 }
 
 const h3Style = {
@@ -19,25 +22,49 @@ const h3Style = {
   borderRadius: "5px",
 }
 
-const divStyle = {
+const divStyleTwo = {
   height: "25px",
-  width: "auto",
+  width: "100%",
   backgroundColor: "#cafaef",
   paddingTop: "0.5em",
   margin: "0.5em 0",
 }
 
-const nameStyle = {
+const nameStyleOne = {
   textTransform: "uppercase",
   color: "#243372",
   letterSpacing: "2px",
   margin: "0.5em 0",
-  textAlign: "left"
+  textAlign: "left",
+}
+
+const divStyleThree = {
+  width: "100%",
+}
+
+const divStyleFour = {
+  width: "100%",
+  paddingTop: "0.5em"
+}
+
+const divStyleFive = {
+  width: "100%",
+  paddingTop: "0.5em"
 }
 
 const spacing = {
-  margin: '0.5em 0',
+ paddingLeft: "4em",
+  
 }
+
+const spacing2 = {
+  paddingLeft: "2em",
+ }
+
+ const spacing3 = {
+  paddingLeft: "7em",
+ }
+
 
 class InsuranceView extends React.Component {
 
@@ -52,33 +79,39 @@ class InsuranceView extends React.Component {
       <div>
         <h3 style={h3Style}>Health Insurance</h3>
 
-          {this.props.policy.map( (item, i) => {
-            return (
-              <Paper key={i} style={styling}>
+        {this.props.policy.map((item, i) => {
+          return (
+            <Paper key={i} style={styling}>
 
-                <div style={nameStyle}>
-                <Icon><i className="fas fa-briefcase-medical" ></i></Icon> {item.name}<span className="item-span-3">{item.cob_type}</span></div>
+              <div style={nameStyleOne}>
+                <Icon>
+                  <i className="fas fa-briefcase-medical" ></i>
+                </Icon> {item.name}
+                <span style={spacing}>{item.cob_type}</span>
+              </div>
 
-                <div style={divStyle}>
-                  <span className="item-span-2">ID#: {item.member_number}</span>
-                  GRP#: {item.group_number}
-                </div>
+              <div style={divStyleTwo}>
+                <strong>MEMBER ID#:</strong> {item.member_number}
+                <span style={spacing2}><strong>GROUP#:</strong> {item.group_number}</span>
+              </div>
 
-                <div style={spacing}>
-                  <span className="item-span-2">Effective: {moment(item.effective_date).format('l')}</span>
-                  Term: {moment(item.term_date).format('l')}
-                </div>
+              <div style={divStyleThree}>
+                Effective: {moment(item.effective_date).format('l')}
+                <span style={spacing2}>Term: {moment(item.term_date).format('l')}</span>
+              </div>
 
-                <div style={spacing}>
-                  {item.claims_address}
-                </div>
-                <div style={spacing}>
-                  Subcriber: {item.policy_holder}
-                  Phone: {item.member_service_phone}
-                </div>
-                </Paper>
-            )
-          })}
+              <div style={divStyleFour}>
+                {item.claims_address}
+              </div>
+
+              <div style={divStyleFive}>
+                Subscriber: {item.policy_holder}
+                <span style={spacing3}>Phone: {item.member_service_phone}</span>
+              </div>
+
+            </Paper>
+          )
+        })}
 
       </div>
     )

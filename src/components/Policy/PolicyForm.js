@@ -110,7 +110,7 @@ class PolicyForm extends React.Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={24} className={classes.grid} direction="row" justify="center">
-          <Grid item sm={6}>
+          <Grid item sm={7}>
             <Paper className={classes.paper}>
 
               <form className="policyParent">
