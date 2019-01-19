@@ -12,7 +12,6 @@ import Grid from '@material-ui/core/Grid';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Swal from 'sweetalert2';
 
-// Material-UI
 
 // Styles
 import './Policy.css';
@@ -32,10 +31,6 @@ const theme = createMuiTheme({
     useNextVariants: true,
   },
 });
-
-const stylesBox={
-  gridTemplateColumn: "auto auto auto",
-}
 
 
 class PolicyForm extends React.Component {
@@ -103,7 +98,6 @@ class PolicyForm extends React.Component {
       person_id: this.props.user.id,
       insurance_id: ''
     })
-
     Swal.fire('Policy saved!');
   }
 
@@ -116,74 +110,77 @@ class PolicyForm extends React.Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={24} className={classes.grid} direction="row" justify="center">
-          <Grid item sm={8}>
+          <Grid item sm={6}>
             <Paper className={classes.paper}>
 
-              <form>
-                <Grid item>
+              <form className="policyParent">
+                <div className="policyItems">
                   <h2>Policy</h2>
                   <center><div className={classes.bgColor}></div></center>
 
-                  <FormControl>
-                    Please select an insurance:
+                <div className="parentElement">
+                  <div className="policyItems2">
+                    <FormControl>
+                      Please select an insurance:
                   <Select
-                      value={this.state.insurance_id}
-                      onChange={this.handleChange('insurance_id')}
-                      displayEmpty
-                      // input={<Input name="insurance_id" id="insurance-label-placeholder" />}
-                      name="insurance_id"
-                    >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      {list}
-                    </Select>
-                  </FormControl>
+                        value={this.state.insurance_id}
+                        onChange={this.handleChange('insurance_id')}
+                        displayEmpty
+                        // input={<Input name="insurance_id" id="insurance-label-placeholder" />}
+                        name="insurance_id"
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        {list}
+                      </Select>
+                    </FormControl>
 
-                  <TextField
-                    type="text"
-                    className={classes.textField}
-                    label="Policy Holder"
-                    value={this.state.policyHolder}
-                    onChange={this.handleChange('policyHolder')}
-                  // name="Employment"
-                  />
+                    <TextField
+                      type="text"
+                      className={classes.textField}
+                      label="Policy Holder"
+                      value={this.state.policyHolder}
+                      onChange={this.handleChange('policyHolder')}
+                    // name="Employment"
+                    />
 
-                  <TextField
-                    type="text"
-                    className={classes.textField}
-                    label="Employment"
-                    value={this.state.employment}
-                    onChange={this.handleChange('employment')}
-                  // name="Employment"
-                  />
+                    <TextField
+                      type="text"
+                      className={classes.textField}
+                      label="Employment"
+                      value={this.state.employment}
+                      onChange={this.handleChange('employment')}
+                    // name="Employment"
+                    />
 
-                  <TextField
-                    type="text"
-                    // name="Member Number"
-                    className={classes.textField}
-                    label="Member ID#"
-                    value={this.state.memberNumber}
-                    onChange={this.handleChange('memberNumber')}
-                  />
+                    <TextField
+                      type="text"
+                      // name="coordination of benefits"
+                      label="Coordination of Benefits"
+                      className={classes.textField}
+                      value={this.state.cobType}
+                      onChange={this.handleChange('cobType')}
+                    />
+                </div>
+                <div className="policyItems3">
+                    <TextField
+                      type="text"
+                      // name="Member Number"
+                      className={classes.textField}
+                      label="Member ID#"
+                      value={this.state.memberNumber}
+                      onChange={this.handleChange('memberNumber')}
+                    />
 
-                  <TextField
-                    type="text"
-                    // name="Group Number"
-                    label="Group Number"
-                    className={classes.textField}
-                    value={this.state.groupNumber}
-                    onChange={this.handleChange('groupNumber')}
-                  />
-
-                  <TextField
-                    type="text"
-                    // name="coordination of benefits"
-                    label="Coordination of Benefits"
-                    className={classes.textField}
-                    value={this.state.cobType}
-                    onChange={this.handleChange('cobType')}
-                  />
+                    <TextField
+                      type="text"
+                      // name="Group Number"
+                      label="Group Number"
+                      className={classes.textField}
+                      value={this.state.groupNumber}
+                      onChange={this.handleChange('groupNumber')}
+                    />
 
                   <TextField
                     margin="normal"
@@ -210,12 +207,15 @@ class PolicyForm extends React.Component {
                     value={this.state.termDate}
                     onChange={this.handleChange('termDate')}
                   />
-                </Grid>
+                  </div>
+                </div>
+                </div>
 
-                <Grid item>
+               
                   <h2>Benefits</h2>
                   <center><div className={classes.bgColor}></div></center>
-
+                <div className="parentElement">
+                <div className="policyItems22">
                   <TextField
                     type="number"
                     label="Co-Pay In-network"
@@ -242,7 +242,6 @@ class PolicyForm extends React.Component {
                     onChange={this.handleChange('dedOut')}
                   />
 
-
                   <TextField
                     type="number"
                     label="Co-Pay Special"
@@ -250,7 +249,8 @@ class PolicyForm extends React.Component {
                     value={this.state.copaySpecial}
                     onChange={this.handleChange('copaySpecial')}
                   />
-
+                </div>
+                <div className="policyItems3">
                   <TextField
                     type="number"
                     label="Co-insurance In-network"
@@ -282,7 +282,8 @@ class PolicyForm extends React.Component {
                     value={this.state.oopOut}
                     onChange={this.handleChange('oopOut')}
                   />
-                </Grid>
+                  </div>
+                </div>
               </form>
 
               <MuiThemeProvider theme={theme}>

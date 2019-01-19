@@ -87,11 +87,10 @@ class ViewProfile extends React.Component {
           <Paper className={classes.paperView}>
             <div className="view-box" >
               <div className="view-child-one">
-                {/* <img src="images/avatar1.svg" alt="me" className="ava" /> */}
-                {/* <UpdateImage /> */}
+
                 <ImageView />
                 <center style={style}>
-                  {/* <Profile /> */}
+
                   <ProfileItem />
                 </center>
               </div>
@@ -103,8 +102,7 @@ class ViewProfile extends React.Component {
                   return (
                     <div key={item.id}>
                       <span className="item-span">{item.name}</span>
-                      <span className="item-span">ID#:{item.member_number}</span>
-                      <span className="item-span">GRP#:{item.group_number}</span>
+                      <span><strong>ID#: </strong>{item.member_number}</span>
                       <Tooltip title="Delete">
                         <IconButton aria-label="Delete" color="primary" onClick={() => this.handleDelete(item.id)}>
                           <Delete 
@@ -115,13 +113,13 @@ class ViewProfile extends React.Component {
                     </div>
                   )
                 })}
-
-
-
               </div>
 
               <div className="view-child-three">
-                  <Profile /> <UpdateImage />
+                <div className="flex-demo">
+                <Profile /> <UpdateImage />
+                </div>
+                  
               </div>
             </div>
           </Paper>

@@ -139,11 +139,9 @@ class EditProfile extends React.Component {
                 {/* User Demographic Form */}
                 <Grid item sm={10}> 
 
-                  <h2 className="profile-h2">User Profile</h2>
-
-                  <center><div className={classes.bgColor}></div></center>
-
-                  <form >
+                <center>
+                  <h2 className="user-profile-h2">User Demographic</h2>
+                  <form className="parentProfile"> 
                     <TextField
                       type="text"
                       className={classes.textField}
@@ -162,6 +160,7 @@ class EditProfile extends React.Component {
 
                     <TextField
                       type="text"
+                      label="Birthday"
                       className={classes.textField}
                       onChange={this.handleChange('birthday')}
                       value={this.state.birthday}
@@ -186,7 +185,7 @@ class EditProfile extends React.Component {
                     />
 
                   </form>
-
+                  </center>
                 </Grid>
               </Grid>
             </div>

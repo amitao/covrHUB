@@ -60,3 +60,43 @@ tr td {
 .fa-briefcase-medical {
   color: #89a3e5;
 }
+
+
+.policyParent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.parentElement {
+  margin-top: 1em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+.policyItems2 {
+  padding-top: 2.2em;
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid red; */
+}
+.policyItems22 {
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid pink; */
+}
+
+.policyItems3 {
+  width:40%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* border: 2px solid blue; */
+}
+
+.policyItems4{
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid blue; */
+}

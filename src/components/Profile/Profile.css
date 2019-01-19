@@ -54,6 +54,7 @@
 .view-child-three {
   background-color: #ffffff;
   grid-column: span 7;
+  padding-bottom: 1em;
 }
 
 /* BUTTON Childrens */
@@ -85,7 +86,7 @@
   padding-bottom: 0.5em;
 }
 .item-span {
-  margin-right: 0.5em;
+  margin-right: 1em;
 } 
 p {
   margin: 0;
@@ -119,4 +120,22 @@ p {
   /* #a8abc4;  */
   color: #f7f7fa;
   width: 70%;
+}
+
+.parentProfile {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 2em 0;
+}
+.user-profile-h2 {
+  background-color: #e1e3f7;
+  color: gray;
+  padding: 0.5em;
+}
+
+.flex-demo {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
 }

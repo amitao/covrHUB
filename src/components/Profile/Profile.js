@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './Profile.css';
-// import ProfileItem from './ProfileItem';
 import EditProfile from './EditProfile';
 
 

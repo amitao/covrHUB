@@ -11,7 +11,7 @@ const styles = theme => ({
   paper: {
     position: "absolute",
     width: theme.spacing.unit * 80,
-    height: 470,
+    height: 500,
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing.unit * 4,
     borderRadius: "5px",
@@ -134,9 +134,9 @@ class EditPolicy extends React.Component {
 
         <Modal open={this.state.open} >
           <div style={getModal()} className={classes.paper} >
-          
+       
           <center>
-          <h2 className="profile-h2">Edit Policy</h2>
+            <h2 className="user-profile-h2">Edit Policy</h2>
             <form >
               <TextField
               style={styleGrid}
@@ -269,6 +269,7 @@ class EditPolicy extends React.Component {
               <Button variant="contained" color="primary" className={classes.exit} onClick={this.handleClose}>Exit</Button>
               <Button variant="contained" color="primary" className={classes.save} onClick={this.handleClick}>Save</Button>
             </center>
+    
           </div>
 
 
