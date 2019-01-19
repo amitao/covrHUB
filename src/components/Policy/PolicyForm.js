@@ -110,7 +110,7 @@ class PolicyForm extends React.Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={24} className={classes.grid} direction="row" justify="center">
-          <Grid item sm={7}>
+          <Grid item sm={8}>
             <Paper className={classes.paper}>
 
               <form className="policyParent">
@@ -185,7 +185,6 @@ class PolicyForm extends React.Component {
                   <TextField
                     margin="normal"
                     type="date"
-                    // name="Effective date"
                     label="Effective date"
                     className={classes.textField}
                     InputLabelProps={{
@@ -198,7 +197,6 @@ class PolicyForm extends React.Component {
                   <TextField
                     margin="normal"
                     type="date"
-                    // name="Term date"
                     label="Term date"
                     className={classes.textField}
                     InputLabelProps={{

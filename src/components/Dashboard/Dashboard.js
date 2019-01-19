@@ -17,7 +17,7 @@ import BenefitPaid from '../Policy/BenefitPaid';
 import InsuranceView from '../Policy/InsuranceView';
 import Button from '@material-ui/core/Button';
 import moment from 'moment';
-import BenefitProps from '../Policy/BenefitsProps';
+
 
 
 const btn = {

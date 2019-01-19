@@ -40,7 +40,7 @@ const cursorStyle = {
 }
 
 const getModal = () => {
-  const top = 10;
+  const top = 5;
   const left = 20;
 
   return {

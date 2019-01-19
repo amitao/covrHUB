@@ -34,31 +34,8 @@ function* postPolicy(action) {
  // POST paid benefits REQUEST
 function* postPaidBenefit(action) {
   yield call(axios.post, '/api/policy/benefitPaid', action.payload)
-  yield dispatch({type: 'FETCH_PAID_BENEFIT'})
+  yield dispatch({type: 'FETCH_POLICY'})
 }
-
-function* fetchPaidBenefits(action) {
-  try {
-    const response = yield axios.get(`/api/policy/benefitPaid/${action.payload}`);
-    yield dispatch({type: 'SET_PAID_BENEFIT', payload: response.data});
-  } catch (error) {
-      console.log('Error with fetching paid benefit tables', error);
-  }
-}
-
-// UPDATE PAID BENEFITS
-function* updatePaidBenefits(action){
-  try{
-    console.log('payload in PUT paid benefits saga:', action.payload.benefitPaidId);
-    
-    yield axios.put(`/api/policy/benefitPaid/${action.payload.benefitPaidId}`, action.payload);
-    yield dispatch({ type: 'FETCH_PAID_BENEFIT'});
-
-  } catch (err) {
-    console.log(`Error in updating paid benefits in saga ${err}`);
-  }
-}
-
 
 
 //GET SINGLE POLICY
@@ -104,8 +81,6 @@ function* policyWatcherSaga() {
   yield takeLatest('FETCH_SINGLE_POLICY', fetchSinglePolicy);
   yield takeLatest('DELETE_POLICY', deletePolicy);
   yield takeLatest('UPDATE_POLICY', updatePolicy);
-  yield takeLatest('UPDATE_PAID_BENEFIT', updatePaidBenefits);
-  yield takeLatest('FETCH_PAID_BENEFIT', fetchPaidBenefits);
 }
 
 

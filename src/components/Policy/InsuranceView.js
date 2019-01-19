@@ -10,7 +10,7 @@ const styling = {
   flexFlow: "row wrap",
   padding: "1em",
   marginBottom: "1em",
-  border: "2px solid red",
+  // border: "2px solid red",
 }
 
 const h3Style = {
@@ -53,7 +53,7 @@ const divStyleFive = {
 }
 
 const spacing = {
- paddingLeft: "4em",
+ paddingLeft: "2em",
   
 }
 
@@ -62,9 +62,12 @@ const spacing2 = {
  }
 
  const spacing3 = {
-  paddingLeft: "7em",
+  paddingLeft: "0.5em",
  }
 
+ const spacing4 = {
+   float: "left"
+ }
 
 class InsuranceView extends React.Component {
 
@@ -91,21 +94,21 @@ class InsuranceView extends React.Component {
               </div>
 
               <div style={divStyleTwo}>
-                <strong>MEMBER ID#:</strong> {item.member_number}
+                <strong>ID#:</strong> {item.member_number}
                 <span style={spacing2}><strong>GROUP#:</strong> {item.group_number}</span>
               </div>
 
               <div style={divStyleThree}>
-                Effective: {moment(item.effective_date).format('l')}
+              <span style={spacing4}>Effective: {moment(item.effective_date).format('l')}</span>
                 <span style={spacing2}>Term: {moment(item.term_date).format('l')}</span>
               </div>
 
               <div style={divStyleFour}>
-                {item.claims_address}
+                <span style={spacing4}>{item.claims_address}</span>
               </div>
 
               <div style={divStyleFive}>
-                Subscriber: {item.policy_holder}
+              <span style={spacing4}>Subscriber: {item.policy_holder}</span>
                 <span style={spacing3}>Phone: {item.member_service_phone}</span>
               </div>
 

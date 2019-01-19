@@ -11,6 +11,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
+import moment from 'moment';
 
  {/* <Chart chartValue={this.state.chartValue} /> */ }
 
@@ -90,10 +91,7 @@ class BenefitPaidItem extends React.Component {
     // old value of deductible and coinsurance paid
     let valueDedIn, valueDedOut, valueOopIn, valueOopOut;
 
-    // new value
-    let newValueDedIn = 0;
-    let newValueDedOut, newValueOopIn, newValueOopOut;
-
+  
       // total of oop and deduct in-network/oon paid
     let dedPaidTotal, oopPaidTotal;
 
@@ -128,7 +126,7 @@ class BenefitPaidItem extends React.Component {
       <div className={classes.root}>
 
 
-        <h3>Coverage: {item.cob_type}</h3>
+        <h3>Coverage: {item.cob_type} Date: {moment(item.date).format('l')}</h3>
         <div className={classes.flexParent}>
           <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')} className={classes.itemFlex}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>

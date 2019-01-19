@@ -216,9 +216,9 @@ router.post('/benefitPaid', (req, res) => {
 
 router.get('/benefitPaid/:id', rejectUnauthenticated, (req, res) => {
 
-  const queryString = `SELECT * FROM "benefitpaid" WHERE "person_id"=$1;`;
+  const queryString = `SELECT * FROM "benefitpaid" WHERE "id"=$1;`;
   
-  pool.query(queryString, [req.user.id])
+  pool.query(queryString, [req.params.id])
     .then(result => {
       res.send(result.rows);
     })
@@ -228,36 +228,6 @@ router.get('/benefitPaid/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-
-router.put('/benefitPaid/:id', rejectUnauthenticated, (req, res) => {
-  console.log(`in PUT paid benefit route: ${req.params.id}`);
-
-  const queryString = `UPDATE "benefitpaid" SET                     
-                      "ded_in_paid"=$1,
-                      "ded_out_paid"=$2,
-                      "oop_in_paid"=$3,
-                      "oop_out_paid"=$4, 
-                      "date"=$5,
-                      "policy_id"=$6
-                      WHERE "id"=$7;`;
-
-  const queryValues = [req.body.dedInPaid,
-                        req.body.dedOutPaid,
-                        req.body.oopInPaid,
-                        req.body.oopOutPaid,
-                        req.body.date,
-                        req.body.policy_id,
-                        req.params.id]
-
-  pool.query(queryString, queryValues)
-      .then ( () => {
-        res.sendStatus(200)
-      })
-      .catch ( err => {
-        console.log(`Error updating profile`);
-        res.sendStatus(500)
-      })
-})
 
 
 

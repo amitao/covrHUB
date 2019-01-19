@@ -61,7 +61,7 @@ const stylesTwo = theme => ({
   },
   bgColor: {
     backgroundColor: "#cafaef",
-    width: 620,
+    width: "70%",
     height: 20,
     borderRadius: "50px",
   },
