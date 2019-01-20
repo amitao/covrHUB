@@ -16,7 +16,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2';
 import EditPolicy from '../Policy/EditPolicy';
 import ImageView from '../Image/ImageView';
- import UpdateImage from '../Image/UpdateImage';
+import UpdateImage from '../Image/UpdateImage';
 
 const style = {
   marTop: {
@@ -119,7 +119,6 @@ class ViewProfile extends React.Component {
                 <div className="flex-demo">
                 <Profile /> <UpdateImage />
                 </div>
-                  
               </div>
             </div>
           </Paper>

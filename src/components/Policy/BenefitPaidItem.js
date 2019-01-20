@@ -12,6 +12,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
+// import AddPaidBenefits from './AddPaidBenefits';
+import UpdatePaidBenefits from './UpdatePaidBenefits';
 
 
  {/* <Chart chartValue={this.state.chartValue} /> */ }
@@ -76,7 +78,23 @@ class BenefitPaidItem extends React.Component {
     expanded: null
   }
 
-  
+  // handleClickUpdateBenefits = () => {
+  //   this.props.history.push("/update_paid_benefit");
+  // }
+
+  handleOpen = () => {
+    this.setState({
+      open: true
+    });
+  };
+
+   // exit out of the modal
+   handleClose = () => {
+    this.setState({
+      open: false
+    });
+  };
+
 
   handleChange = panel => (event, expanded) => {
     this.setState({
@@ -126,6 +144,8 @@ class BenefitPaidItem extends React.Component {
 
 
         <h3>Coverage: {item.cob_type} Date: {date}</h3>
+        <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item} />
+
         <div className={classes.flexParent}>
           <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')} className={classes.itemFlex}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>

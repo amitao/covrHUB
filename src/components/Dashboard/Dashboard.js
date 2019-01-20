@@ -81,9 +81,9 @@ class Dashboard extends React.Component {
     this.props.history.push("/add_paid_benefit");
   }
 
-  handleClickUpdateBenefits = () => {
-    this.props.history.push("/update_paid_benefit");
-  }
+  // handleClickUpdateBenefits = () => {
+  //   this.props.history.push("/update_paid_benefit");
+  // }
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_DEMO', payload: this.props.reduxState.demographic.id })
@@ -148,10 +148,10 @@ class Dashboard extends React.Component {
                 style={btn}
                 onClick={this.handleClickUpdateBenefits} >Update payment</Button> */}
               
-              <Button
+              {/* <Button
                 variant="contained"
                 color="primary"
-                onClick={this.handleClickUpdateBenefits}>Update</Button>
+                onClick={this.handleClickUpdateBenefits}>Update</Button> */}
 
               <Button
                 variant="outlined"

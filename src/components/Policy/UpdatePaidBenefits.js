@@ -1,38 +1,60 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { withStyles, Grid, Paper, MuiThemeProvider, createMuiTheme, TextField } from '@material-ui/core';
-import styles from '../Assets/styles/stylesTwo';
 import PropTypes from 'prop-types';
+import { withStyles, TextField, Tooltip, IconButton } from '@material-ui/core';
+import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-// import Input from '@material-ui/core/Input';
-import Swal from 'sweetalert2';
+import { connect } from 'react-redux';
 import moment from 'moment';
 
 
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: "#e1e3f7",
-      main: "#7060ed",
-      dark: "#7378a5",
-      contrastText: "#fff",
-    }
+const styles = theme => ({
+  paper: {
+    position: "absolute",
+    width: theme.spacing.unit * 80,
+    height: 500,
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing.unit * 4,
+    borderRadius: "5px",
   },
-  typography: {
-    useNextVariants: true,
+  exit: {
+    marginRight: "1em",
+    marginTop: "1em",
+  },
+  save: {
+    marginTop: "1em",
+  },
+  button: {
+    margin: "1.4em 0",
+    // margin: theme.spacing.unit
   },
 });
 
+const styleGrid={
+  gridTemplateColumns: "auto auto auto",
+  margin: "0.5em",
 
+}
+const cursorStyle = {
+  cursor: "pointer",
+  color: "#89a3e5",
+}
 
-class AddPaidBenefits extends React.Component {
+const getModal = () => {
+  const top = 5;
+  const left = 20;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    margin: 'auto'
+  };
+}
+
+class UpdatePaidBenefits extends React.Component {
 
   state = {
-    isSelected: false,
+    open: false,
+    // isSelected: false,
     benefitId: this.props.item.benefitId,
     dedInPaid: this.props.item.ded_in_paid,
     dedOutPaid: this.props.item.ded_out_paid,
@@ -43,11 +65,19 @@ class AddPaidBenefits extends React.Component {
     policy_id: this.props.item.policy_id
   }
 
+  // opens modal
+  handleOpen = () => {
+    this.setState({
+      open: true
+    });
+  };
 
-  componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_SINGLE_POLICY' });
-  }
-
+  // // exit out of the modal
+  handleClose = () => {
+    this.setState({
+      open: false
+    });
+  };
 
   handleChange = (propertyName) => (event) => {
     this.setState({
@@ -55,7 +85,6 @@ class AddPaidBenefits extends React.Component {
       [propertyName]: event.target.value
     })
   }
-
 
 
   handleSubmit = event => {
@@ -73,41 +102,29 @@ class AddPaidBenefits extends React.Component {
       // personId: this.props.reduxState.user.id,
       policy_id: this.props.item.policy_id
     })
-    Swal.fire('Payment saved!');
   }
-
-
 
   render() {
 
     const { classes } = this.props;
-
-    let list = this.props.reduxState.singlePolicy.map((elem, i) => {
-      return (
-        <MenuItem key={i} value={elem.id}>
-          {elem.employment}
-          {elem.member_number}
-        </MenuItem>
-      )
-    })
-
     return (
+      <>
 
-      <div className={classes.root}>
+        <Tooltip title="update">
+          <IconButton>
+            <i className="fas fa-edit"
+              label="Edit"
+              style={cursorStyle}
+              onClick={this.handleOpen}></i>
+          </IconButton>
+        </Tooltip>
 
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.handleClickUpdate}>Update</Button>
-
-
-        <Grid container spacing={24} className={classes.grid} direction="row" justify="center">
-          <Grid item sm={6}>
-            <Paper className={classes.paper}>
-              <h2>Update Paid Benefits</h2>
-
-              <center><div className={classes.bgColor}></div></center>
-              <form className="policyParent">
+        <Modal open={this.state.open} >
+          <div style={getModal()} className={classes.paper} >
+       
+          <center>
+            <h2 className="user-profile-h2">Update Benefit Payment</h2>
+            <form>
                 {/* Drop selection gives user option to select which policy to enter in benefits */}
 
                 <div className="policyItems2">
@@ -170,31 +187,25 @@ class AddPaidBenefits extends React.Component {
                 </div>
                 {/* Button */}
 
-                <div className="parentElement">
-                  <MuiThemeProvider theme={theme}>
-                    <Button
-                      onClick={this.handleSubmit}
-                      variant="contained"
-                      className={classes.nextBtn}
-                      color="primary">Save</Button>
-                  </MuiThemeProvider>
-                </div>
-
               </form> {/* End of Form */}
-            </Paper>
-          </Grid>
-        </Grid>
-      </div>
+           
+              <Button variant="contained" color="primary" className={classes.exit} onClick={this.handleClose}>Exit</Button>
+              <Button variant="contained" color="primary" className={classes.save} onClick={this.handleSubmit}>Save</Button>
+            </center>
+    
+          </div>
+
+
+        </Modal>
+      </>
+
     )
   }
 }
 
-
-AddPaidBenefits.propTypes = {
+UpdatePaidBenefits.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-
 
 const mapStateToProps = (reduxState) => {
   return {
@@ -202,4 +213,5 @@ const mapStateToProps = (reduxState) => {
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(AddPaidBenefits));
+
+export default connect(mapStateToProps)(withStyles(styles)(UpdatePaidBenefits));
