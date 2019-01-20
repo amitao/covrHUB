@@ -29,11 +29,6 @@ const styles = theme => ({
   },
 });
 
-const styleGrid={
-  gridTemplateColumns: "auto auto auto",
-  margin: "0.5em",
-
-}
 const cursorStyle = {
   cursor: "pointer",
   color: "#89a3e5",
@@ -99,7 +94,6 @@ class UpdatePaidBenefits extends React.Component {
       oopInPaid: '',
       oopOutPaid: '',
       date: '',
-      // personId: this.props.reduxState.user.id,
       policy_id: this.props.item.policy_id
     })
   }
@@ -111,10 +105,10 @@ class UpdatePaidBenefits extends React.Component {
     return (
       <>
 
-        <Tooltip title="update">
+        <Tooltip title="Add">
           <IconButton>
-            <i className="fas fa-edit"
-              label="Edit"
+            <i className="fas fa-plus-circle"
+              label="Add"
               style={cursorStyle}
               onClick={this.handleOpen}></i>
           </IconButton>
@@ -126,23 +120,10 @@ class UpdatePaidBenefits extends React.Component {
           <center>
             <h2 className="user-profile-h2">Update Benefit Payment</h2>
             <form>
-                {/* Drop selection gives user option to select which policy to enter in benefits */}
 
                 <div className="policyItems2">
                 Policy: {this.props.item.name}
-                  {/* <FormControl >
-                    Select your policy:
-                  <Select
-                      value={this.state.policy_id}
-                      displayEmpty
-                      name="policy_id"
-                    >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      {list}
-                    </Select>
-                  </FormControl> */}
+
                 </div>
                 <div className="policyItems4">
                   <TextField

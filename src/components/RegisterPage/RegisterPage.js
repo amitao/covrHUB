@@ -13,6 +13,33 @@ import TextField from '@material-ui/core/TextField';
 // regular style file
 import styles from '../Assets/styles/styles';
 
+const regStyles = {
+  btn: {
+    width: "285px",
+    borderRadius: "50px",
+    marginTop: "1em",
+  },
+  iconColor: {
+    color: "#7060ed"
+  },
+  space: {
+    marginTop: "2em",
+  },
+  cardColor: {
+    backgroundColor: "#cafaef",
+  },
+  signUp: {
+    cursor: "pointer",
+    color: "purple",
+    paddingLeft: "1em",
+  },
+  logoImage: {
+    width: "100px",
+  }
+}
+
+
+
 
 class RegisterPage extends Component {
   state = {
@@ -94,7 +121,8 @@ class RegisterPage extends Component {
                     onChange={this.handleInputChangeFor('password')}
                   />
                 </div>
-                <div>
+
+                <center style={regStyles.space}>
                   <Button
                     className={classes.button}
                     variant="outlined"
@@ -102,19 +130,27 @@ class RegisterPage extends Component {
                     type="submit"
                     name="submit"
                     value="Register"
+                    style={regStyles.btn}
                   > Register </Button>
-                </div>
+                </center>
               </form>
               {/* end of form */}
 
-              <Button
+              {/* <Button
                 variant="contained"
                 color="primary"
                 type="button"
                 onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
               >
                 Login
-          </Button>
+          </Button> */}
+              <center style={regStyles.space}>
+                <p>Already have an account?
+                  <span
+                    style={regStyles.signUp}
+                    onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
+                  >Login</span></p>
+              </center>
 
             </CardContent>
           </Card>

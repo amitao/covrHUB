@@ -153,7 +153,7 @@ class LoginPage extends Component {
                 </Button>*/}
 
                 <center style={loginStyles.space}>
-                <p>Not a user? Please sign up. 
+                <p>Not a user yet? Please sign up. 
                   <span
                   style={loginStyles.signUp}
                   onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}

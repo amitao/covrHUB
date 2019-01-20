@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './Policy.css';
-// import Chart from './Chart';
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -14,10 +13,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
 import UpdatePaidBenefits from './UpdatePaidBenefits';
-// import BenefitPaidForm from './BenefitPaidForm';
-
-
- {/* <Chart chartValue={this.state.chartValue} /> */ }
 
 
 const styles = theme => ({
@@ -79,9 +74,7 @@ class BenefitPaidItem extends React.Component {
     expanded: null
   }
 
-  // handleClickUpdateBenefits = () => {
-  //   this.props.history.push("/update_paid_benefit");
-  // }
+
 
   handleOpen = () => {
     this.setState({
@@ -113,48 +106,48 @@ class BenefitPaidItem extends React.Component {
     const { expanded } = this.state;
 
     // old value of deductible and coinsurance paid
-    let valueDedIn, valueDedOut, valueOopIn, valueOopOut;
+    let valueDedIn, valueDedOut, valueOopIn, valueOopOut, date;
 
   
       // total of oop and deduct in-network/oon paid
     let dedPaidTotal, oopPaidTotal;
 
-    if (item !== null) {
+    if (item.ded_in_paid && item.ded_out_paid && 
+      item.oop_in_paid && item.oop_out_paid && item.date !== null) {
       valueDedIn = item.deductible_in - item.ded_in_paid;
       valueDedOut = item.deductible_out - item.ded_out_paid;
       valueOopIn = item.out_of_pocket_in - item.oop_in_paid;
       valueOopOut = item.out_of_pocket_out - item.oop_out_paid;
+      date = moment(item.date).format('l');
     } else {
       valueDedIn = 0;
       valueDedOut = 0;
       valueOopIn = 0;
       valueOopOut = 0;
+      date = 'None';
     }
 
     dedPaidTotal = item.ded_in_paid + item.ded_out_paid;
     oopPaidTotal = item.oop_in_paid + item.oop_out_paid;
-
-    let date;
-
-    if (item.date !== null){
-      date = moment(item.date).format('l');
-    }else {
-      date = 'None';
-    }
 
 
 
     return (
       <div className={classes.root}>
 
-
-        <h3>Coverage: {item.cob_type} Date: {date}</h3>
-
-        {item.ded_in_paid && item.ded_out_paid && item.oop_in_paid && item.oop_out_paid !== null ? <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item}/> :   <Button
+      <div>
+        <div>
+        <h4>Coverage: {item.cob_type}
+        {item.ded_in_paid && item.ded_out_paid && 
+        item.oop_in_paid && item.oop_out_paid !== null ? <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item}/> : <Button
           variant="outlined"
           color="primary"
           onClick={this.handleClickAddBenefit} >Add payment</Button>
-        }
+        }</h4>
+        </div>
+        <p>Last payment date: {date}</p>
+
+      </div>
   
         <div className={classes.flexParent}>
           <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')} className={classes.itemFlex}>
