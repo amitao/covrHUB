@@ -8,12 +8,13 @@ import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Button from '@material-ui/core/Button';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
-// import AddPaidBenefits from './AddPaidBenefits';
 import UpdatePaidBenefits from './UpdatePaidBenefits';
+// import BenefitPaidForm from './BenefitPaidForm';
 
 
  {/* <Chart chartValue={this.state.chartValue} /> */ }
@@ -95,6 +96,10 @@ class BenefitPaidItem extends React.Component {
     });
   };
 
+ 
+  handleClickAddBenefit = () => {
+    this.props.history.push("/add_paid_benefit");
+  }
 
   handleChange = panel => (event, expanded) => {
     this.setState({
@@ -144,8 +149,13 @@ class BenefitPaidItem extends React.Component {
 
 
         <h3>Coverage: {item.cob_type} Date: {date}</h3>
-        <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item} />
 
+        {item.ded_in_paid && item.ded_out_paid && item.oop_in_paid && item.oop_out_paid !== null ? <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item}/> :   <Button
+          variant="outlined"
+          color="primary"
+          onClick={this.handleClickAddBenefit} >Add payment</Button>
+        }
+  
         <div className={classes.flexParent}>
           <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')} className={classes.itemFlex}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>

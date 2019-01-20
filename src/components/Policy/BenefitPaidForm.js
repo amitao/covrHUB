@@ -93,6 +93,7 @@ class BenefitPaidForm extends React.Component {
     return (
 
       <div className={classes.root}>
+
         <Grid container spacing={24} className={classes.grid} direction="row" justify="center">
           <Grid item sm={6}>
             <Paper className={classes.paper}>
@@ -117,8 +118,8 @@ class BenefitPaidForm extends React.Component {
                       {list}
                     </Select>
                   </FormControl>
-                  </div>
-                  <div className="policyItems4">
+                </div>
+                <div className="policyItems4">
                   <TextField
                     type="number"
                     className={classes.textField}
@@ -160,22 +161,22 @@ class BenefitPaidForm extends React.Component {
 
                 </div>
                 {/* Button */}
-            
-              <div className="parentElement">
-                <MuiThemeProvider theme={theme}>
-                  <Button
-                    onClick={this.handleSubmit}
-                    variant="contained"
-                    className={classes.nextBtn}
-                    color="primary">Save</Button>
 
-                  <Button
-                    onClick={this.handleClickDashboard}
-                    className={classes.nextBtn}
-                    variant="outlined"
-                    color="primary"
-                  >Dashboard</Button>
-                </MuiThemeProvider>
+                <div className="parentElement">
+                  <MuiThemeProvider theme={theme}>
+                    <Button
+                      onClick={this.handleSubmit}
+                      variant="contained"
+                      className={classes.nextBtn}
+                      color="primary">Save</Button>
+
+                    <Button
+                      onClick={this.handleClickDashboard}
+                      className={classes.nextBtn}
+                      variant="outlined"
+                      color="primary"
+                    >Dashboard</Button>
+                  </MuiThemeProvider>
                 </div>
 
               </form> {/* End of Form */}

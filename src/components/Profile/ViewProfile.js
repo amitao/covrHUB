@@ -39,7 +39,7 @@ class ViewProfile extends React.Component {
 
     Swal.fire({
       title: 'Are you sure?',
-      text: ' Benefits and payments made will be deleted as well.',
+      text: ' Benefits and payments made will be deleted as well. Continue?',
       type: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, please delete it!',

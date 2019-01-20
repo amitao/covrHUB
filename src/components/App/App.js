@@ -22,8 +22,7 @@ import PolicyForm from '../Policy/PolicyForm';
 import BenefitPaidForm from '../Policy/BenefitPaidForm';
 import EditProfile from '../Profile/EditProfile';
 import EditPolicy from '../Policy/EditPolicy';
-import AddPaidMap from '../Policy/AddPaidMap';
-
+import UpdatePaidBenefits from '../Policy/UpdatePaidBenefits';
 
 
 // css style import
@@ -75,7 +74,7 @@ class App extends Component {
               <ProtectedRoute path='/add_paid_benefit' component={BenefitPaidForm} />
               <ProtectedRoute path='/edit_profile' component={EditProfile} />
               <ProtectedRoute path='/edit_policy' component={EditPolicy} />
-              <ProtectedRoute path='/update_paid_benefit' component={AddPaidMap} />
+              <ProtectedRoute path='/update_paid_benefit' component={UpdatePaidBenefits} />
               <ProtectedRoute path='/dashboard' component={Dashboard} />
               
 

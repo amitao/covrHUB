@@ -91,12 +91,16 @@ class InsuranceView extends React.Component {
                   <i className="fas fa-briefcase-medical" ></i>
                 </Icon> {item.name}
                 <span style={spacing}>{item.cob_type}</span>
-                {item.employment}
               </div>
+            
 
               <div style={divStyleTwo}>
                 <strong>ID#:</strong> {item.member_number}
                 <span style={spacing2}><strong>GROUP#:</strong> {item.group_number}</span>
+              </div>
+
+              <div>
+                Place of employment: {item.employment}
               </div>
 
               <div style={divStyleThree}>
@@ -105,7 +109,7 @@ class InsuranceView extends React.Component {
               </div>
 
               <div style={divStyleFour}>
-                <span style={spacing4}>{item.claims_address}</span>
+                <span style={spacing4}>Address: {item.claims_address}</span>
               </div>
 
               <div style={divStyleFive}>

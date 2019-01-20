@@ -77,9 +77,9 @@ class Dashboard extends React.Component {
     this.props.history.push("/add_policy");
   }
 
-  handleClickAddBenefit = () => {
-    this.props.history.push("/add_paid_benefit");
-  }
+  // handleClickAddBenefit = () => {
+  //   this.props.history.push("/add_paid_benefit");
+  // }
 
   // handleClickUpdateBenefits = () => {
   //   this.props.history.push("/update_paid_benefit");
@@ -142,22 +142,12 @@ class Dashboard extends React.Component {
           <Grid item md className={classes.paper} style={styleDash.paper}>
             <div className="box-benefit">
               <h3 style={styleDash.h3Style}>Benefit Amount</h3>
-              {/* <Button
-                variant="outlined"
-                color="primary"
-                style={btn}
-                onClick={this.handleClickUpdateBenefits} >Update payment</Button> */}
-              
-              {/* <Button
-                variant="contained"
-                color="primary"
-                onClick={this.handleClickUpdateBenefits}>Update</Button> */}
 
-              <Button
+              {/* <Button
                 variant="outlined"
                 color="primary"
                 style={btn}
-                onClick={this.handleClickAddBenefit} >Add payment</Button>
+                onClick={this.handleClickAddBenefit} >Add payment</Button> */}
              
               <BenefitPaid />
             </div>
