@@ -20,8 +20,8 @@ import moment from 'moment';
 
 
 
-const btn = {
 
+const btn = {
   width: "150px",
   borderRadius: "50px",
   marginTop: "1em",
@@ -147,7 +147,12 @@ class Dashboard extends React.Component {
                 color="primary"
                 style={btn}
                 onClick={this.handleClickUpdateBenefits} >Update payment</Button> */}
-                {/* <BenefitProps /> */}
+              
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.handleClickUpdateBenefits}>Update</Button>
+
               <Button
                 variant="outlined"
                 color="primary"

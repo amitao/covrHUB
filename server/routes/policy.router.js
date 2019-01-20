@@ -26,7 +26,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
                       "policy"."insurance_id",
                       "insurance"."name",
                       "insurance"."claims_address", 
-                      "insurance"."member_service_phone",                      
+                      "insurance"."member_service_phone",   
+                      "benefitpaid"."id" AS "benefitId",                   
                       "benefitpaid"."policy_id",         
                       "benefitpaid"."ded_in_paid",
                       "benefitpaid"."ded_out_paid",
@@ -121,7 +122,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 // });
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log(`in PUT route: ${req.params.id}`);
+  console.log(`in PUT Policy route: ${req.params.id}`);
  
   const queryString = `UPDATE "policy" SET                     
                       "member_number"=$1,
@@ -214,6 +215,8 @@ router.post('/benefitPaid', (req, res) => {
 
 })
 
+// GET ONLY Benefits
+
 router.get('/benefitPaid/:id', rejectUnauthenticated, (req, res) => {
 
   const queryString = `SELECT * FROM "benefitpaid" WHERE "id"=$1;`;
@@ -228,8 +231,34 @@ router.get('/benefitPaid/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// UPDATE Paid Benefits
+router.put('/benefitPaid/:id', rejectUnauthenticated, (req, res) => {
+  console.log('in PUT paid benefit route');
 
+  const queryString = `UPDATE "benefitpaid" SET
+                      "ded_in_paid" = "ded_in_paid" + $1,
+                      "ded_out_paid" = "ded_out_paid" + $2,
+                      "oop_in_paid" = "oop_in_paid" + $3,
+                      "oop_out_paid" = "oop_out_paid" + $4,
+                      "date"=$5,
+                      "policy_id"=$6
+                      WHERE "id"=$7;`;
 
+  const queryValues = [req.body.dedInPaid,
+                      req.body.dedOutPaid,
+                      req.body.oopInPaid,
+                      req.body.oopOutPaid,
+                      req.body.date,
+                      req.body.policy_id,
+                      req.params.id]
+  pool.query(queryString, queryValues) 
+      .then (() => {
+        res.sendStatus(200);
+      })
+      .catch ( err => {
+        res.sendStatus(500);
+      })
+})
 
 
 module.exports = router;

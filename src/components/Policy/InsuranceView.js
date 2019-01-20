@@ -91,6 +91,7 @@ class InsuranceView extends React.Component {
                   <i className="fas fa-briefcase-medical" ></i>
                 </Icon> {item.name}
                 <span style={spacing}>{item.cob_type}</span>
+                {item.employment}
               </div>
 
               <div style={divStyleTwo}>
