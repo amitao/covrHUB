@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withStyles, Grid, Paper, MuiThemeProvider, createMuiTheme, TextField } from '@material-ui/core';
+import { withStyles, Grid, Paper, MuiThemeProvider, createMuiTheme, TextField, InputAdornment } from '@material-ui/core';
 import styles from '../Assets/styles/stylesTwo';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
@@ -121,11 +121,25 @@ class BenefitPaidForm extends React.Component {
                 </div>
                 <div className="policyItems4">
                   <TextField
+                    type="date"
+                    label="Date"
+                    className={classes.textField}
+                    value={this.state.date}
+                    onChange={this.handleChange('date')}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+
+                  <TextField
                     type="number"
                     className={classes.textField}
                     label="Deductible in-network"
                     value={this.state.dedInPaid}
                     onChange={this.handleChange('dedInPaid')}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                    }}
                   />
 
                   <TextField
@@ -134,6 +148,9 @@ class BenefitPaidForm extends React.Component {
                     label="Deductible out-of-network"
                     value={this.state.dedOutPaid}
                     onChange={this.handleChange('dedOutPaid')}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                    }}
                   />
 
                   <TextField
@@ -142,6 +159,9 @@ class BenefitPaidForm extends React.Component {
                     label="Out-of-pocket in-network"
                     value={this.state.oopInPaid}
                     onChange={this.handleChange('oopInPaid')}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                    }}
                   />
 
                   <TextField
@@ -150,13 +170,9 @@ class BenefitPaidForm extends React.Component {
                     label="Out-of-pocket out-of-network"
                     value={this.state.oopOutPaid}
                     onChange={this.handleChange('oopOutPaid')}
-                  />
-
-                  <TextField
-                    type="date"
-                    className={classes.textField}
-                    value={this.state.date}
-                    onChange={this.handleChange('date')}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                    }}
                   />
 
                 </div>

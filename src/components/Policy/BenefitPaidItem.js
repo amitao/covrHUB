@@ -7,13 +7,13 @@ import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-// import Button from '@material-ui/core/Button';
+
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
 import UpdatePaidBenefits from './UpdatePaidBenefits';
-import BenefitPaidForm from './BenefitPaidForm';
+
 
 
 const styles = theme => ({
@@ -77,8 +77,13 @@ const styles = theme => ({
 });
 
 const style = {
-  color: "#0ae3ad",
-  fontSize: "1em",
+  dollar: {
+    color: "#0ae3ad",
+    fontSize: "1em",
+  },
+  bspacing: {
+    paddingBottom: "2em",
+  },
 }
 
 class BenefitPaidItem extends React.Component {
@@ -139,20 +144,35 @@ class BenefitPaidItem extends React.Component {
     // total of oop and deduct in-network/oon paid
     let dedPaidTotal, oopPaidTotal;
 
-    if (item.ded_in_paid && item.ded_out_paid &&
-      item.oop_in_paid && item.oop_out_paid && item.date !== null) {
-      valueDedIn = item.deductible_in - item.ded_in_paid;
-      valueDedOut = item.deductible_out - item.ded_out_paid;
-      valueOopIn = item.out_of_pocket_in - item.oop_in_paid;
+    if (item.oop_out_paid !== null) {
       valueOopOut = item.out_of_pocket_out - item.oop_out_paid;
-      date = moment(item.date).format('l');
+    } else {
+     
+      valueOopOut = 0;
+    }
+
+    if(item.ded_in_paid !== null){
+      valueDedIn = item.deductible_in - item.ded_in_paid;
     } else {
       valueDedIn = 0;
-      valueDedOut = 0;
-      valueOopIn = 0;
-      valueOopOut = 0;
-      date = 'None';
     }
+
+    if(item.ded_out_paid !== null){
+      valueDedOut = item.deductible_out - item.ded_out_paid;
+    } else {
+      valueDedOut = 0;
+    }
+
+    if(item.oop_in_paid !== null){
+      valueOopIn = item.out_of_pocket_in - item.oop_in_paid;
+    } else {
+      valueOopIn = 0;
+    }
+     if(item.date !== null) {
+      date = moment(item.date).format('l');
+     } else {
+      date = 'None';
+     }
 
     dedPaidTotal = item.ded_in_paid + item.ded_out_paid;
     oopPaidTotal = item.oop_in_paid + item.oop_out_paid;
@@ -160,7 +180,7 @@ class BenefitPaidItem extends React.Component {
 
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root} style={style.bspacing}>
         <div>
           <h4>Coverage: {item.cob_type}
             <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item} />
@@ -171,7 +191,7 @@ class BenefitPaidItem extends React.Component {
       <div className={classes.flexParent}>
         <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <div className={classes.heading}><Icon><i className="fas fa-dollar-sign" style={style}></i></Icon></div>
+            <div className={classes.heading}><Icon><i className="fas fa-dollar-sign" style={style.dollar}></i></Icon></div>
             <div className={classes.secondaryHeading}>
               <h2>{dedPaidTotal}</h2>
               <p>Total Deductible Paid</p>
@@ -205,7 +225,7 @@ class BenefitPaidItem extends React.Component {
 
         <ExpansionPanel expanded={expanded === 'panel2'} onChange={this.handleChange('panel2')} className={classes.itemFlex}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <div className={classes.heading}><Icon><i className="fas fa-dollar-sign" style={style}></i></Icon></div>
+            <div className={classes.heading}><Icon><i className="fas fa-dollar-sign" style={style.dollar}></i></Icon></div>
             <div className={classes.secondaryHeading}>
               <h2>{oopPaidTotal}</h2>
               <p>Total Out-Of-Pocket Paid</p>

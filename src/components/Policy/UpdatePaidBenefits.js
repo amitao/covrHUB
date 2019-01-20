@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, TextField, Tooltip, IconButton } from '@material-ui/core';
+import { withStyles, TextField, Tooltip, IconButton, InputAdornment } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
@@ -10,8 +10,8 @@ import moment from 'moment';
 const styles = theme => ({
   paper: {
     position: "absolute",
-    width: theme.spacing.unit * 80,
-    height: 350,
+    width: theme.spacing.unit * 60,
+    height: 340,
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing.unit * 4,
     borderRadius: "5px",
@@ -114,30 +114,25 @@ class UpdatePaidBenefits extends React.Component {
 
         <Modal open={this.state.open} >
           <div style={getModal()} className={classes.paper} >
-       
-          <center>
-            <h2 className="user-profile-h2">Update Benefit Payment</h2>
-            <form>
 
-                <div className="policyItems2">
-                Policy: {this.props.item.name}
+            <center>
+              <h2 className="update-h2">Update Benefit Payment</h2>
+              {/* <div>
+              Policy: {this.props.item.name}
+            </div> */}
 
-                </div>
-                <div className="policyItems4">
+              <form className="updateElement">
+                <div className="payment-box1">
+                  <p className="p-title">Policy: {this.props.item.name}</p>
                   <TextField
                     type="number"
                     className={classes.textField}
                     label="Deductible in-network"
                     value={this.state.dedInPaid}
                     onChange={this.handleChange('dedInPaid')}
-                  />
-
-                  <TextField
-                    type="number"
-                    className={classes.textField}
-                    label="Deductible out-of-network"
-                    value={this.state.dedOutPaid}
-                    onChange={this.handleChange('dedOutPaid')}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                    }}
                   />
 
                   <TextField
@@ -146,33 +141,49 @@ class UpdatePaidBenefits extends React.Component {
                     label="Out-of-pocket in-network"
                     value={this.state.oopInPaid}
                     onChange={this.handleChange('oopInPaid')}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                    }}
+                  />
+                </div>
+                <div className="payment-box2">
+                  <TextField
+                    type="date"
+                    label="Date"
+                    className={classes.textField}
+                    value={this.state.date}
+                    onChange={this.handleChange('date')}
+                    InputLabelProps={{ shrink: true }}
                   />
 
+                  <TextField
+                    type="number"
+                    className={classes.textField}
+                    label="Deductible out-of-network"
+                    value={this.state.dedOutPaid}
+                    onChange={this.handleChange('dedOutPaid')}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                    }}
+                  />
                   <TextField
                     type="number"
                     className={classes.textField}
                     label="Out-of-pocket out-of-network"
                     value={this.state.oopOutPaid}
                     onChange={this.handleChange('oopOutPaid')}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                    }}
                   />
-
-                  <TextField
-                    type="date"
-                    // label="date"
-                    className={classes.textField}
-                    value={this.state.date}
-                    onChange={this.handleChange('date')}
-                  />
-
                 </div>
-                {/* Button */}
 
               </form> {/* End of Form */}
-           
+
               <Button variant="contained" color="primary" className={classes.exit} onClick={this.handleClose}>Exit</Button>
               <Button variant="contained" color="primary" className={classes.save} onClick={this.handleSubmit}>Save</Button>
             </center>
-    
+
           </div>
 
 

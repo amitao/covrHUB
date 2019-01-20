@@ -15,17 +15,8 @@ import styles from '../Assets/styles/stylesTwo';
 import './Dashboard.css';
 import BenefitPaid from '../Policy/BenefitPaid';
 import InsuranceView from '../Policy/InsuranceView';
-import Button from '@material-ui/core/Button';
 import moment from 'moment';
 
-
-
-
-const btn = {
-  width: "150px",
-  borderRadius: "50px",
-  marginTop: "1em",
-}
 
 
 const styleDash = {
@@ -146,12 +137,6 @@ class Dashboard extends React.Component {
           <Grid item md className={classes.paper} style={styleDash.paper}>
             <div className="box-benefit">
               <h3 style={styleDash.h3Style}>Benefit Amount</h3>
-
-              {/* <Button
-                variant="outlined"
-                color="primary"
-                style={btn}
-                onClick={this.handleClickAddBenefit} >Add payment</Button> */}
              
               <BenefitPaid />
             </div>

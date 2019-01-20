@@ -101,7 +101,36 @@ tr td {
   /* border: 2px solid blue; */
 }
 
+
+
 h4 {
   margin: 0;
   padding: 0;
+}
+
+.update-h2 {
+  background-color:#cafaef;
+  color: #89a3e5;
+  padding: 0.5em;
+  width: 70%;
+}
+
+.updateElement {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1.5em 0;
+  color: gray;
+}
+.payment-box1 {
+  /* border: 2px solid red; */
+  width: 250px;
+}
+.payment-box2 {
+  /* border: 2px solid yellow; */
+  width: 250px;
+}
+
+.p-title {
+  padding-bottom: 1.7em;
 }
