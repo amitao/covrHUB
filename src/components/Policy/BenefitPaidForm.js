@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withStyles, Grid, Paper, MuiThemeProvider, createMuiTheme, TextField } from '@material-ui/core';
-import styles from '../Assets/styles/stylesTwo';
+import { withStyles, Grid, Paper, MuiThemeProvider, createMuiTheme, TextField,  Tooltip, IconButton } from '@material-ui/core';
+// import styles from '../Assets/styles/stylesTwo';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import Modal from '@material-ui/core/Modal';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -25,19 +26,59 @@ const theme = createMuiTheme({
   },
 });
 
+const styles = theme => ({
+  paper: {
+    position: "absolute",
+    width: theme.spacing.unit * 80,
+    height: 350,
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing.unit * 4,
+    borderRadius: "5px",
+  },
+  exit: {
+    marginRight: "1em",
+    marginTop: "1em",
+  },
+  save: {
+    marginTop: "1em",
+  },
+  button: {
+    margin: "1.4em 0",
+    // margin: theme.spacing.unit
+  },
+});
+
+const cursorStyle = {
+  cursor: "pointer",
+  color: "#89a3e5",
+}
+
+const getModal = () => {
+  const top = 5;
+  const left = 20;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    margin: 'auto'
+  };
+}
+
+
+
 
 
 class BenefitPaidForm extends React.Component {
 
   state = {
-    isSelected: false,
+    open:false,
     dedInPaid: '',
     dedOutPaid: '',
     oopInPaid: '',
     oopOutPaid: '',
     date: '',
     person_id: this.props.reduxState.user.id,
-    policy_id: ''
+    policy_id:''
   }
 
 
@@ -45,6 +86,19 @@ class BenefitPaidForm extends React.Component {
     this.props.dispatch({ type: 'FETCH_SINGLE_POLICY' });
   }
 
+   // opens modal
+   handleOpen = () => {
+    this.setState({
+      open: true
+    });
+  };
+
+  // // exit out of the modal
+  handleClose = () => {
+    this.setState({
+      open: false
+    });
+  };
 
   handleChange = (propertyName) => (event) => {
     this.setState({
@@ -90,19 +144,26 @@ class BenefitPaidForm extends React.Component {
       )
     })
 
+
     return (
+<>
+      <Tooltip title="Add">
+      <IconButton>
+        <i className="fas fa-plus-circle"
+          label="Add"
+          style={cursorStyle}
+          onClick={this.handleOpen}></i>
+      </IconButton>
+    </Tooltip>
+      <Modal open={this.state.open} >
+      <div style={getModal()} className={classes.paper} >
 
-      <div className={classes.root}>
-
-        <Grid container spacing={24} className={classes.grid} direction="row" justify="center">
-          <Grid item sm={6}>
-            <Paper className={classes.paper}>
-              <h2>Paid Benefits</h2>
-              <center><div className={classes.bgColor}></div></center>
+        <center>
+              <h2>Paid Benefits Form</h2>
+             
               <form className="policyParent">
-                {/* Drop selection gives user option to select which policy to enter in benefits */}
-
-                <div className="policyItems2">
+         
+              <div className="policyItems2">
                   <FormControl >
                     Select your policy:
                   <Select
@@ -119,6 +180,7 @@ class BenefitPaidForm extends React.Component {
                     </Select>
                   </FormControl>
                 </div>
+        
                 <div className="policyItems4">
                   <TextField
                     type="number"
@@ -170,20 +232,15 @@ class BenefitPaidForm extends React.Component {
                       className={classes.nextBtn}
                       color="primary">Save</Button>
 
-                    <Button
-                      onClick={this.handleClickDashboard}
-                      className={classes.nextBtn}
-                      variant="outlined"
-                      color="primary"
-                    >Dashboard</Button>
+<Button variant="contained" color="primary" className={classes.exit} onClick={this.handleClose}>Exit</Button>
                   </MuiThemeProvider>
                 </div>
 
               </form> {/* End of Form */}
-            </Paper>
-          </Grid>
-        </Grid>
-      </div>
+              </center>
+              </div>
+      </Modal>
+      </>
     )
   }
 }

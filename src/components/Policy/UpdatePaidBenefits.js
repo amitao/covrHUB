@@ -11,7 +11,7 @@ const styles = theme => ({
   paper: {
     position: "absolute",
     width: theme.spacing.unit * 80,
-    height: 500,
+    height: 350,
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing.unit * 4,
     borderRadius: "5px",
@@ -49,14 +49,12 @@ class UpdatePaidBenefits extends React.Component {
 
   state = {
     open: false,
-    // isSelected: false,
     benefitId: this.props.item.benefitId,
     dedInPaid: this.props.item.ded_in_paid,
     dedOutPaid: this.props.item.ded_out_paid,
     oopInPaid: this.props.item.oop_in_paid,
     oopOutPaid: this.props.item.oop_out_paid,
     date: moment(this.props.item.date).format('l'),
-    // personId: this.props.reduxState.user.id,
     policy_id: this.props.item.policy_id
   }
 

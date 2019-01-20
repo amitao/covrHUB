@@ -7,12 +7,13 @@ import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
 import UpdatePaidBenefits from './UpdatePaidBenefits';
+import BenefitPaidForm from './BenefitPaidForm';
 
 
 const styles = theme => ({
@@ -139,11 +140,9 @@ class BenefitPaidItem extends React.Component {
         <div>
         <h4>Coverage: {item.cob_type}
         {item.ded_in_paid && item.ded_out_paid && 
-        item.oop_in_paid && item.oop_out_paid !== null ? <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item}/> : <Button
-          variant="outlined"
-          color="primary"
-          onClick={this.handleClickAddBenefit} >Add payment</Button>
-        }</h4>
+        item.oop_in_paid && item.oop_out_paid !== null ? 
+        <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item}/> 
+        : <BenefitPaidForm handleOpen={this.handleOpen} handleClose={this.handleClose} item={item} /> }</h4>
         </div>
         <p>Last payment date: {date}</p>
 
