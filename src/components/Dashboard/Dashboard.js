@@ -77,13 +77,10 @@ class Dashboard extends React.Component {
     this.props.history.push("/add_policy");
   }
 
-  // handleClickAddBenefit = () => {
-  //   this.props.history.push("/add_paid_benefit");
-  // }
+  handleClickAddPayment = () => {
+    this.props.history.push("/add_paid_benefit");
+  }
 
-  // handleClickUpdateBenefits = () => {
-  //   this.props.history.push("/update_paid_benefit");
-  // }
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_DEMO', payload: this.props.reduxState.demographic.id })
@@ -112,10 +109,17 @@ class Dashboard extends React.Component {
               </center>
             </Grid>
 
+            <Grid item className={classes.itemNestedMiddleSecond}>
+            <center>
+              <img src="images/money-icon.svg" alt="money" className="money-icon" />
+              <p onClick={this.handleClickAddPayment} style={styleDash.style2}> Add Payment</p>
+            </center>
+            </Grid>
+
             <Grid className={classes.itemNestedLast}>
               <center>
                 <img src="images/graph-icon.svg" alt="graph" className="graph-icon" />
-                <p style={styleDash.style1}> Money Spend</p>
+                <p style={styleDash.style1}> Money Spent</p>
               </center>
             </Grid>
           </Grid>

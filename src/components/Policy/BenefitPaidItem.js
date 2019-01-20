@@ -35,20 +35,44 @@ const styles = theme => ({
   flexParent: {
     display: "flex",
     flexFlow: "column",
-    width: "300px",
+    width: "400px",
   },
-
   parentP: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
+    border: "1px solid #e1e3f7",
+    width: "100%",
+    justifyContent: "center",
+    alignContent: "center",
+    padding: "1em 0",
   },
   pSpacing: {
     paddingBottom: "0.3em",
   },
+  pSpacingTop: {
+    padding: "0.3em 0",
+  },
+  pSpacingColor: {
+    paddingBottom: "0.3em",
+    color: "#10d1a1",
+  },
   blankDiv: {
+    // border: "2px solid blue",
+    width: "80px",
+    height: "auto"
+  },
+  itemDetailOne: {
+    alignSelf: "flex-start",
+    textAlign: "left"
+  },
+  itemDetailTwo: {
+    alignSelf: "flex-end",
+  },
+  blankDiv2: {
     width: "100%",
     height: "1px",
-    backgroundColor: "#3f3fa5",
+    backgroundColor: "#c0c4ea",
+    margin: "1em 0",
   },
 });
 
@@ -60,16 +84,18 @@ const style = {
 class BenefitPaidItem extends React.Component {
 
 
-  state ={
+  state = {
 
-    chartValue:[
-      {"id":"Total", 
-       "label": "Total Deductible",
-       "value": this.props.item.deductible_in
+    chartValue: [
+      {
+        "id": "Total",
+        "label": "Total Deductible",
+        "value": this.props.item.deductible_in
       },
-      {"id": "Paid",
-      "label": "Paid amount",
-      "value": this.props.item.ded_in_paid
+      {
+        "id": "Paid",
+        "label": "Paid amount",
+        "value": this.props.item.ded_in_paid
       }
     ],
     expanded: null
@@ -83,14 +109,14 @@ class BenefitPaidItem extends React.Component {
     });
   };
 
-   // exit out of the modal
-   handleClose = () => {
+  // exit out of the modal
+  handleClose = () => {
     this.setState({
       open: false
     });
   };
 
- 
+
   handleClickAddBenefit = () => {
     this.props.history.push("/add_paid_benefit");
   }
@@ -109,11 +135,11 @@ class BenefitPaidItem extends React.Component {
     // old value of deductible and coinsurance paid
     let valueDedIn, valueDedOut, valueOopIn, valueOopOut, date;
 
-  
-      // total of oop and deduct in-network/oon paid
+
+    // total of oop and deduct in-network/oon paid
     let dedPaidTotal, oopPaidTotal;
 
-    if (item.ded_in_paid && item.ded_out_paid && 
+    if (item.ded_in_paid && item.ded_out_paid &&
       item.oop_in_paid && item.oop_out_paid && item.date !== null) {
       valueDedIn = item.deductible_in - item.ded_in_paid;
       valueDedOut = item.deductible_out - item.ded_out_paid;
@@ -135,61 +161,84 @@ class BenefitPaidItem extends React.Component {
 
     return (
       <div className={classes.root}>
-
-      <div>
         <div>
-        <h4>Coverage: {item.cob_type}
-        {item.ded_in_paid && item.ded_out_paid && 
-        item.oop_in_paid && item.oop_out_paid !== null ? 
-        <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item}/> 
-        : <BenefitPaidForm handleOpen={this.handleOpen} handleClose={this.handleClose} item={item} /> }</h4>
+          <h4>Coverage: {item.cob_type}
+            <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item} />
+          </h4>
         </div>
         <p>Last payment date: {date}</p>
 
-      </div>
-  
-        <div className={classes.flexParent}>
-          <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')} className={classes.itemFlex}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <div className={classes.heading}><Icon><i className="fas fa-dollar-sign" style={style}></i></Icon></div>
-              <div className={classes.secondaryHeading}>
-                <h2>{dedPaidTotal}</h2>
-                <p>Total Deductible Paid</p>
-                
+      <div className={classes.flexParent}>
+        <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <div className={classes.heading}><Icon><i className="fas fa-dollar-sign" style={style}></i></Icon></div>
+            <div className={classes.secondaryHeading}>
+              <h2>{dedPaidTotal}</h2>
+              <p>Total Deductible Paid</p>
+            </div>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <div className={classes.parentP}>
+              <div className={classes.itemDetailOne}>
+                <p className={classes.pSpacingTop}>In-network:</p>
+                <p className={classes.pSpacing}>Paid:</p>
+                <p className={classes.pSpacing}>Remaining:</p>
+                <div className={classes.blankDiv2}></div>
+                <p className={classes.pSpacing}>Out-of-network:</p>
+                <p className={classes.pSpacing}>Paid:</p>
+                <p className={classes.pSpacing}>Remaining:</p>
               </div>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <div className={classes.parentP}>
-                <p className={classes.pSpacing}>In-network: ${item.deductible_in ? item.deductible_in : 0} </p>
-                <p className={classes.pSpacing}>Paid amount: ${item.ded_in_paid ? item.ded_in_paid : 0}</p>
-                <p className={classes.pSpacing}>Remaining: ${valueDedIn ? valueDedIn : item.deductible_in}</p>
-                <div className={classes.blankDiv}></div>
-                <p className={classes.pSpacing}>Out-of-network: ${item.deductible_out ? item.deductible_out : 0} </p>
-                <p className={classes.pSpacing}>Paid amount: ${item.ded_out_paid ? item.ded_out_paid : 0} </p>
-                <p className={classes.pSpacing}>Remaining: ${valueDedOut ? valueDedOut : item.deductible_out}</p>
-            
+              <div className={classes.blankDiv}></div>
+              <div className={classes.itemDetailTwo}>
+                <p className={classes.pSpacingTop}>${item.deductible_in ? item.deductible_in : 0}</p>
+                <p className={classes.pSpacingColor}>${item.ded_in_paid ? item.ded_in_paid : 0}</p>
+                <p className={classes.pSpacing}>${valueDedIn ? valueDedIn : item.deductible_in}</p>
+                <div className={classes.blankDiv2}></div>
+                <p className={classes.pSpacing}>${item.deductible_out ? item.deductible_out : 0}</p>
+                <p className={classes.pSpacingColor}>${item.ded_out_paid ? item.ded_out_paid : 0}</p>
+                <p className={classes.pSpacing}> ${valueDedOut ? valueDedOut : item.deductible_out}</p>
               </div>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
+            </div>
 
-          <ExpansionPanel expanded={expanded === 'panel2'} onChange={this.handleChange('panel2')} className={classes.itemFlex}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <div className={classes.heading}><Icon><i className="fas fa-dollar-sign" style={style}></i></Icon></div>
-              <div className={classes.secondaryHeading}>
-                <h2>{oopPaidTotal}</h2>
-                <p>Total Out-Of-Pocket Paid</p>
-              </div>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <div className={classes.parentP}>
-                <p>In-network: ${item.out_of_pocket_in ? item.out_of_pocket_in : 0} | Paid: ${item.oop_in_paid ? item.oop_in_paid : 0} | Left: ${valueOopIn ? valueOopIn : item.out_of_pocket_in}</p>
-                <p>OON: ${item.out_of_pocket_out ? item.out_of_pocket_out : 0} | Paid: ${item.oop_out_paid ? item.oop_out_paid : 0} | Left: ${valueOopOut ? valueOopOut : item.out_of_pocket_out}</p>
-              </div>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-        </div>
-      </div>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
 
+        <ExpansionPanel expanded={expanded === 'panel2'} onChange={this.handleChange('panel2')} className={classes.itemFlex}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <div className={classes.heading}><Icon><i className="fas fa-dollar-sign" style={style}></i></Icon></div>
+            <div className={classes.secondaryHeading}>
+              <h2>{oopPaidTotal}</h2>
+              <p>Total Out-Of-Pocket Paid</p>
+            </div>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <div className={classes.parentP}>
+              <div className={classes.itemDetailOne}>
+                <p className={classes.pSpacingTop}>In-network:</p>
+                <p className={classes.pSpacing}>Paid:</p>
+                <p className={classes.pSpacing}>Remaining:</p>
+                <div className={classes.blankDiv2}></div>
+                <p className={classes.pSpacing}>Out-of-network:</p>
+                <p className={classes.pSpacing}>Paid:</p>
+                <p className={classes.pSpacing}>Remaining:</p>
+              </div>
+
+              <div className={classes.blankDiv}></div>
+
+              <div className={classes.itemDetailTwo}>
+                <p className={classes.pSpacingTop}>${item.out_of_pocket_in ? item.out_of_pocket_in : 0}</p>
+                <p className={classes.pSpacingColor}>${item.oop_in_paid ? item.oop_in_paid : 0}</p>
+                <p className={classes.pSpacing}>${valueOopIn ? valueOopIn : item.out_of_pocket_in}</p>
+                <div className={classes.blankDiv2}></div>
+                <p className={classes.pSpacing}>${item.out_of_pocket_out ? item.out_of_pocket_out : 0}</p>
+                <p className={classes.pSpacingColor}>${item.oop_out_paid ? item.oop_out_paid : 0}</p>
+                <p className={classes.pSpacing}> ${valueOopOut ? valueOopOut : item.out_of_pocket_out}</p>
+              </div>
+            </div>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      </div>
+      </div>
     )
   }
 

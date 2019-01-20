@@ -26,17 +26,22 @@ const stylesTwo = theme => ({
   itemNestedFirst: {
     backgroundColor: "#ada6ed",
     height: "200px",
-    paddingTop: "2em",
+    paddingTop: "3em",
   },
   itemNestedMiddle: {
     backgroundColor: "#7060ed",
     height: "200px",
-    padding: "1em 0",
+    padding: "2em 0",
+  },
+  itemNestedMiddleSecond: {
+    height: "200px",
+    backgroundColor: "#5140ed",
+    paddingTop: "3em",
   },
   itemNestedLast: {
     height: "200px",
-    backgroundColor: "#5140ed",
-    paddingTop: "1em",
+    backgroundColor: "#362abf",
+    paddingTop: "3em",
   },
   buttons: {
     // marginTop: "1em",

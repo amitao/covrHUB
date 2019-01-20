@@ -211,8 +211,8 @@ class PolicyForm extends React.Component {
 
                
                   <h2>Benefits</h2>
-                  <center><div className={classes.bgColor}></div></center>
-                <div className="parentElement">
+                  <div className={classes.bgColor}></div>
+                  <div className="parentElement">
                 <div className="policyItems22">
                   <TextField
                     type="number"

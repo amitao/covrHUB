@@ -103,7 +103,7 @@ class UpdatePaidBenefits extends React.Component {
     return (
       <>
 
-        <Tooltip title="Add">
+        <Tooltip title="Update">
           <IconButton>
             <i className="fas fa-plus-circle"
               label="Add"
