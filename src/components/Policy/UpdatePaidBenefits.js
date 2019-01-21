@@ -11,7 +11,7 @@ const styles = theme => ({
   paper: {
     position: "absolute",
     width: theme.spacing.unit * 60,
-    height: 340,
+    height: 440,
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing.unit * 4,
     borderRadius: "5px",
@@ -50,10 +50,10 @@ class UpdatePaidBenefits extends React.Component {
   state = {
     open: false,
     benefitId: this.props.item.benefitId,
-    dedInPaid: this.props.item.ded_in_paid,
-    dedOutPaid: this.props.item.ded_out_paid,
-    oopInPaid: this.props.item.oop_in_paid,
-    oopOutPaid: this.props.item.oop_out_paid,
+    dedInPaid: 0,
+    dedOutPaid: 0,
+    oopInPaid: 0,
+    oopOutPaid: 0,
     date: moment(this.props.item.date).format('l'),
     policy_id: this.props.item.policy_id
   }
@@ -141,6 +141,7 @@ class UpdatePaidBenefits extends React.Component {
                     label="Out-of-pocket in-network"
                     value={this.state.oopInPaid}
                     onChange={this.handleChange('oopInPaid')}
+                    margin="normal"
                     InputProps={{
                       startAdornment: <InputAdornment position="start">$</InputAdornment>,
                     }}
@@ -150,6 +151,7 @@ class UpdatePaidBenefits extends React.Component {
                   <TextField
                     type="date"
                     label="Date"
+                    margin="normal"
                     className={classes.textField}
                     value={this.state.date}
                     onChange={this.handleChange('date')}
@@ -158,6 +160,7 @@ class UpdatePaidBenefits extends React.Component {
 
                   <TextField
                     type="number"
+                    margin="normal"
                     className={classes.textField}
                     label="Deductible out-of-network"
                     value={this.state.dedOutPaid}
@@ -168,6 +171,7 @@ class UpdatePaidBenefits extends React.Component {
                   />
                   <TextField
                     type="number"
+                    margin="normal"
                     className={classes.textField}
                     label="Out-of-pocket out-of-network"
                     value={this.state.oopOutPaid}

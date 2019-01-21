@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, TextField, Tooltip, IconButton } from '@material-ui/core';
+import { withStyles, TextField, Tooltip, IconButton, InputAdornment } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
@@ -201,69 +201,93 @@ class EditPolicy extends React.Component {
                 type="text"
                 style={styleGrid}
                 className={classes.textField}
-                label="DedIn"
+                label="Deduct In-network"
                 onChange={this.handleChange('dedIn')}
                 value={this.state.dedIn}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                }}
               />
               <TextField
                 type="text"
                 style={styleGrid}
                 className={classes.textField}
-                label="DedOut"
+                label="Deduct Out-of-network"
                 onChange={this.handleChange('dedOut')}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                }}
                 value={this.state.dedOut}
               />
               <TextField
                 type="number"
                 style={styleGrid}
-                label="Co-Pay In-network"
+                label="Copay In-network"
                 className={classes.textField}
                 value={this.state.copayIn}
                 onChange={this.handleChange('copayIn')}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                }}
               />
 
               <TextField
                 type="number"
                 style={styleGrid}
-                label="Co-Pay Special"
+                label="Copay Special"
                 className={classes.textField}
                 value={this.state.copaySpecial}
                 onChange={this.handleChange('copaySpecial')}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                }}
               />
               <TextField
                 type="number"
                 style={styleGrid}
-                label="Co-insurance In-network"
+                label="Coinsurance In-network"
                 className={classes.textField}
                 value={this.state.coInsuranceIn}
                 onChange={this.handleChange('coInsuranceIn')}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">%</InputAdornment>,
+                }}
               />
 
               <TextField
                 type="number"
                 style={styleGrid}
-                label="Co-insurance Out-network"
+                label="Coinsurance Out-network"
                 className={classes.textField}
                 value={this.state.coInsuranceOut}
                 onChange={this.handleChange('coInsuranceOut')}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">%</InputAdornment>,
+                }}
               />
 
               <TextField
                 type="number"
                 style={styleGrid}
-                label="Out of pocket In-network"
+                label="OOP In-network"
                 className={classes.textField}
                 value={this.state.oopIn}
                 onChange={this.handleChange('oopIn')}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                }}
               />
 
               <TextField
                 type="number"
                 style={styleGrid}
-                label="Out-of-pocket Out-of-network"
+                label="OOP Out-of-network"
                 className={classes.textField}
                 value={this.state.oopOut}
                 onChange={this.handleChange('oopOut')}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                }}
               />
             </form>
               <Button variant="contained" color="primary" className={classes.exit} onClick={this.handleClose}>Exit</Button>

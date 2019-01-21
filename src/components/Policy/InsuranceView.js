@@ -7,7 +7,7 @@ import Icon from '@material-ui/core/Icon';
 
 const styling = {
   display: "flex",
-  flexFlow: "row wrap",
+  flexDirection: "column",
   padding: "1em",
   marginBottom: "1em",
   // border: "2px solid red",
@@ -38,37 +38,6 @@ const nameStyleOne = {
   textAlign: "left",
 }
 
-const divStyleThree = {
-  width: "100%",
-}
-
-const divStyleFour = {
-  width: "100%",
-  paddingTop: "0.5em"
-}
-
-const divStyleFive = {
-  width: "100%",
-  paddingTop: "0.5em"
-}
-
-const spacing = {
- paddingLeft: "2em",
-  
-}
-
-const spacing2 = {
-  paddingLeft: "2em",
- }
-
- const spacing3 = {
-  paddingLeft: "0.5em",
- }
-
- const spacing4 = {
-   float: "left"
- }
-
 class InsuranceView extends React.Component {
 
 
@@ -89,34 +58,31 @@ class InsuranceView extends React.Component {
               <div style={nameStyleOne}>
                 <Icon>
                   <i className="fas fa-briefcase-medical" ></i>
-                </Icon> {item.name}
-                <span style={spacing}>{item.cob_type}</span>
+                </Icon> {item.name}<span className="cob">{item.cob_type}</span>
               </div>
             
-
-              <div style={divStyleTwo}>
+              <div className="insurance-box1">
                 <strong>ID#:</strong> {item.member_number}
-                <span style={spacing2}><strong>GROUP#:</strong> {item.group_number}</span>
+                <span className="id-grp"><strong>GROUP#:</strong> {item.group_number}</span>
               </div>
 
-              <div>
-                Place of employment: {item.employment}
+              <div className="employment">
+                <span className="name-color">Place of employment:</span> {item.employment}
               </div>
 
-              <div style={divStyleThree}>
-              <span style={spacing4}>Effective: {moment(item.effective_date).format('l')}</span>
-                <span style={spacing2}>Term: {moment(item.term_date).format('l')}</span>
+              <div className="effective">
+              <span className="name-color">Effective:</span> <span>{moment(item.effective_date).format('l')}</span>
+                <span className="termed">Term: </span>{moment(item.term_date).format('l')}
               </div>
 
-              <div style={divStyleFour}>
-                <span style={spacing4}>Address: {item.claims_address}</span>
+              <div className="sub">
+              <span className="name-color">Subscriber:</span> {item.policy_holder}
+              <span className="termed">Phone:</span> {item.member_service_phone}
               </div>
 
-              <div style={divStyleFive}>
-              <span style={spacing4}>Subscriber: {item.policy_holder}</span>
-                <span style={spacing3}>Phone: {item.member_service_phone}</span>
+              <div className="address">
+                <span className="name-color">Address:</span> {item.claims_address}
               </div>
-
             </Paper>
           )
         })}

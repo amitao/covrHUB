@@ -136,8 +136,7 @@ class Dashboard extends React.Component {
 
           <Grid item md className={classes.paper} style={styleDash.paper}>
             <div className="box-benefit">
-              <h3 style={styleDash.h3Style}>Benefit Amount</h3>
-             
+              <h3 style={styleDash.h3Style}>Benefit Amount Paid</h3>
               <BenefitPaid />
             </div>
 

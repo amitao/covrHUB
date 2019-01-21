@@ -109,8 +109,8 @@ h4 {
 }
 
 .update-h2 {
-  background-color:#cafaef;
-  color: #89a3e5;
+  background-color: #e1e3f7;
+  color: gray;
   padding: 0.5em;
   width: 70%;
 }
@@ -133,4 +133,42 @@ h4 {
 
 .p-title {
   padding-bottom: 1.7em;
+}
+
+.insurance-box1 {
+  padding-left: 1em;
+  text-align: left;
+  height: 25px;
+  width: auto;
+  background-color: #cafaef;
+  padding-top: 0.5em;
+  margin: 0.5em 0;
+}
+
+.cob{
+  padding-left: 7em;
+}
+
+.id-grp{
+  padding-left: 1em;
+
+}
+
+.employment, .address {
+  text-align: left;
+}
+.name-color {
+  color: #324a96;
+}
+.effective {
+  text-align: left;
+  padding: 0.5em 0;
+}
+.termed {
+  padding-left: 5em;
+  color:  #324a96;
+}
+.sub {
+  text-align: left;
+  padding-bottom: 0.5em;
 }
