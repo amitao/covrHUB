@@ -80,8 +80,8 @@ router.post('/image', rejectUnauthenticated, (req, res) => {
   console.log('in POST route to add image:', req.user);
 
   const queryString = `INSERT INTO "image" ("image_url", "person_id")
-                        VALUES ($1, $2) RETURNING "id";`;
-  const queryValues = [req.body.image, req.user.id];
+                        VALUES ($1, $2);`;
+  const queryValues = [req.body.imageUrl, req.user.id];
   pool.query(queryString, queryValues)
   .then( () => {
     res.sendStatus(201);

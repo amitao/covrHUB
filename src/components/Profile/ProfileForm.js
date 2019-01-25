@@ -76,8 +76,7 @@ class AddProfile extends React.Component {
   render() {
 
     const { classes } = this.props;
-
-
+ 
     return (
       <div className={classes.root}>
         <Grid container spacing={24} className={classes.grid}
@@ -88,9 +87,7 @@ class AddProfile extends React.Component {
             <Paper className={classes.paper}>
               <h2 className="profile-h2">Profile</h2>
               <center>
-              <Grid item sm={12} className="avatar-block">
-                {/* <img src={} alt="you"/> */}
-              </Grid>
+              <img src="images/avatar1.svg" alt="you" className="avatar-block" />
               </center>
               <div>
                 <ModalAvatar />
@@ -153,9 +150,9 @@ class AddProfile extends React.Component {
                 />
 
                 {/* Buttons */}
-                
+
                 <div className="btn-box">
-                <MuiThemeProvider theme={theme}>
+                  <MuiThemeProvider theme={theme}>
                     <Button
                       className={classes.nextBtn}
                       variant="outlined"
@@ -176,7 +173,7 @@ class AddProfile extends React.Component {
                       className={classes.nextBtn}
                       onClick={this.handleClickNext}
                     >Add Policy</Button>
-                </MuiThemeProvider>
+                  </MuiThemeProvider>
                 </div>
               </form>
             </Paper>
@@ -194,6 +191,7 @@ AddProfile.propTypes = {
 
 const mapStateToProps = state => ({
   user: state.user,
+  imageAvatar: state.image
 });
 
 
