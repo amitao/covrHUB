@@ -92,6 +92,7 @@ router.post('/image', rejectUnauthenticated, (req, res) => {
   });
 });
 
+
 router.put('/image/:id', rejectUnauthenticated, (req, res) => {
   console.log(`in PUT Image route: ${req.user.id}`);
   

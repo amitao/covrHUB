@@ -39,6 +39,9 @@ class AddProfile extends React.Component {
     personID: ''
   }
 
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_IMAGE'})
+  }
   // route back to userPage
   handleClickBack = () => {
     console.log('back button has been clicked');
@@ -75,6 +78,12 @@ class AddProfile extends React.Component {
 
   render() {
 
+    // let displayImage = this.props.imageAvatar.map( myImage => {
+    //   return (
+    //     <img src={myImage.image_url} alt="picture of me" key={myImage.id} className="form-image" />
+    //   )
+    // })
+
     const { classes } = this.props;
  
     return (
@@ -87,7 +96,12 @@ class AddProfile extends React.Component {
             <Paper className={classes.paper}>
               <h2 className="profile-h2">Profile</h2>
               <center>
-              <img src="images/avatar1.svg" alt="you" className="avatar-block" />
+                {this.props.image.map( myImage => {
+                  return (
+                    <img src={myImage.image_url} alt="picture of me" key={myImage.id} className="form-image" />
+                  )
+                })}
+        
               </center>
               <div>
                 <ModalAvatar />
@@ -191,7 +205,7 @@ AddProfile.propTypes = {
 
 const mapStateToProps = state => ({
   user: state.user,
-  imageAvatar: state.image
+  image: state.imageAvatar
 });
 
 

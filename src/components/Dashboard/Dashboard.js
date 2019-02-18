@@ -85,6 +85,7 @@ class Dashboard extends React.Component {
     return (
       <div className={classes.root}>
         <Grid container className={classes.grid2}>
+
           <Grid item className={classes.itemGrid}>
             <Grid item className={classes.itemNestedFirst}>
               <center>
@@ -133,14 +134,16 @@ class Dashboard extends React.Component {
             <InsuranceView />
             <Policy />
           </Grid>
+          {/* end of .Grid item */}
 
           <Grid item md className={classes.paper} style={styleDash.paper}>
             <div className="box-benefit">
               <h3 style={styleDash.h3Style}>Benefit Amount Paid</h3>
               <BenefitPaid />
             </div>
-
           </Grid>
+          {/* end of Grid item */}
+
         </Grid>
       </div>
     )

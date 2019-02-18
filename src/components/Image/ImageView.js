@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const style={
-  width: "190px",
-  height: "210px",
+  width: "150px",
+  height: "170px",
   borderRadius: "50%",
   border: "1px solid #c0c4ea",
   backgroundColor: "#ffffff",
