@@ -83,6 +83,11 @@ class AddProfile extends React.Component {
     //     <img src={myImage.image_url} alt="picture of me" key={myImage.id} className="form-image" />
     //   )
     // })
+    let imageAvatar;
+
+    
+
+
 
     const { classes } = this.props;
  
@@ -96,11 +101,9 @@ class AddProfile extends React.Component {
             <Paper className={classes.paper}>
               <h2 className="profile-h2">Profile</h2>
               <center>
-                {this.props.image.map( myImage => {
-                  return (
-                    <img src={myImage.image_url} alt="Me" key={myImage.id} className="form-image" />
-                  )
-                })}
+
+                {/* <img src={myImage.image_url} alt="Me" key={myImage.id} className="form-image" /> */}
+                 <img src="images/imageDefault.png" alt="Ava" className="form-image" />
         
               </center>
               <div>

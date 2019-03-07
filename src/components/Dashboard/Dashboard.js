@@ -86,31 +86,35 @@ class Dashboard extends React.Component {
       <div className={classes.root}>
         <Grid container className={classes.grid2}>
 
-          {/* Icon links */}
-          <Grid item className={classes.itemGrid}>
+          {/* Icon links     --- className={classes.itemGrid*/}
+          <Grid item className="icon-grid">
 
-            <Grid item className={classes.itemNestedFirst}>
+            {/* <Grid item className={classes.itemNestedFirst}> */}
+            <Grid item className="icon-one">
               <center>
                 <img src="images/profile-icon.svg" alt="profile" className="profile-icon" />
                 <p onClick={this.handleClickProfile} style={styleDash.style2}>Profile</p>
               </center>
             </Grid>
 
-            <Grid item className={classes.itemNestedMiddle}>
+            {/* <Grid item className={classes.itemNestedMiddle}> */}
+            <Grid item className="icon-two">
               <center>
                 <img src="images/policy-icon.svg" alt="policy" className="policy-icon" />
                 <p onClick={this.handleClickAddPolicy} style={styleDash.style2}> Add Policy</p>
               </center>
             </Grid>
 
-            <Grid item className={classes.itemNestedMiddleSecond}>
+            {/* <Grid item className={classes.itemNestedMiddleSecond}> */}
+            <Grid item className="icon-three">
             <center>
               <img src="images/money-icon.svg" alt="money" className="money-icon" />
               <p onClick={this.handleClickAddPayment} style={styleDash.style2}> Add Payment</p>
             </center>
             </Grid>
 
-            <Grid className={classes.itemNestedLast}>
+            {/* <Grid className={classes.itemNestedLast}> */}
+            <Grid item className="icon-four">
               <center>
                 <img src="images/graph-icon.svg" alt="graph" className="graph-icon" />
                 <p style={styleDash.style1}> Money Spent</p>

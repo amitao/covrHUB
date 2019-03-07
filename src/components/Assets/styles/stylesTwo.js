@@ -21,7 +21,7 @@ const stylesTwo = theme => ({
     height: "auto",
   },
   itemGrid: {
-    width: "250px",
+    // width: "250px",
   },
   itemNestedFirst: {
     backgroundColor: "#ada6ed",
