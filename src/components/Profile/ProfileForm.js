@@ -98,7 +98,7 @@ class AddProfile extends React.Component {
               <center>
                 {this.props.image.map( myImage => {
                   return (
-                    <img src={myImage.image_url} alt="picture of me" key={myImage.id} className="form-image" />
+                    <img src={myImage.image_url} alt="Me" key={myImage.id} className="form-image" />
                   )
                 })}
         

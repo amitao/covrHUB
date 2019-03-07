@@ -13,7 +13,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
 import UpdatePaidBenefits from './UpdatePaidBenefits';
-import BenefitPaidForm from './BenefitPaidForm';
 
 
 
@@ -177,15 +176,7 @@ class BenefitPaidItem extends React.Component {
     dedPaidTotal = item.ded_in_paid + item.ded_out_paid;
     oopPaidTotal = item.oop_in_paid + item.oop_out_paid;
 
-
-    // let displayForm;
-
-    // if (item.ded_in_paid > 0){
-    //   displayForm = <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item} />
-    // } else if (item.ded_in_paid === null && item.ded_in_paid === 0) {
-    //   displayForm = <BenefitPaidForm />
-    // }
-
+     
 
     return (
       <div className={classes.root} style={style.bspacing}>

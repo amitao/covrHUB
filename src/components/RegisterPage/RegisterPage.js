@@ -124,6 +124,7 @@ class RegisterPage extends Component {
 
                 <center style={regStyles.space}>
                   <Button
+                    onclick={this.registerUser}
                     className={classes.button}
                     variant="outlined"
                     color="primary"
