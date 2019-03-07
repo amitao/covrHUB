@@ -13,6 +13,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
 import UpdatePaidBenefits from './UpdatePaidBenefits';
+import BenefitPaidForm from './BenefitPaidForm';
 
 
 
@@ -137,6 +138,7 @@ class BenefitPaidItem extends React.Component {
     const { classes, item } = this.props;
     const { expanded } = this.state;
 
+
     // old value of deductible and coinsurance paid
     let valueDedIn, valueDedOut, valueOopIn, valueOopOut, date;
 
@@ -176,13 +178,23 @@ class BenefitPaidItem extends React.Component {
     dedPaidTotal = item.ded_in_paid + item.ded_out_paid;
     oopPaidTotal = item.oop_in_paid + item.oop_out_paid;
 
-     
+
+    // let paidForm;
+    // if (item.ded_in_paid <= 0) {
+    //   return (
+    //     paidForm = <BenefitPaidForm />
+    //   )
+    // } else if (item.ded_in_paid >= 1) {
+    //   return (
+    //     paidForm = <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item}/>
+    //   )
+    // }
 
     return (
       <div className={classes.root} style={style.bspacing}>
         <div>
           <h4>Coverage: {item.cob_type}
-            {/* {displayForm} */}
+            {/* {paidForm} */}
             <UpdatePaidBenefits handleOpen={this.handleOpen} handleClose={this.handleClose} item={item} />
           </h4>
         </div>

@@ -60,6 +60,7 @@ class RegisterPage extends Component {
           password: this.state.password,
         },
       });
+      this.props.history.push('/home')
     } else {
       this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }
@@ -124,7 +125,7 @@ class RegisterPage extends Component {
 
                 <center style={regStyles.space}>
                   <Button
-                    onclick={this.registerUser}
+                    onClick={this.registerUser}
                     className={classes.button}
                     variant="outlined"
                     color="primary"

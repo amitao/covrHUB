@@ -28,6 +28,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
   const queryString = `INSERT INTO "demographic" ("first_name", "last_name", "birthday", "email", "address", "person_id")
                         VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id";`;
+
   const queryValues = [req.body.fname, req.body.lname, req.body.birthday, req.body.email, req.body.address, req.user.id];
   pool.query(queryString, queryValues)
   .then( () => {

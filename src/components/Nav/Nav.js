@@ -69,9 +69,6 @@ class Nav extends React.Component {
             About
           {/* <img src="images/about-icon.svg" alt="About" className="about-img" />  */}
           </Link>
-          <Link className="nav-link" to="/add_profile">
-            Add Profile
-          </Link> 
           
           {/* Show the link to the info page and the logout button if the user is logged in */}
           {this.props.user.id && (
@@ -79,6 +76,9 @@ class Nav extends React.Component {
             {/* <IconButton>
              <Avatar src="images/avatar1.svg" className={classes.avatar} />
             </IconButton> */}
+              <Link className="nav-link" to="/add_profile">
+                  Add Profile
+              </Link> 
               <MenuItem />
               {/* <LogOutButton/> */}
             </>
