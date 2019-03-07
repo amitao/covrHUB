@@ -60,7 +60,7 @@ class RegisterPage extends Component {
           password: this.state.password,
         },
       });
-      this.props.history.push('/home')
+      this.props.history.push('/add_profile')
     } else {
       this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }

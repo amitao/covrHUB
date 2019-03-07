@@ -47,11 +47,6 @@ class App extends Component {
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
 
-              {/* if user doesn't have an demographic id redirects to add profile form */}
-              {this.props.demo.id === undefined && this.props.demo.id === null &&(
-                <Redirect exact from="/home" to="/add_profile" />
-              )}
-
               <Redirect exact from="/" to="/home" />
               {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}

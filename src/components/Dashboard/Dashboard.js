@@ -86,7 +86,9 @@ class Dashboard extends React.Component {
       <div className={classes.root}>
         <Grid container className={classes.grid2}>
 
+          {/* Icon links */}
           <Grid item className={classes.itemGrid}>
+
             <Grid item className={classes.itemNestedFirst}>
               <center>
                 <img src="images/profile-icon.svg" alt="profile" className="profile-icon" />
@@ -117,6 +119,8 @@ class Dashboard extends React.Component {
           </Grid>
           {/* end of itemGrid div */}
 
+
+        {/* User information - Demographic, Insurance, Detail Summary, and Benefits Paid */}
           <Grid item md className={classes.paper} style={styleDash.paper}>
             <h3 style={styleDash.h3Style}>Policy Holder</h3>
            

@@ -1,21 +1,3 @@
-/* .ava {
-  width: 190px;
-  height: 210px; 
-  padding: 1em 1em 0 1em;
-  border-radius: 50%;
-  border: 1px solid #c0c4ea;
-  background-color: #ffffff;
-  box-shadow: -1px 2px 3px -2px #324a96;
-  
-} */
-/* 
-.avatar-block {
-  width: 100%;
-  border: #c0c4ea solid 2px;
-  border-radius: 50%;
-  margin-left: 15%;
-  margin-top: 5%;
-} */
 
 
 .box {
@@ -57,28 +39,7 @@
   padding-bottom: 1em;
 }
 
-/* BUTTON Childrens */
 
-/* .btn-box {
-  display: grid;
-  grid-template-columns: repeat(12,1fr);
-}
-
-.child-btn-one {
-  /* background-color: blue; */
-  /* grid-column: 1 / 5;
-}
-
-.child-btn-two {
-  /* background-color: yellow; */
-  /* grid-column: 5 / 9;
-}
-
-.child-btn-three {
-  /* background-color: red; */
-  /* grid-column: 9 / 13;
-  padding-right: 25%;
-}  */ 
 .text-styles {
   text-align: center;
   font-size: 2em;
